@@ -16,14 +16,13 @@ public class GoogleAuthTest {
     @Test
     public void genSecretTest() {
         String secret = GoogleAuthenticator.generateSecretKey();
-        String url = GoogleAuthenticator.getQrBarcodeUrl("azusa", "127.0.0.1", secret);
+        String url = GoogleAuthenticator.getQrBarcodeUrl("99999999", "dluo", secret);
         System.out.println("Please register " + url);
         System.out.println("Secret key is " + secret);
-        savedSecret = secret;
     }
 
     // Change this to the saved secret from the running the above test.
-    static String savedSecret = "";
+    static String savedSecret = "HDHTPUXEAAJVKGVM";
 
     @Test
     public void authTest() throws IOException {
