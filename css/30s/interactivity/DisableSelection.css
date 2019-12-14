@@ -1,0 +1,18 @@
+/*
+Makes the content unselectable.
+
+user-select: none specifies that the text cannot be selected.
+Browser support
+98.8%
+
+⚠️ Requires prefixes for full support.
+⚠️ This is not a secure method to prevent users from copying content.
+*/
+
+/*
+<p>You can select me.</p>
+<p class="unselectable">You can't select me!</p>
+*/
+.unselectable {
+  user-select: none;
+}

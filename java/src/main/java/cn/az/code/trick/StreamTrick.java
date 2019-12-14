@@ -1,5 +1,7 @@
 package cn.az.code.trick;
 
+import com.google.common.collect.Lists;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -56,5 +58,8 @@ public class StreamTrick {
         Stack<String> stack1 = stream.collect(Collectors.toCollection(Stack::new));
         // 3. 转为String
         String str = stream.collect(Collectors.joining(","));
+
+        Iterable<String> iterable = new ArrayList<>();
+        System.out.println(Lists.newArrayList(iterable));
     }
 }

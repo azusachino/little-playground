@@ -1,0 +1,19 @@
+/*
+
+The function calc() allows to define CSS values with the use of mathematical expressions, the value adopted for the property is the result of a mathematical expression.
+
+It allows addition, subtraction, multiplication and division.
+Can use different units (pixel and percent together, for example) for each value in your expression.
+It is permitted to nest calc() functions.
+It can be used in any property that <length>, <frequency>, <angle>, <time>, <number>, <color>, or <integer> is allowed, like width, height, font-size, top, left, etc.
+Browser support
+100.0%
+*/
+
+/*
+<div class="box-example"></div>
+*/
+.box-example {
+  height: 280px;
+  background: #222 url('https://image.ibb.co/fUL9nS/wolf.png') no-repeat calc(100% - 20px) calc(100% - 20px);
+}
