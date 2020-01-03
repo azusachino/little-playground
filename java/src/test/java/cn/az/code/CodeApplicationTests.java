@@ -10,4 +10,8 @@ class CodeApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    void stringTest(){
+
+    }
 }

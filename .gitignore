@@ -1,7 +1,9 @@
-# Created by .ignore support plugin (hsz.mobi)
-.idea
-node/gulp_example/node_modules/
-node/later/node_modules/
-node/webpack_example/node_modules/
+# file
 *.iml
+**/package-lock.json
+
+#folder
+.idea/
 **/target/
+**/dist/
+**/node_modules/

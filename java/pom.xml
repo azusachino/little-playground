@@ -2,21 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>cn.az.code</groupId>
-    <artifactId>playground</artifactId>
-    <version>0.0.1</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <artifactId>little-playground</artifactId>
+    <version>1.0.0</version>
+    <relativePath/>
   </parent>
 
   <artifactId>java</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>code</name>
+  <name>java</name>
   <description>java playground</description>
-
-  <properties>
-    <java.version>1.8</java.version>
-  </properties>
 
   <dependencies>
     <dependency>
@@ -27,7 +23,6 @@
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.6</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
