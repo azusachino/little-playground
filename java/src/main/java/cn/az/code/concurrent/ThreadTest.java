@@ -1,10 +1,8 @@
 package cn.az.code.concurrent;
 
-import cn.hutool.cron.TaskExecutor;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @author: azusachino
@@ -13,10 +11,12 @@ import java.util.concurrent.TimeUnit;
 public class ThreadTest {
     public static void main(String[] args) {
         CommonThreadFactory threadFactory = new CommonThreadFactory();
+        ThreadFactory factory = new ThreadFactoryBuilder().setNameFormat("test-thread-%s").build();
         ThreadPoolExecutor executor = new ThreadPoolExecutor(3,3,100L, TimeUnit.MILLISECONDS,new ArrayBlockingQueue<>(10),threadFactory);
+        ExecutorService service = Executors.newCachedThreadPool(factory);
 
         for (int i = 0; i < 5; i++) {
-            executor.execute(threadFactory.newThread(new ThreadTask()));
+            service.execute(factory.newThread(new ThreadTask()));
         }
     }
 }

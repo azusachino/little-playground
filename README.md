@@ -1,2 +1,2 @@
-# little_playground
+# little-playground
 playground for everything

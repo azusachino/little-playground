@@ -1,5 +1,6 @@
 package cn.az.code.concurrent;
 
+import javax.annotation.Nonnull;
 import java.util.concurrent.ThreadFactory;
 
 /**
@@ -9,7 +10,7 @@ import java.util.concurrent.ThreadFactory;
 public class CommonThreadFactory implements ThreadFactory {
 
     @Override
-    public Thread newThread(Runnable r) {
+    public Thread newThread(@Nonnull Runnable r) {
         return new Thread(r);
     }
 }
