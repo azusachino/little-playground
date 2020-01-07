@@ -16,7 +16,7 @@ public class Md5Util {
         String sn = "000000001";
         String date = "20180118141634";
         System.out.println(generateHash(sn+date));
-        System.out.println(Optional.ofNullable("ss").orElse("haha"));
+        System.out.println(Optional.of("ss").orElse("haha"));
     }
     /**
      * @param input string
