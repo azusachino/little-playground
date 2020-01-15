@@ -1,6 +1,7 @@
 package cn.az.code.trick;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.stream.Stream;
 public class DateTrick {
 
     public static void main(String[] args) {
+        System.out.println("getBetween(2019-10-01,2020-01-01) = " + getBetweenDate("20191001","20200101", "yyyyMMdd"));
         System.out.println(getBetween(1,10));
     }
     /**
@@ -24,10 +26,11 @@ public class DateTrick {
      * @param end   the end
      * @return between date
      */
-    public static List<String> getBetweenDate(String start, String end) {
+    public static List<String> getBetweenDate(String start, String end, String format) {
         List<String> list = new ArrayList<>();
-        LocalDate startDate = LocalDate.parse(start);
-        LocalDate endDate = LocalDate.parse(end);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
+        LocalDate startDate = LocalDate.parse(start, dtf);
+        LocalDate endDate = LocalDate.parse(end, dtf);
         long distance = ChronoUnit.DAYS.between(startDate, endDate);
         if (distance < 1) {
             return list;
