@@ -1,12 +1,17 @@
 package cn.az.code.time;
 
+import cn.hutool.core.util.RandomUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.*;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Locale;
+import java.util.stream.Stream;
 
 /**
  * @author Liz
@@ -34,6 +39,12 @@ public class LocalDateTimeDemo {
                 .parseCaseInsensitive()
                 .toFormatter(Locale.CHINESE);
         log.warn(dtf.format(localDateTime));
+
+        LocalDate day = LocalDate.of(2020,Month.FEBRUARY,29);
+        log.info(String.valueOf(day));
+        log.info(String.valueOf(day.plus(4, ChronoUnit.YEARS)));
+        Stream.iterate(1, s -> s + 1).limit(4).forEach(s -> log.info(String.valueOf(day.plus(s, ChronoUnit.YEARS))));
+        Stream.generate(RandomUtil::randomInt).limit(10).forEach(System.out::println);
     }
 
     public static TemporalAdjuster nextWorkingDay() {
