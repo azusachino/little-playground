@@ -4,8 +4,8 @@ import javax.annotation.Nonnull;
 import java.util.concurrent.ThreadFactory;
 
 /**
- * @author: azusachino
- * @version: 2019/12/16
+ * @author az
+ * @version 2019/12/16
  */
 public class CommonThreadFactory implements ThreadFactory {
 
