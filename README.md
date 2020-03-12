@@ -1,2 +1,13 @@
 # little-playground
-playground for everything
+
+## structure
+
+- css
+- java
+- js
+- ts
+
+## content
+
+- some utils
+- some practices
