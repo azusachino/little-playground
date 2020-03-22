@@ -12,13 +12,16 @@ public class Basic {
     });
 
     public static void main(String[] args) {
-        new Thread() {
-            @Override
-            public void run() {
-                System.out.println(x.get());
-            }
-        }.start();
-        x.set(110L);
-        System.out.println(x.get());
+        for (int i = 0; i < 10; i++) {
+            new Thread() {
+                @Override
+                public void run() {
+                    System.out.println(x.get());
+                }
+            }.start();
+            x.set(i * 10L);
+            System.out.println(x.get());
+        }
+
     }
 }
