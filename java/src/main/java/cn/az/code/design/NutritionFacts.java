@@ -1,9 +1,12 @@
 package cn.az.code.design;
 
+import lombok.AllArgsConstructor;
+
 /**
  * @author az
  * @date 2020-03-06
  */
+@AllArgsConstructor
 public class NutritionFacts {
 
     private final int servingSize;

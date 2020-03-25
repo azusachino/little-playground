@@ -11,11 +11,12 @@ public class ForkJoinPoolTest {
     private static ForkJoinPool pool = ForkJoinPool.commonPool();
 
     public static void main(String[] args) {
-        pool.execute(() -> {
-            for (int i = 0; i < 10; i++) {
-               System.out.println(Thread.currentThread().getName());
-            }
-        });
+        for (int i = 0; i < 10; i++) {
+            pool.submit(ForkJoinPoolTest::action);
+        }
+    }
 
+    public static void action() {
+        System.out.printf("Thread [%s] is running...", Thread.currentThread().getName());
     }
 }

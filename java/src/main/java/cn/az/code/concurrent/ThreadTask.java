@@ -4,18 +4,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author: azusachino
- * @version: 2019/12/16
+ * @author azusachino
+ * @version 2019/12/16
  */
 @Data
 @NoArgsConstructor
-public class ThreadTask implements Runnable,Comparable<ThreadTask>{
+public class ThreadTask implements Runnable, Comparable<ThreadTask> {
 
     private int priority;
 
     @Override
     public int compareTo(ThreadTask o) {
-        return this.priority > o.priority ? -1: 1;
+        return this.priority > o.priority ? -1 : 1;
     }
 
     @Override

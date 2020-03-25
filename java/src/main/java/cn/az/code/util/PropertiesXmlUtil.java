@@ -9,7 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
  * The type Properties xml util.
  *
  * @author az
- * @date 2020 -03-06
+ * @date 2020-03-06
  */
 public class PropertiesXmlUtil {
 
@@ -25,7 +25,6 @@ public class PropertiesXmlUtil {
             System.out.println(pe.toString());
         }
     }
-
 
     /**
      * Gets xml attribute.

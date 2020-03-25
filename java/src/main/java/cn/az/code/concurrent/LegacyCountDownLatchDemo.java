@@ -5,13 +5,13 @@ import cn.hutool.core.thread.ThreadUtil;
 import java.util.concurrent.ExecutorService;
 
 /**
- * LegacyCoundDownLatchDemo
+ * LegacyCountDownLatchDemo
  *
  * @author <a href="mailto:azusa146@gmail.com">az</a>
  * @see CountDownLatch
  * @since 2020-03-16
  */
-public class LegacyCoundDownLatchDemo {
+public class LegacyCountDownLatchDemo {
 
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(5);

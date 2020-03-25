@@ -3,6 +3,7 @@ package cn.az.code.config;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
+import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -11,7 +12,7 @@ import java.io.IOException;
  * @date 2020/2/29
  */
 @Component
-public class CorsFilter implements Filter {
+public class CorsFilter extends HttpFilter {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {

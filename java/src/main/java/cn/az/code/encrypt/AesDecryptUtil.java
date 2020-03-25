@@ -7,9 +7,7 @@ import java.security.Key;
 import java.util.Locale;
 
 /**
- *
- * @author bmeng
- * @version 1.0
+ * @author az
  */
 public class AesDecryptUtil {
 
@@ -23,9 +21,11 @@ public class AesDecryptUtil {
      */
     public static final int MODE_CBC = 2;
 
-    private static byte[] inivec = new byte[] {
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-            0x00, 0x00
+    private static byte[] IN = new byte[]{
+            0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00, 0x00, 0x00, 0x00, 0x00,
+            0x00
     };
 
     /**
@@ -41,53 +41,53 @@ public class AesDecryptUtil {
      * @throws Exception 内部処理異常
      */
     public static byte[] vnopadDecrypt(int ciMode, byte[] iv, int keylen,
-     byte[] key, byte[] in, int ilen) throws Exception {
-     // ブロック暗号化モード指定（MODE_ECB、MODE_CBC）が不正
-     if (ciMode != MODE_ECB && ciMode != MODE_CBC) {
-     return null;
-     }
-     // 鍵長の指定が不正
-     if (keylen != 128 && keylen != 192 && keylen != 256) {
-     return null;
-     }
-     // 鍵構成要素アドレス指定が不正（NULL）
-     if (key == null) {
-     return null;
-     }
-     // if(outDEC == null){return -10; }
-     // 正常終了（inがNULL、または、ilen<=0 の場合）
-     if (in == null || ilen == 0) {
-     return null;
-     }
-     // 入力データ長異常（ブロック長で割り切れない
-     if ((ilen & 0x0f) != 0) {
-     return null;
-     }
+                                       byte[] key, byte[] in, int ilen) throws Exception {
+        // ブロック暗号化モード指定（MODE_ECB、MODE_CBC）が不正
+        if (ciMode != MODE_ECB && ciMode != MODE_CBC) {
+            return null;
+        }
+        // 鍵長の指定が不正
+        if (keylen != 128 && keylen != 192 && keylen != 256) {
+            return null;
+        }
+        // 鍵構成要素アドレス指定が不正（NULL）
+        if (key == null) {
+            return null;
+        }
+        // if(outDEC == null){return -10; }
+        // 正常終了（inがNULL、または、ilen<=0 の場合）
+        if (in == null || ilen == 0) {
+            return null;
+        }
+        // 入力データ長異常（ブロック長で割り切れない
+        if ((ilen & 0x0f) != 0) {
+            return null;
+        }
 
-     // MODE_CBCの為の初期化ベクトル指定（16bytesのデータ）（NULL指定の場合、すべて 0 を設定）
-     IvParameterSpec ivSpec;
-     if (iv == null) {
-     ivSpec = new IvParameterSpec(inivec);
-     } else {
-     ivSpec = new IvParameterSpec(iv);
-     }
+        // MODE_CBCの為の初期化ベクトル指定（16bytesのデータ）（NULL指定の場合、すべて 0 を設定）
+        IvParameterSpec ivSpec;
+        if (iv == null) {
+            ivSpec = new IvParameterSpec(IN);
+        } else {
+            ivSpec = new IvParameterSpec(iv);
+        }
 
-     // ブロック暗号化モード指定
-     Cipher cipher;
-     if (ciMode == MODE_ECB) {
-     ivSpec = null;
-     cipher = Cipher.getInstance("AES/ECB/NoPadding");
-     } else {
-     cipher = Cipher.getInstance("AES/CBC/NoPadding");
-     }
+        // ブロック暗号化モード指定
+        Cipher cipher;
+        if (ciMode == MODE_ECB) {
+            ivSpec = null;
+            cipher = Cipher.getInstance("AES/ECB/NoPadding");
+        } else {
+            cipher = Cipher.getInstance("AES/CBC/NoPadding");
+        }
 
-     // 復号化の鍵
-     Key keySpec = new SecretKeySpec(key, "AES");
+        // 復号化の鍵
+        Key keySpec = new SecretKeySpec(key, "AES");
 
-     // 復号化
-     cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
-     return cipher.doFinal(in);
-     }
+        // 復号化
+        cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+        return cipher.doFinal(in);
+    }
 
     /**
      * AES暗号化処理（Paddingなし）
@@ -102,53 +102,53 @@ public class AesDecryptUtil {
      * @throws Exception the exception
      */
     public static byte[] vnopadEncrypt(int ciMode, byte[] iv, int keylen,
-     byte[] key, byte[] in,
-     int ilen) throws Exception {
-     // ブロック暗号化モード指定（MODE_ECB、MODE_CBC）が不正
-     if (ciMode != MODE_ECB && ciMode != MODE_CBC) {
-     return null;
-     }
-     // 鍵長の指定が不正
-     if (keylen != 128 && keylen != 192 && keylen != 256) {
-     return null;
-     }
-     // 鍵構成要素アドレス指定が不正（NULL）
-     if (key == null) {
-     return null;
-     }
-     // if(outEN == null) {return -10; }
-     // 正常終了（inがNULL、または、ilen<=0 の場合）
-     if (in == null || ilen == 0) {
-     return null;
-     }
-     // 入力データ長異常（ブロック長で割り切れない）
-     if ((ilen & 0x0f) != 0) {
-     return null;
-     }
+                                       byte[] key, byte[] in,
+                                       int ilen) throws Exception {
+        // ブロック暗号化モード指定（MODE_ECB、MODE_CBC）が不正
+        if (ciMode != MODE_ECB && ciMode != MODE_CBC) {
+            return null;
+        }
+        // 鍵長の指定が不正
+        if (keylen != 128 && keylen != 192 && keylen != 256) {
+            return null;
+        }
+        // 鍵構成要素アドレス指定が不正（NULL）
+        if (key == null) {
+            return null;
+        }
+        // if(outEN == null) {return -10; }
+        // 正常終了（inがNULL、または、ilen<=0 の場合）
+        if (in == null || ilen == 0) {
+            return null;
+        }
+        // 入力データ長異常（ブロック長で割り切れない）
+        if ((ilen & 0x0f) != 0) {
+            return null;
+        }
 
-     // MODE_CBCの為の初期化ベクトル指定（16bytesのデータ）（NULL指定の場合、すべて 0 を設定）
-     IvParameterSpec ivSpec;
-     if (iv == null) {
-     ivSpec = new IvParameterSpec(inivec);
-     } else {
-     ivSpec = new IvParameterSpec(iv);
-     }
+        // MODE_CBCの為の初期化ベクトル指定（16bytesのデータ）（NULL指定の場合、すべて 0 を設定）
+        IvParameterSpec ivSpec;
+        if (iv == null) {
+            ivSpec = new IvParameterSpec(IN);
+        } else {
+            ivSpec = new IvParameterSpec(iv);
+        }
 
-     // ブロック暗号化モード指定（MODE_ECB、MODE_CBC）
-     Cipher cipher;
-     if (ciMode == MODE_ECB) {
-     cipher = Cipher.getInstance("AES/ECB/NoPadding");
-     } else {
-     cipher = Cipher.getInstance("AES/CBC/NoPadding");
-     }
+        // ブロック暗号化モード指定（MODE_ECB、MODE_CBC）
+        Cipher cipher;
+        if (ciMode == MODE_ECB) {
+            cipher = Cipher.getInstance("AES/ECB/NoPadding");
+        } else {
+            cipher = Cipher.getInstance("AES/CBC/NoPadding");
+        }
 
-     // 暗号化の鍵
-     Key keySpec = new SecretKeySpec(key, "AES");
+        // 暗号化の鍵
+        Key keySpec = new SecretKeySpec(key, "AES");
 
-     // 暗号化
-     cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
-     return cipher.doFinal(in);
-     }
+        // 暗号化
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
+        return cipher.doFinal(in);
+    }
 
     /**
      * Convert hex string to byte[]
@@ -166,13 +166,13 @@ public class AesDecryptUtil {
         byte[] d = new byte[length];
         for (int i = 0; i < length; i++) {
             int pos = i * 2;
-            d[i] = (byte)(charToByte(hexChars[pos]) << 4 | (charToByte(hexChars[pos + 1])) & 0xff);
+            d[i] = (byte) (charToByte(hexChars[pos]) << 4 | (charToByte(hexChars[pos + 1])) & 0xff);
         }
         return d;
     }
 
     private static byte charToByte(char c) {
-        return (byte)"0123456789ABCDEF".indexOf(c);
+        return (byte) "0123456789ABCDEF".indexOf(c);
     }
 
     /**
@@ -210,50 +210,50 @@ public class AesDecryptUtil {
      * @throws Exception 内部処理異常
      */
     public static byte[] vpadEncrypt(int ciMode, byte[] iv, int keylen,
-     byte[] key, byte[] in,
-     int ilen) throws Exception {
-     // ブロック暗号化モード指定（MODE_ECB、MODE_CBC）が不正
-     if (ciMode != MODE_ECB && ciMode != MODE_CBC) {
-     return null;
-     }
-     // 鍵長の指定が不正
-     if (keylen != 128 && keylen != 192 && keylen != 256) {
-     return null;
-     }
-     // 鍵構成要素アドレス指定が不正（NULL）
-     if (key == null) {
-     return null;
-     }
-     // if(outEN == null){return -10; }
-     // 正常終了（inがNULL、または、ilen<=0 の場合）
-     if (in == null || ilen == 0) {
-     return null;
-     }
+                                     byte[] key, byte[] in,
+                                     int ilen) throws Exception {
+        // ブロック暗号化モード指定（MODE_ECB、MODE_CBC）が不正
+        if (ciMode != MODE_ECB && ciMode != MODE_CBC) {
+            return null;
+        }
+        // 鍵長の指定が不正
+        if (keylen != 128 && keylen != 192 && keylen != 256) {
+            return null;
+        }
+        // 鍵構成要素アドレス指定が不正（NULL）
+        if (key == null) {
+            return null;
+        }
+        // if(outEN == null){return -10; }
+        // 正常終了（inがNULL、または、ilen<=0 の場合）
+        if (in == null || ilen == 0) {
+            return null;
+        }
 
-     // MODE_CBCの為の初期化ベクトル指定（16bytesのデータ）（NULL指定の場合、すべて 0 を設定）
-     IvParameterSpec ivSpec;
-     if (iv == null) {
-     ivSpec = new IvParameterSpec(inivec);
-     } else {
-     ivSpec = new IvParameterSpec(iv);
-     }
+        // MODE_CBCの為の初期化ベクトル指定（16bytesのデータ）（NULL指定の場合、すべて 0 を設定）
+        IvParameterSpec ivSpec;
+        if (iv == null) {
+            ivSpec = new IvParameterSpec(IN);
+        } else {
+            ivSpec = new IvParameterSpec(iv);
+        }
 
-     // ブロック暗号化モード（MODE_ECB、MODE_CBC）
-     Cipher cipher;
-     if (ciMode == MODE_ECB) {
-     ivSpec = null;
-     cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-     } else {
-     cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-     }
+        // ブロック暗号化モード（MODE_ECB、MODE_CBC）
+        Cipher cipher;
+        if (ciMode == MODE_ECB) {
+            ivSpec = null;
+            cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+        } else {
+            cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        }
 
-     // 暗号化の鍵
-     Key keySpec = new SecretKeySpec(key, "AES");
+        // 暗号化の鍵
+        Key keySpec = new SecretKeySpec(key, "AES");
 
-     // 暗号化
-     cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
-     return cipher.doFinal(in);
-     }
+        // 暗号化
+        cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
+        return cipher.doFinal(in);
+    }
 
     /**
      * AES復号化処理（Paddingあり）
@@ -291,7 +291,7 @@ public class AesDecryptUtil {
         // MODE_CBCの為の初期化ベクトル指定（16bytesのデータ）（NULL指定の場合、すべて 0 を設定）
         IvParameterSpec ivSpec;
         if (iv == null) {
-            ivSpec = new IvParameterSpec(inivec);
+            ivSpec = new IvParameterSpec(IN);
         } else {
             ivSpec = new IvParameterSpec(iv);
         }

@@ -15,6 +15,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class User implements Serializable {
 
+    private static final long serialVersionUID = -162659387735137664L;
+
     private String username;
     private String desc;
 }

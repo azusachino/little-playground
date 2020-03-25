@@ -40,6 +40,36 @@ public class LockTest {
                 }
             }
         });
+
+        service.shutdown();
+    }
+
+    static class AnotherBoundedBuffer {
+        final Lock lock = new ReentrantLock();
+        final Condition morning = lock.newCondition();
+        final Condition afternoon = lock.newCondition();
+        final Condition evening = lock.newCondition();
+
+        final Object[] workList = new Object[100];
+
+        public void work(Object x) throws InterruptedException {
+            lock.lock();
+            try {
+                Thread.sleep(2 * 1000L);
+            } finally {
+                lock.unlock();
+            }
+        }
+
+        public void sleep() throws InterruptedException {
+            lock.lock();
+            try {
+                Thread.sleep(2 * 1000L);
+            } finally {
+                lock.unlock();
+            }
+        }
+
     }
 
     static class BoundedBuffer {
@@ -58,6 +88,7 @@ public class LockTest {
                 System.out.println("put get lock");
                 while (count == items.length) {
                     System.out.println("buffer full, please wait");
+                    // 调用condition.await方法释放锁将当前线程加入到等待队列中
                     notFull.await();
                 }
                 items[putPtr] = x;

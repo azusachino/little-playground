@@ -13,7 +13,7 @@ import java.util.List;
  * The type Date util.
  *
  * @author azusachino
- * @version //
+ * @version 1.0.0
  */
 public class DateUtil {
 

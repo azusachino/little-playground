@@ -12,37 +12,40 @@ import java.util.Optional;
  */
 public class Md5Util {
 
+    public static final String MD5 = "MD5";
+
     public static void main(String[] args) {
         String sn = "000000001";
         String date = "20180118141634";
-        System.out.println(generateHash(sn+date));
-        System.out.println(Optional.of("ss").orElse("haha"));
+        System.out.println(generateHash(sn + date).orElse("hehe"));
+        System.out.println(generateHash("").orElse("hehe"));
     }
+
     /**
      * @param input string
      * @return hash
      */
-    public static String generateHash(String input){
+    public static Optional<String> generateHash(String input) {
         //チェック
         if (StringUtils.isEmpty(input)) {
-            return null;
+            return Optional.empty();
         }
         try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance(MD5);
             byte[] bytes = md.digest(input.getBytes());
-            StringBuilder hexString = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             for (byte b : bytes) {
                 int temp = b & 255;
                 if (temp < 16) {
-                    hexString.append("0").append(Integer.toHexString(temp));
+                    sb.append("0").append(Integer.toHexString(temp));
                 } else {
-                    hexString.append(Integer.toHexString(temp));
+                    sb.append(Integer.toHexString(temp));
                 }
             }
-            return hexString.toString();
+            return Optional.of(sb.toString());
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        return null;
+        return Optional.empty();
     }
 }

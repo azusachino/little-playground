@@ -11,7 +11,7 @@ import java.util.stream.Stream;
  * The type Stream trick.
  *
  * @author azusachino
- * @version 2019 /12/07
+ * @version 2019/12/07
  */
 public class StreamTrick {
 
