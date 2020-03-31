@@ -1,7 +1,6 @@
 package cn.az.code.thread;
 
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 /**
  * 线程在sleep或wait时，是处于无法交互的状态的，此时只能使用interrupt方法中断它，线程会被激活并收到中断异常。
@@ -9,11 +8,11 @@ import lombok.extern.slf4j.Slf4j;
  * @author az
  * @date 2020/3/22
  */
-@Slf4j
 public class ThreadWakeDemo {
 
-    @SneakyThrows
-    public static void main(String[] args) {
+    private static Log log = Log.get();
+
+    public static void main(String[] args) throws InterruptedException {
         WakeRunnable wr = new WakeRunnable();
         Thread t = new Thread(wr);
         t.start();

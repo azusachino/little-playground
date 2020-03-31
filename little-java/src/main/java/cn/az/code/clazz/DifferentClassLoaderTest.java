@@ -1,7 +1,5 @@
 package cn.az.code.clazz;
 
-import lombok.SneakyThrows;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
@@ -12,8 +10,7 @@ import java.util.Objects;
  */
 public class DifferentClassLoaderTest {
 
-    @SneakyThrows
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         ClassLoader classLoader = new ClassLoader() {
             /**
              * Loads the class with the specified <a href="#name">binary name</a>.

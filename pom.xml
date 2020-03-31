@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.2.5.RELEASE</version>
+    <version>2.2.6.RELEASE</version>
     <relativePath/>
   </parent>
 
@@ -22,14 +22,15 @@
   </modules>
 
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
     <guava.version>28.2-jre</guava.version>
     <hutool.version>5.2.4</hutool.version>
     <commons-io.version>2.6</commons-io.version>
     <commons-text.version>1.8</commons-text.version>
     <mybatis.plus.version>3.3.0</mybatis.plus.version>
     <druid.version>1.1.20</druid.version>
+    <fastjson.version>1.2.66</fastjson.version>
   </properties>
 
   <dependencyManagement>
@@ -58,6 +59,11 @@
         <groupId>com.alibaba</groupId>
         <artifactId>druid-spring-boot-starter</artifactId>
         <version>${druid.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
       </dependency>
       <dependency>
         <groupId>com.baomidou</groupId>

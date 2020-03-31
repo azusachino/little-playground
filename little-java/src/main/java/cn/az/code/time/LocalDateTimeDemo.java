@@ -1,7 +1,7 @@
 package cn.az.code.time;
 
 import cn.hutool.core.util.RandomUtil;
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -17,8 +17,9 @@ import java.util.stream.Stream;
  * @author Liz
  * @date 1/9/2020
  */
-@Slf4j
 public class LocalDateTimeDemo {
+
+    private static Log log = Log.get();
 
     public static void main(String[] args) {
         LocalDate localDate = LocalDate.of(2020, Month.DECEMBER,31);

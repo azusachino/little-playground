@@ -1,12 +1,10 @@
 package cn.az.code.design;
 
-import lombok.AllArgsConstructor;
 
 /**
  * @author az
  * @date 2020-03-06
  */
-@AllArgsConstructor
 public class NutritionFacts {
 
     private final int servingSize;
@@ -15,6 +13,15 @@ public class NutritionFacts {
     private final int fat;
     private final int sodium;
     private final int carbohydrate;
+
+    public NutritionFacts(int servingSize, int servings, int calories, int fat, int sodium, int carbohydrate) {
+        this.servingSize = servingSize;
+        this.servings = servings;
+        this.calories = calories;
+        this.fat = fat;
+        this.sodium = sodium;
+        this.carbohydrate = carbohydrate;
+    }
 
     public static class Builder {
         private final int servingSize;

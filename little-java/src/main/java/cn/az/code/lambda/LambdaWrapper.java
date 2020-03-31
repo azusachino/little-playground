@@ -1,7 +1,7 @@
 package cn.az.code.lambda;
 
 import cn.az.code.function.ThrowingConsumer;
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 import java.util.function.Consumer;
 
@@ -9,8 +9,9 @@ import java.util.function.Consumer;
  * @author Liz
  * @date 1/7/2020
  */
-@Slf4j
 public class LambdaWrapper {
+
+    private static Log log = Log.get();
 
     public static Consumer<Integer> lambdaWrapper(Consumer<Integer> consumer) {
         return i -> {

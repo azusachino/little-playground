@@ -1,12 +1,9 @@
 package cn.az.code.future;
 
 import cn.hutool.core.thread.ExecutorBuilder;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
@@ -18,11 +15,21 @@ import java.util.stream.Collectors;
  * @author Liz
  * @date 1/9/2020
  */
-@Data
-@AllArgsConstructor
 public class Shop {
 
     private String product;
+
+    public Shop(String product) {
+        this.product = product;
+    }
+
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
+    }
 
     private static final ExecutorService SERVICE = ExecutorBuilder.create().build();
 

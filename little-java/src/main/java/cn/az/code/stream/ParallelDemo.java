@@ -1,6 +1,6 @@
 package cn.az.code.stream;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 import java.util.function.Function;
 import java.util.stream.LongStream;
@@ -10,8 +10,9 @@ import java.util.stream.Stream;
  * @author Liz
  * @date 2020/1/8
  */
-@Slf4j
 public class ParallelDemo {
+
+    private static Log log = Log.get();
 
     public static long parallelRun(int n) {
         return Stream.iterate(1L, i -> i + 1)

@@ -1,17 +1,21 @@
 package cn.az.code.concurrent;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 /**
  * @author azusachino
  * @version 2019/12/16
  */
-@Data
-@NoArgsConstructor
+
 public class ThreadTask implements Runnable, Comparable<ThreadTask> {
 
     private int priority;
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
 
     @Override
     public int compareTo(ThreadTask o) {

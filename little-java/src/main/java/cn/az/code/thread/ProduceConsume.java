@@ -1,7 +1,7 @@
 package cn.az.code.thread;
 
 import cn.hutool.core.util.RandomUtil;
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -13,8 +13,9 @@ import static cn.az.code.thread.ThreadTravel.doingLongTime;
  * @author az
  * @date 2020/3/22
  */
-@Slf4j
 public class ProduceConsume {
+
+    private static Log log = Log.get(ProduceConsume.class);
 
     public static void main(String[] args) {
         Queue queue = new Queue();

@@ -1,7 +1,7 @@
 package cn.az.code.atomic;
 
 import cn.hutool.core.thread.ThreadUtil;
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -13,8 +13,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @see AtomicInteger
  * @since 2020-03-24
  */
-@Slf4j
 public class AtomicIntegerDemo {
+
+    private static Log log = Log.get();
 
     public static void main(String[] args) {
         AtomicInteger val = new AtomicInteger(999);

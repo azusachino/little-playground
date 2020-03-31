@@ -1,7 +1,7 @@
 package cn.az.code.concurrent;
 
 import cn.hutool.core.thread.ThreadUtil;
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Semaphore;
@@ -13,8 +13,9 @@ import java.util.concurrent.Semaphore;
  * @see CountDemo
  * @since 2020-03-12
  */
-@Slf4j
 public class CountDemo {
+
+    private static Log log = Log.get();
 
     private static int threadTotal = 200;
     private static int clientTotal = 5000;

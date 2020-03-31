@@ -1,7 +1,7 @@
 package cn.az.code.concurrent;
 
+import cn.hutool.log.Log;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.*;
 
@@ -9,8 +9,10 @@ import java.util.concurrent.*;
  * @author Liz
  * @date 2020/1/7
  */
-@Slf4j
+
 public class ThreadLocalDemo {
+
+    private static Log log = Log.get();
 
     public static ThreadLocal<Index> index = ThreadLocal.withInitial(Index::new);
 

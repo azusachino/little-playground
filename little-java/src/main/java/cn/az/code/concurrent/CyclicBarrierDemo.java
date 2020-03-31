@@ -1,7 +1,6 @@
 package cn.az.code.concurrent;
 
 import cn.hutool.core.thread.ThreadUtil;
-import lombok.SneakyThrows;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
@@ -14,8 +13,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class CyclicBarrierDemo {
 
-    @SneakyThrows
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
         ExecutorService service = ThreadUtil.newExecutor(5);
         // 10 = CyclicBarrier(5) + CyclicBarrier.reset()

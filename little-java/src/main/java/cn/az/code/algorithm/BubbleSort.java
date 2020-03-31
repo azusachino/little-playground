@@ -1,7 +1,7 @@
 package cn.az.code.algorithm;
 
 import cn.hutool.core.util.ArrayUtil;
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -13,8 +13,9 @@ import java.util.Objects;
  * @see Sort
  * @since 2020-03-24
  */
-@Slf4j
 public class BubbleSort<T extends Comparable<T>> implements Sort<T> {
+
+    Log log = Log.get(BubbleSort.class);
 
     /**
      * Sort.

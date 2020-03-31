@@ -1,7 +1,6 @@
 package cn.az.code.thread;
 
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 import java.util.concurrent.CyclicBarrier;
 
@@ -11,14 +10,15 @@ import java.util.concurrent.CyclicBarrier;
  * @author az
  * @date 2020/3/22
  */
-@Slf4j
 public class ThreadTravel {
+
+    private static Log log = Log.get(ProduceConsume.class);
 
     static final int COUNT = 5;
     static CyclicBarrier cb = new CyclicBarrier(COUNT, new SingerRunnable());
 
-    @SneakyThrows
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws InterruptedException {
         for (int i = 0; i < COUNT; i++) {
             new Thread(new StaffRunnable(i, cb)).start();
         }
@@ -65,36 +65,39 @@ public class ThreadTravel {
 
         @Override
         public void run() {
-            log.info("员工{}出发。。。", num);
-            doingLongTime();
-            log.info("员工{}到达地点一。。。", num);
             try {
-                cb.await();
+                log.info("员工{}出发。。。", num);
+                doingLongTime();
+                log.info("员工{}到达地点一。。。", num);
+                try {
+                    cb.await();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                log.info("员工{}再出发。。。", num);
+                doingLongTime();
+                log.info("员工{}到达地点二。。。", num);
+                try {
+                    cb.await();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                log.info("员工{}再出发。。。", num);
+                doingLongTime();
+                log.info("员工{}到达地点三。。。", num);
+                try {
+                    cb.await();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                log.info("员工{}结束。。。", num);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            log.info("员工{}再出发。。。", num);
-            doingLongTime();
-            log.info("员工{}到达地点二。。。", num);
-            try {
-                cb.await();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            log.info("员工{}再出发。。。", num);
-            doingLongTime();
-            log.info("员工{}到达地点三。。。", num);
-            try {
-                cb.await();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            log.info("员工{}结束。。。", num);
         }
     }
 
-    @SneakyThrows
-    static void doingLongTime() {
+    static void doingLongTime() throws InterruptedException {
         Thread.sleep(5 * 1000L);
     }
 }

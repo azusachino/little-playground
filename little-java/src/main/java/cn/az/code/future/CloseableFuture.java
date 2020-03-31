@@ -1,7 +1,6 @@
 package cn.az.code.future;
 
 import cn.hutool.core.thread.ThreadUtil;
-import lombok.SneakyThrows;
 
 import java.util.concurrent.*;
 
@@ -16,7 +15,11 @@ public class CloseableFuture {
 
         Future<?> future = service.submit(() -> {
             // finish under 3 seconds is ok, otherwise timeout
-            sleep(3);
+            try {
+                sleep(3);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         });
         try {
             future.get(3, TimeUnit.SECONDS);
@@ -34,8 +37,7 @@ public class CloseableFuture {
         service.shutdown();
     }
 
-    @SneakyThrows
-    private static void sleep(long seconds) {
+    private static void sleep(long seconds) throws InterruptedException {
         Thread.sleep(TimeUnit.SECONDS.toMillis(seconds));
         if (Thread.interrupted()) {
             return;

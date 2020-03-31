@@ -1,14 +1,15 @@
 package cn.az.code.thread;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 /**
  * 在预设的地点检测flag。然后就是wait/notify配合使用。
  * @author az
  * @date 2020/3/22
  */
-@Slf4j
 public class ThreadPauseDemo {
+
+    private static Log log = Log.get();
 
     public static void main(String[] args) {
         PauseRunnable pr = new PauseRunnable();

@@ -1,8 +1,6 @@
 package cn.az.code.thread;
 
-import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 import java.util.concurrent.Exchanger;
 
@@ -14,13 +12,13 @@ import static cn.az.code.thread.ThreadTravel.doingLongTime;
  * @author az
  * @date 2020/3/22
  */
-@Slf4j
 public class ThreadWorking {
 
-    static Exchanger<Tool> ex = new Exchanger<Tool>();
+    private static Log log = Log.get();
 
-    @SneakyThrows
-    public static void main(String[] args) {
+    static Exchanger<Tool> ex = new Exchanger<>();
+
+    public static void main(String[] args) throws InterruptedException {
         new Thread(new StaffRunnable("大胖", new Tool("笤帚", "扫地"), ex)).start();
         new Thread(new StaffRunnable("小白", new Tool("抹布", "擦桌"), ex)).start();
 
@@ -37,17 +35,26 @@ public class ThreadWorking {
      * 17:03:44.204 [Thread-1] INFO cn.az.code.thread.ThreadWorking - 小白的工具变为[笤帚]，他开始[扫地]。。。
      * 17:03:44.204 [Thread-0] INFO cn.az.code.thread.ThreadWorking - 大胖的工具变为[抹布]，他开始[擦桌]。。。
      */
-    @AllArgsConstructor
     static class StaffRunnable implements Runnable {
 
         String name;
         Tool tool;
         Exchanger<Tool> ex;
 
+        public StaffRunnable(String name, Tool tool, Exchanger<Tool> ex) {
+            this.name = name;
+            this.tool = tool;
+            this.ex = ex;
+        }
+
         @Override
         public void run() {
             log.info("{}拿的工具是[{}]，他开始[{}]。。。", name, tool.name, tool.work);
-            doingLongTime();
+            try {
+                doingLongTime();
+            } catch (InterruptedException e) {
+                log.warn(e);
+            }
             log.info("{}开始交换工具。。。", name);
             try {
                 tool = ex.exchange(tool);
@@ -60,9 +67,13 @@ public class ThreadWorking {
         }
     }
 
-    @AllArgsConstructor
     static class Tool {
         String name;
         String work;
+
+        public Tool(String name, String work) {
+            this.name = name;
+            this.work = work;
+        }
     }
 }

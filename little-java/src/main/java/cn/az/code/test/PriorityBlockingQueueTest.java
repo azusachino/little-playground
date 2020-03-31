@@ -1,7 +1,5 @@
 package cn.az.code.test;
 
-import lombok.SneakyThrows;
-
 import java.util.concurrent.*;
 
 /**
@@ -13,13 +11,11 @@ import java.util.concurrent.*;
  */
 public class PriorityBlockingQueueTest {
 
-    @SneakyThrows
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         func3();
     }
 
-    @SneakyThrows
-    public static void func1() {
+    public static void func1() throws InterruptedException {
         BlockingQueue<Integer> queue = new PriorityBlockingQueue<>(2);
         // 1. put(Object o) unblocking 不阻塞
         // 2. offer(Object o) 不限制
@@ -36,8 +32,7 @@ public class PriorityBlockingQueueTest {
         System.out.println("queue = " + queue);
     }
 
-    @SneakyThrows
-    public static void func2() {
+    public static void func2() throws InterruptedException {
         BlockingQueue<Integer> queue = new SynchronousQueue<>();
         // 1. no space, offer return false
         // 2. take() will blocking, 必须其他线程显示调用
@@ -49,16 +44,15 @@ public class PriorityBlockingQueueTest {
         System.out.println("queue.take() = " + queue.take());
         System.out.println("queue.size() = " + queue.size());
     }
-    @SneakyThrows
-    public static void func3() {
+
+    public static void func3() throws InterruptedException {
        offer(new ArrayBlockingQueue<>(2));
        offer(new LinkedBlockingQueue<>(2));
        offer(new PriorityBlockingQueue<>(2));
        offer(new SynchronousQueue<>());
     }
 
-    @SneakyThrows
-    public static void offer(BlockingQueue<Integer> queue) {
+    public static void offer(BlockingQueue<Integer> queue) throws InterruptedException {
         System.out.println("queue.getClass() = " + queue.getClass().getName());
         System.out.println("queue.offer(1) = " + queue.offer(1));
         System.out.println("queue.offer(2) = " + queue.offer(2));

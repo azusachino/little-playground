@@ -1,8 +1,5 @@
 package cn.az.code.stream;
 
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
@@ -12,13 +9,30 @@ import java.util.stream.LongStream;
  * @author Liz
  * @date 2020/1/8
  */
-@Slf4j
-@AllArgsConstructor
+
 public class ForkJoinSumCalculator extends RecursiveTask<Long> {
 
     private final long[] nums;
     private final int start;
     private final int end;
+
+    public ForkJoinSumCalculator(long[] nums, int start, int end) {
+        this.nums = nums;
+        this.start = start;
+        this.end = end;
+    }
+
+    public long[] getNums() {
+        return nums;
+    }
+
+    public int getStart() {
+        return start;
+    }
+
+    public int getEnd() {
+        return end;
+    }
 
     private static final ForkJoinPool FORK_JOIN_POOL = new ForkJoinPool();
 

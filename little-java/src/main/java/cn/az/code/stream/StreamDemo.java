@@ -1,6 +1,6 @@
 package cn.az.code.stream;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,8 +13,9 @@ import java.util.stream.Stream;
  * @author Liz
  * @date 2020/1/7
  */
-@Slf4j
 public class StreamDemo {
+
+    private static Log log = Log.get();
 
     public static void main(String[] args) {
         List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5);

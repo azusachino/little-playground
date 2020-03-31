@@ -1,6 +1,6 @@
 package cn.az.code.stream;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 import java.util.Arrays;
 import java.util.Spliterator;
@@ -13,8 +13,9 @@ import java.util.stream.StreamSupport;
  * @author Liz
  * @date 1/9/2020
  */
-@Slf4j
 public class SpliteratorDemos {
+
+    private static Log log = Log.get();
 
     private static final String SENTENCE = "Hello World Java TypeScript";
 

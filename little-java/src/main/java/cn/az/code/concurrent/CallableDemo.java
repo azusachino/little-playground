@@ -1,7 +1,6 @@
 package cn.az.code.concurrent;
 
 import cn.hutool.core.thread.ThreadUtil;
-import lombok.AllArgsConstructor;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -23,10 +22,13 @@ public class CallableDemo<T> {
     }
 
 
-    @AllArgsConstructor
     public static class TicketCallable<T> implements Callable<T> {
 
         private int tickets;
+
+        public TicketCallable(int tickets) {
+            this.tickets = tickets;
+        }
 
         /**
          * Computes a result, or throws an exception if unable to do so.

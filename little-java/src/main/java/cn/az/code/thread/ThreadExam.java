@@ -1,26 +1,26 @@
 package cn.az.code.thread;
 
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 import java.util.concurrent.CountDownLatch;
 
 /**
  * 每完成一个线程，计数器减1，当减到0时，被阻塞的线程自动执行。
+ *
  * @author az
  * @date 2020/3/22
  */
-@Slf4j
 public class ThreadExam {
+
+    private static Log log = Log.get();
 
     private static final int COUNT = 20;
 
     static CountDownLatch cdl = new CountDownLatch(COUNT);
 
-    @SneakyThrows
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         new Thread(new TeacherRunnable(cdl)).start();
-        Thread.sleep(1 * 1000L);
+        Thread.sleep(1000L);
         for (int i = 0; i < COUNT; i++) {
             new Thread(new StudentRunnable(i, cdl)).start();
         }
@@ -61,10 +61,13 @@ public class ThreadExam {
         }
 
         @Override
-        @SneakyThrows
         public void run() {
             log.info("{} is writing hard...", this.num);
-            Thread.sleep(5 * 1000L);
+            try {
+                Thread.sleep(5 * 1000L);
+            } catch (InterruptedException e) {
+                log.warn(e);
+            }
             log.info("{} is finished the paper", this.num);
             cdl.countDown();
         }

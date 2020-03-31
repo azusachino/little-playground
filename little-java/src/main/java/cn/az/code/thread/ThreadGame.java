@@ -1,7 +1,7 @@
 package cn.az.code.thread;
 
 import cn.hutool.core.util.RandomUtil;
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
 
 import java.util.concurrent.Phaser;
 
@@ -13,8 +13,9 @@ import static cn.az.code.thread.ThreadTravel.doingLongTime;
  * @author az
  * @date 2020/3/22
  */
-@Slf4j
 public class ThreadGame {
+
+    private static Log log = Log.get();
 
     static final int COUNT = 6;
 
@@ -59,7 +60,11 @@ public class ThreadGame {
             int phase = 0;
             int h;
             while (!ph.isTerminated() && phase < 100) {
-                doingLongTime();
+                try {
+                    doingLongTime();
+                } catch (Exception e) {
+                    log.warn(e);
+                }
                 if (state == 0) {
                     if (Decide.goon()) {
                         h = ph.arriveAndAwaitAdvance();
