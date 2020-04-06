@@ -28,8 +28,8 @@
     <hutool.version>5.2.4</hutool.version>
     <commons-io.version>2.6</commons-io.version>
     <commons-text.version>1.8</commons-text.version>
-    <mybatis.plus.version>3.3.0</mybatis.plus.version>
-    <druid.version>1.1.20</druid.version>
+    <mybatis.plus.version>3.3.1</mybatis.plus.version>
+    <druid.version>1.1.21</druid.version>
     <fastjson.version>1.2.66</fastjson.version>
   </properties>
 

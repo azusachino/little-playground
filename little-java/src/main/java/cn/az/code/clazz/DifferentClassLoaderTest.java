@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 public class DifferentClassLoaderTest {
 
-    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public static void main(String[] args) throws ClassNotFoundException {
         ClassLoader classLoader = new ClassLoader() {
             /**
              * Loads the class with the specified <a href="#name">binary name</a>.
@@ -42,10 +42,9 @@ public class DifferentClassLoaderTest {
             }
         };
         // throw ClassCastException (differentClassLoader) 两者不属于同一类加载器加载，所以不能转化！
-        DifferentClassLoaderTest obj = (DifferentClassLoaderTest) classLoader.loadClass("cn.az.code.clazz.DifferentClassLoaderTest").newInstance();
+        Class<?> obj = classLoader.loadClass("cn.az.code.clazz.DifferentClassLoaderTest");
 
-        Object o = classLoader.loadClass("cn.az.code.clazz.DifferentClassLoaderTest").newInstance();
-        System.out.println(o.getClass());
-        System.out.println(o instanceof DifferentClassLoaderTest);
+        Class<?> o = classLoader.loadClass("cn.az.code.clazz.DifferentClassLoaderTest");
+        System.out.println(o);
     }
 }
