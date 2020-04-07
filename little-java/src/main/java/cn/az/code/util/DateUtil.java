@@ -1,14 +1,12 @@
 package cn.az.code.util;
 
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -21,7 +19,11 @@ import java.util.stream.Stream;
  */
 public class DateUtil {
 
-    DateUtil() {
+    private static ThreadLocal<SimpleDateFormat> threadLocal =
+            ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+
+    private DateUtil() {
+        throw new Error();
     }
 
     public static final String YYYY_MM = "yyyy-MM";
@@ -66,6 +68,11 @@ public class DateUtil {
      */
     public static LocalDateTime getMorning(LocalDateTime localDateTime) {
         return localDateTime.toLocalDate().atStartOfDay();
+    }
+
+    public static String getCurrentDate() {
+        SimpleDateFormat sdf = threadLocal.get();
+        return sdf.format(Date.from(LocalDateTime.now().atZone(ZoneId.of("GMT+8")).toInstant()));
     }
 
     /**

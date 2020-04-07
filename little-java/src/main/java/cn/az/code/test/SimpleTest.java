@@ -1,10 +1,14 @@
 package cn.az.code.test;
 
 import cn.az.code.util.DateUtil;
+import cn.hutool.core.thread.ThreadUtil;
+import cn.hutool.log.Log;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
 import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
 import java.util.stream.Stream;
 
 /**
@@ -16,8 +20,24 @@ import java.util.stream.Stream;
  */
 public class SimpleTest {
 
-    public static void main(String[] args) {
+    private static final Log log = Log.get();
 
+    public static void main(String[] args) {
+        ExecutorService service = ThreadUtil.newExecutor(10);
+        for (int i = 0; i < 1000; i++) {
+            service.submit(() -> {
+                System.out.println(DateUtil.getCurrentDate());
+            });
+        }
+
+        service.shutdown();
+    }
+
+    public static <T> void a(T obj) {
+        System.out.println(obj.toString());
+    }
+
+    private static void test1() {
         System.out.println(DateUtil.getMonthBetweenYear(2020));
 
         ThreadMXBean mxBean = ManagementFactory.getThreadMXBean();
@@ -29,7 +49,35 @@ public class SimpleTest {
         System.out.println("123***231".replaceAll("\\d", "*"));
     }
 
-    public static <T> void a(T obj) {
-        System.out.println(obj.toString());
+    private static void test2() {
+        List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
+
+        int point = 3;
+        // stream can't use return to stop execute
+        list.forEach(i -> {
+            if (i == 1) {
+                log.info(String.valueOf(i));
+            } else {
+                log.warn(String.valueOf(i));
+            }
+        });
+
+        // throw Exception
+        list.forEach(i -> {
+            if (i == point) {
+                throw new NullPointerException("break the stream");
+            } else {
+                log.warn(String.valueOf(i));
+            }
+        });
+
+        for (Integer i : list) {
+            if (i == point) {
+                return;
+            } else {
+                log.info("current val is {}", i);
+            }
+        }
+        log.error("last sentence");
     }
 }

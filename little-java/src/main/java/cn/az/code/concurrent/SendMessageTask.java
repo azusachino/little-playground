@@ -1,5 +1,7 @@
 package cn.az.code.concurrent;
 
+import cn.hutool.core.util.RandomUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
@@ -55,11 +57,11 @@ public class SendMessageTask extends RecursiveAction {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        int jobs = 380;
+        int jobs = 32;
         List<String> list = new ArrayList<>();
         for (int i = 1; i <= jobs; i++) {
             //假设此处为手机号码--项目中从数据库中获取
-            list.add("i------" + i);
+            list.add(RandomUtil.randomNumbers(11));
         }
         ForkJoinPool pool = new ForkJoinPool();
         // 提交可分解的PrintTask任务
