@@ -38,6 +38,18 @@ public class QuickSort<T extends Comparable<T>> implements Sort<T> {
         }
     }
 
+    /**
+     * 快速排序（递归）
+     * <p>
+     * ①. 从数列中挑出一个元素，称为"基准"（pivot）。
+     * ②. 重新排序数列，所有比基准值小的元素摆放在基准前面，所有比基准值大的元素摆在基准后面（相同的数可以到任一边）。在这个分区结束之后，该基准就处于数列的中间位置。这个称为分区（partition）操作。
+     * ③. 递归地（recursively）把小于基准值元素的子数列和大于基准值元素的子数列排序。
+     * </p>
+     *
+     * @param values 待排序数组
+     * @param l      左边界
+     * @param r      右边界
+     */
     private int partition(T[] values, int l, int r) {
         T pivot = values[r];
         int low = l;
