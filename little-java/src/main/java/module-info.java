@@ -17,6 +17,10 @@ module little.java {
     requires com.google.gson;
     requires spring.core;
     requires spring.beans;
+    requires spring.boot.starter.data.redis;
+    requires spring.data.redis;
+    requires jedis;
 
     exports cn.az.code.util;
+    exports cn.az.code.proxy.service;
 }
