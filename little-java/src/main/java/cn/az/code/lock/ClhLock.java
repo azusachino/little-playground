@@ -33,8 +33,8 @@ public class ClhLock implements Lock {
     // CLH是一种基于单向链表的高性能、公平的自旋锁。申请加锁的线程通过前驱节点的变量进行自旋。在前置节点解锁后，当前节点会结束自旋，并进行加锁。
     // 在SMP架构下，CLH更具有优势。在NUMA架构下，如果当前节点与前驱节点不在同一CPU模块下，跨CPU模块会带来额外的系统开销，而MCS锁更适用于NUMA架构。
 
-    private AtomicReference<ClhNode> tail;
-    private ThreadLocal<ClhNode> threadLocal;
+    private final AtomicReference<ClhNode> tail;
+    private final ThreadLocal<ClhNode> threadLocal;
 
     public ClhLock() {
         this.tail = new AtomicReference<>();

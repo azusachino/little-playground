@@ -20,6 +20,7 @@ module little.java {
     requires spring.boot.starter.data.redis;
     requires spring.data.redis;
     requires jedis;
+    requires zookeeper;
 
     exports cn.az.code.util;
     exports cn.az.code.proxy.service;
