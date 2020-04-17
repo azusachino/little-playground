@@ -3,6 +3,11 @@ interface A {
   print(s:string):void
 }
 
+type B ={
+  id: string
+  name?: A
+}
+
 class Ax implements A {
   id: string;
 
