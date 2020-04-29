@@ -9,6 +9,9 @@ import java.lang.management.ThreadMXBean;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Stream;
 
 /**
@@ -23,14 +26,78 @@ public class SimpleTest {
     private static final Log log = Log.get();
 
     public static void main(String[] args) {
-        ExecutorService service = ThreadUtil.newExecutor(10);
-        for (int i = 0; i < 1000; i++) {
-            service.submit(() -> {
-                System.out.println(DateUtil.getCurrentDate());
-            });
+        printAbc2();
+//        ExecutorService service = ThreadUtil.newExecutor(10);
+//        for (int i = 0; i < 1000; i++) {
+//            service.submit(() -> {
+//                System.out.println(DateUtil.getCurrentDate());
+//            });
+//        }
+//
+//        service.shutdown();
+    }
+
+    public static void printAbc() {
+        ExecutorService service = ThreadUtil.newExecutor(3);
+
+        for (int i = 0; i < 3; i++) {
+            service.execute(() -> System.out.println("abc"));
         }
 
         service.shutdown();
+    }
+
+    public static void printAbc2() {
+        Lock lock = new ReentrantLock(true);
+        Condition c1 = lock.newCondition();
+        Condition c2 = lock.newCondition();
+        Condition c3 = lock.newCondition();
+
+        new Thread(() -> {
+            lock.lock();
+            try {
+                while (true) {
+                    System.out.println(Thread.currentThread().getName() + "abc");
+                    c2.signal();
+                    c1.await();
+                }
+            } catch (InterruptedException e) {
+                log.error(e);
+            } finally {
+                lock.unlock();
+            }
+        }).start();
+        new Thread(() -> {
+            lock.lock();
+            try {
+                while (true) {
+                    System.out.println(Thread.currentThread().getName() + "abc");
+                    c3.signal();
+                    c2.await();
+
+                }
+            } catch (InterruptedException e) {
+                log.error(e);
+            } finally {
+                lock.unlock();
+            }
+        }).start();
+        new Thread(() -> {
+            lock.lock();
+            try {
+                while (true) {
+                    System.out.println(Thread.currentThread().getName() + "abc");
+                    c1.signal();
+                    c3.await();
+
+                }
+            } catch (InterruptedException e) {
+                log.error(e);
+            } finally {
+                lock.unlock();
+            }
+        }).start();
+
     }
 
     public static <T> void a(T obj) {
@@ -45,7 +112,6 @@ public class SimpleTest {
 
         Stream.of(threadIds).forEach(id -> System.out.println(Arrays.toString(mxBean.getThreadInfo(id))));
         a("aa");
-        a(new SimpleTest());
         System.out.println("123***231".replaceAll("\\d", "*"));
     }
 
