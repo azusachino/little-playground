@@ -1,3 +1,12 @@
 spring:
   application:
-    name: Little Java
+    name: Little Playground
+
+  redis:
+    host: 180.76.169.35
+    port: 6379
+    database: 0
+    password:
+    sentinel:
+      master: RedisLord
+      nodes: 180.76.139.35:6379

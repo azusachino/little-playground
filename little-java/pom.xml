@@ -16,6 +16,12 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.module</groupId>
+          <artifactId>jackson-module-jaxb-annotations</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -24,10 +30,6 @@
     <dependency>
       <groupId>redis.clients</groupId>
       <artifactId>jedis</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>fastjson</artifactId>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
@@ -81,6 +83,16 @@
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>okhttp</artifactId>
     </dependency>
+    <dependency>
+      <groupId>cn.bestwu</groupId>
+      <artifactId>fastdfs-client-java</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.flowable</groupId>
+      <artifactId>flowable-spring-boot-starter</artifactId>
+      <version>6.5.0</version>
+    </dependency>
+
   </dependencies>
 
   <build>

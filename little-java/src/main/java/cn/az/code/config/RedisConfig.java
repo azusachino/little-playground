@@ -15,15 +15,21 @@ import java.util.Set;
 @Configuration
 public class RedisConfig {
 
-    @Value("${}")
+    @Value("${spring.redis.host}")
+    private String host;
+
+    @Value("${spring.redis.port}")
+    private Integer port;
+
+    @Value("${spring.redis.sentinel.master}")
     private String masterName;
 
-    @Value("${}")
+    @Value("${spring.redis.sentinel.master}")
     private Set<String> sentinels;
 
     @Bean
     public JedisPool jedisPool() {
-        return new JedisPool();
+        return new JedisPool(host, port);
     }
 
     @Bean

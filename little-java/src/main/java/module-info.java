@@ -21,7 +21,12 @@ module little.java {
     requires spring.data.redis;
     requires jedis;
     requires okhttp3;
+    requires flowable.spring.common;
+    requires com.fasterxml.jackson.core;
 
-    exports cn.az.code.util;
-    exports cn.az.code.proxy.service;
+    opens cn.az.code to spring.core, spring.beans, spring.context;
+    opens cn.az.code.servlet to spring.beans;
+    opens cn.az.code.config to spring.core, spring.beans, spring.context;
+
+    exports cn.az.code.stream;
 }
