@@ -90,9 +90,13 @@
     <dependency>
       <groupId>org.flowable</groupId>
       <artifactId>flowable-spring-boot-starter</artifactId>
-      <version>6.5.0</version>
     </dependency>
-
+    <!--JWT解析库-->
+    <dependency>
+      <groupId>com.nimbusds</groupId>
+      <artifactId>nimbus-jose-jwt</artifactId>
+      <version>${nimbus-jwt.version}</version>
+    </dependency>
   </dependencies>
 
   <build>

@@ -6,6 +6,7 @@ import cn.hutool.log.Log;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -18,7 +19,6 @@ import java.util.stream.Stream;
  * SimpleTest
  *
  * @author <a href="mailto:azusa146@gmail.com">az</a>
- * @see Test
  * @since 2020-03-13
  */
 public class SimpleTest {
@@ -116,7 +116,7 @@ public class SimpleTest {
     }
 
     private static void test2() {
-        List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
 
         int point = 3;
         // stream can't use return to stop execute
