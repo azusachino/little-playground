@@ -11,7 +11,7 @@ import java.util.function.Consumer;
  */
 public class LambdaWrapper {
 
-    private static Log log = Log.get();
+    private static final Log log = Log.get();
 
     public static Consumer<Integer> lambdaWrapper(Consumer<Integer> consumer) {
         return i -> {

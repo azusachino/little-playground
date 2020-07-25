@@ -7,7 +7,7 @@ import org.springframework.data.redis.RedisConnectionFailureException;
  * @since 2020-04-14
  */
 @FunctionalInterface
-public interface JedisExecutor<T,R> {
+public interface JedisExecutor<T, R> {
 
     R execute(T t) throws RedisConnectionFailureException;
 }

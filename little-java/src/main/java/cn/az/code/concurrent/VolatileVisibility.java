@@ -12,8 +12,9 @@ import java.util.concurrent.ThreadFactory;
  */
 public class VolatileVisibility {
 
-    public static class Test{
+    public static class Test {
         volatile int num = 0;
+
         public void updateNum() {
             num++;
         }
@@ -30,7 +31,7 @@ public class VolatileVisibility {
                 }
             });
         }
-        while (Thread.activeCount() > 2){
+        while (Thread.activeCount() > 2) {
             Thread.yield();
         }
         System.out.println("t.num = " + t.num);

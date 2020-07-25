@@ -10,7 +10,8 @@ public class Dish {
     private Boolean vegetable;
     private Integer calories;
 
-    public Dish() {}
+    public Dish() {
+    }
 
     public Dish(String name, Boolean vegetable, Integer calories) {
         this.name = name;

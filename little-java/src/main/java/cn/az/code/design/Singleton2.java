@@ -10,7 +10,7 @@ package cn.az.code.design;
 public class Singleton2 {
     private static Singleton2 uniqueInstance = null;
 
-    private Singleton2 () {
+    private Singleton2() {
 
     }
 

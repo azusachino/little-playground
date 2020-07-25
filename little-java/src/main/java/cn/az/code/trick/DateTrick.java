@@ -16,9 +16,10 @@ import java.util.stream.Stream;
 public class DateTrick {
 
     public static void main(String[] args) {
-        System.out.println("getBetween(2019-10-01,2020-01-01) = " + getBetweenDate("20191001","20200101", "yyyyMMdd"));
-        System.out.println(getBetween(1,10));
+        System.out.println("getBetween(2019-10-01,2020-01-01) = " + getBetweenDate("20191001", "20200101", "yyyyMMdd"));
+        System.out.println(getBetween(1, 10));
     }
+
     /**
      * 获取一段时间的每一天日期
      *
@@ -41,7 +42,7 @@ public class DateTrick {
 
     public static List<String> getBetween(int l, int r) {
         List<String> res = new ArrayList<>();
-        Stream.iterate(l, n -> n+1).limit(r).forEach(f -> res.add(String.valueOf(f)));
+        Stream.iterate(l, n -> n + 1).limit(r).forEach(f -> res.add(String.valueOf(f)));
         return res;
     }
 

@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * 计数器
  * <b>控制单位时间内的请求数量</b>
+ *
  * @author <a href="mailto:azusa146@gmail.com">az</a>
  * @see AtomicInteger
  * @since 2020-03-12

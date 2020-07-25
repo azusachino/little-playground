@@ -26,12 +26,12 @@ public class ThreadLocalDemo {
 
     public static void main(String[] args) {
         ThreadFactory threadFactory = new ThreadFactoryBuilder().setNameFormat("ThreadLocal-%s").build();
-        ExecutorService service = Executors.newFixedThreadPool(10,threadFactory);
+        ExecutorService service = Executors.newFixedThreadPool(10, threadFactory);
         for (int i = 0; i < 5; i++) {
             service.execute(threadFactory.newThread(() -> {
                 Index local = index.get();
                 local.incr();
-                log.info(Thread.currentThread().getName() + ", num: {}",index.get().num);
+                log.info(Thread.currentThread().getName() + ", num: {}", index.get().num);
             }));
         }
     }

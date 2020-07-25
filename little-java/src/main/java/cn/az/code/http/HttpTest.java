@@ -1,6 +1,8 @@
 package cn.az.code.http;
 
+import cn.hutool.log.Log;
 import okhttp3.*;
+import org.springframework.util.Assert;
 
 import java.io.IOException;
 
@@ -12,9 +14,12 @@ public class HttpTest {
 
     private final OkHttpClient httpClient = new OkHttpClient();
 
+    private static final Log log = Log.get();
+
     public static void main(String[] args) {
         HttpTest ht = new HttpTest();
-        System.out.println(ht.get("https://www.zhihu.com"));
+        log.info(ht.get("https://www.zhihu.com"));
+        log.info(ht.get("https://cn.bing.com"));
     }
 
     String get(String url) {
@@ -25,7 +30,7 @@ public class HttpTest {
                 .build();
 
         try (Response res = httpClient.newCall(req).execute()) {
-            assert res.body() != null;
+            Assert.state(res.body() != null, () -> "");
             return res.body().string();
         } catch (Exception e) {
             return null;

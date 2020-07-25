@@ -22,12 +22,12 @@ public class LocalDateTimeDemo {
     private static Log log = Log.get();
 
     public static void main(String[] args) {
-        LocalDate localDate = LocalDate.of(2020, Month.DECEMBER,31);
+        LocalDate localDate = LocalDate.of(2020, Month.DECEMBER, 31);
         LocalTime localTime = LocalTime.MIDNIGHT;
         LocalDateTime localDateTime = localDate.atStartOfDay();
 
         log.info(String.valueOf(LocalDateTime.now().get(ChronoField.DAY_OF_YEAR)));
-        Duration duration = Duration.between(Instant.now(),Instant.MAX);
+        Duration duration = Duration.between(Instant.now(), Instant.MAX);
         log.info(duration.toString());
         log.warn(String.valueOf(new NextWorkingDay().adjustInto(LocalDateTime.now())));
         log.error(String.valueOf(nextWorkingDay().adjustInto(localDate)));
@@ -41,7 +41,7 @@ public class LocalDateTimeDemo {
                 .toFormatter(Locale.CHINESE);
         log.warn(dtf.format(localDateTime));
 
-        LocalDate day = LocalDate.of(2020,Month.FEBRUARY,29);
+        LocalDate day = LocalDate.of(2020, Month.FEBRUARY, 29);
         log.info(String.valueOf(day));
         log.info(String.valueOf(day.plus(4, ChronoUnit.YEARS)));
         Stream.iterate(1, s -> s + 1).limit(4).forEach(s -> log.info(String.valueOf(day.plus(s, ChronoUnit.YEARS))));

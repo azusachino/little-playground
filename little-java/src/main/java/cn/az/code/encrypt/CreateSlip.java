@@ -18,13 +18,13 @@ public class CreateSlip {
         for (int i = 0; i < keys.length; i++) {
             keys[i] = (byte) (keys[i] ^ 0x5a);
         }
-        String newKey = "json_gmofg"+ dateTime.substring(2, 8);
+        String newKey = "json_gmofg" + dateTime.substring(2, 8);
         byte[] newKeys = newKey.getBytes();
 
         // String template = "{\"DenpyoInfo\":" + "{\"KessaiSyubeu\":\"01\",\"TerminalSeqNo\":\"12345\",\"YukoKigen\":\"20201212\",\"TerminalID\":\"6406503212345\",\"ProcessSeqNo\":\"00107\",\"Riyoubi\": \"20191123092324\",\"ToriatukaiKubun\":\"123456\",\"Amount\":\"0009999\",\"Signature\":\"hahaha\"}," +
-          //      "\"IcInfo\":{\"BrandName\":\"123456789\",\"CardSeqNo\":\"666\"}," +
-              //  "\"SonotaInfo\":{\"MerchantInfo\":\"chino\",\"MerchantGyosyu\":\"eve\"}," +
-            //    "\"DccInfo\":{\"CurrencyAbbreviation\":\"dollar\",\"DisclaimerLength\":\"444\"}}";
+        //      "\"IcInfo\":{\"BrandName\":\"123456789\",\"CardSeqNo\":\"666\"}," +
+        //  "\"SonotaInfo\":{\"MerchantInfo\":\"chino\",\"MerchantGyosyu\":\"eve\"}," +
+        //    "\"DccInfo\":{\"CurrencyAbbreviation\":\"dollar\",\"DisclaimerLength\":\"444\"}}";
         String template = "{\"DenpyoInfo\":{\"KessaiSyubeu\":\"02\",\"ReceiptTitle\":\"CREDIT CARD SALES SLIP\",\"MerchantName\":\"前面的内容\\r\\n后面的内容\",\"TerminalSeqNo\":\"00001\",\"TerminalId\":\"6406503212345\",\"ProcessSeqNo\":\"00107\",\"Amount\":\"0009999\",\"SignatureFlag\":\"2\",\"Annai\":\"this is annai\",\"CardInfoResource\":\"MS\",\"CardCompanyCode\":\"UCGROUP\",\"Uriba\":\"Kyoto\",\"Kakariin\":\"fubuki\",\"CancelTerminalSeqNo\":\"00001\",\"Riyoubi\":\"20190922084812\",\"MemberShipNo\":\"124121******1231\",\"kanaName\":\"fubuki\",\"YuKoKigen\":\"1119\",\"ServiceCode\":\"1\",\"TorikeshiKubun\":\"1\",\"ShiharaiKubun\":\"10\",\"ShiharaiKaisu\":\"21\",\"ToritukaiKubun\":\"110\",\"ItemCode\":\"2270\",\"ApprovalNo\":\"0100\",\"TaxAmount\":\"2700\",\"Goukei\":\"3000\"},\"IcInfo\":{\"BrandName\":\"123456789\",\"CardSeqNo\":\"666\",\"Aid\":\"4F\",\"ApprovalNo\":\"VISADEBIT\",\"ATC\":\"9f36\",\"ARC\":\"8A\",\"TC\":\"9F26\",\"TVR\":\"95\",\"CVR\":\"9F34\",\"CardNoCheckReason\":\"fumein\"},\"SonotaInfo\":{\"MerchantInfo\":\"chino\",\"MerchantGyosyu\":\"eve\"},\"GinrenInfo\":{oiqoowqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqoaqqll\"BankNames\":\"SoftBank\",\"cup no\":\"940201\",\"cup send date\":\"190201\"},\"DccInfo\":{\"MarkUp\":\"1.8\",\"CurrencyAbbreviation\":\"dollar\",\"ExchangeRateUnit\":\"1\",\"Exchange_rate\":\"18\",\"transaction currency\":\"1180\",\"Disclaimer\":\"aaaaaaaaaaa\",\"DisclaimerLength\":\"444\"}}";
         byte[] temp = template.getBytes();
 
@@ -32,7 +32,7 @@ public class CreateSlip {
             encryptedString = AesDecryptUtil.bytesToHexString(Objects.requireNonNull(AesDecryptUtil.vpadEncrypt(
                     AesDecryptUtil.MODE_CBC, iv, newKeys.length * 8, newKeys, temp, temp.length)));
         } catch (Exception e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
         System.out.println("encryptedString = " + encryptedString);
 

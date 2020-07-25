@@ -11,12 +11,12 @@ import java.util.List;
  */
 public class TryCatch {
 
-    private static Log log = Log.get();
+    private static final Log log = Log.get();
 
     public static void main(String[] args) {
-        List<Integer> integerList = Arrays.asList(3,9,4,2,0,41);
+        List<Integer> integerList = Arrays.asList(3, 9, 4, 2, 0, 41);
         // 1. try...catch
-        integerList.forEach(i ->  {
+        integerList.forEach(i -> {
             try {
                 System.out.println(50 / i);
             } catch (ArithmeticException e) {
@@ -28,6 +28,6 @@ public class TryCatch {
         integerList.forEach(LambdaWrapper.lambdaWrapper(i -> System.out.println(50 / i)));
 
         //3. specific Exception
-        integerList.forEach(LambdaWrapper.lambdaWrapper(integer -> log.error(String.valueOf(integer)),ArithmeticException.class));
+        integerList.forEach(LambdaWrapper.lambdaWrapper(integer -> log.error(String.valueOf(integer)), ArithmeticException.class));
     }
 }

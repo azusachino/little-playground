@@ -10,12 +10,12 @@ public class Add {
         Runnable r = System::currentTimeMillis;
         Adder<Integer> add = Integer::sum;
         Adder<String> a = Add::add;
-        System.out.println(add.add(2,3));
-        System.out.println(a.add("2","3"));
+        System.out.println(add.add(2, 3));
+        System.out.println(a.add("2", "3"));
         r.run();
     }
 
     private static String add(String a, String b) {
-        return a+b;
+        return a + b;
     }
 }

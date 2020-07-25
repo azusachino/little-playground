@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 /**
  * 滑动窗口
  * <b>滑动窗口是对计数器方式的改进,增加一个时间粒度的度量单位</b>
+ *
  * @author <a href="mailto:azusa146@gmail.com">az</a>
  * @see ConcurrentLinkedQueue
  * @since 2020-03-12

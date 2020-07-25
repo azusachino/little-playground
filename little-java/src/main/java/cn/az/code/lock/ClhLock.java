@@ -59,15 +59,15 @@ public class ClhLock implements Lock {
     @Override
     public void lock() {
         ClhNode cur = threadLocal.get();
-        if(cur == null){
+        if (cur == null) {
             cur = new ClhNode();
             threadLocal.set(cur);
         }
 
         ClhNode prev = tail.getAndSet(cur);
-        if(prev != null){
-            while (prev.getLocked()){
-               log.info("prev is locked");
+        if (prev != null) {
+            while (prev.getLocked()) {
+                log.info("prev is locked");
             }
         }
     }
@@ -113,7 +113,6 @@ public class ClhLock implements Lock {
      * cause deadlock, and may throw an (unchecked) exception in such
      * circumstances.  The circumstances and the exception type must
      * be documented by that {@code Lock} implementation.
-     *
      */
     @Override
     public void lockInterruptibly() {
@@ -228,11 +227,11 @@ public class ClhLock implements Lock {
         ClhNode cur = threadLocal.get();
         threadLocal.remove();
 
-        if(cur == null || !cur.getLocked()){
+        if (cur == null || !cur.getLocked()) {
             return;
         }
 
-        if(!tail.compareAndSet(cur, null)){
+        if (!tail.compareAndSet(cur, null)) {
             cur.setLocked(false);
         }
     }
@@ -262,7 +261,6 @@ public class ClhLock implements Lock {
         Lock lock = new ReentrantLock();
         return lock.newCondition();
     }
-
 
 
     static class ClhNode {

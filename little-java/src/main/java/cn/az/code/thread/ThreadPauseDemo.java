@@ -4,6 +4,7 @@ import cn.hutool.log.Log;
 
 /**
  * 在预设的地点检测flag。然后就是wait/notify配合使用。
+ *
  * @author az
  * @date 2020/3/22
  */

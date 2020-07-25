@@ -46,10 +46,10 @@ public class PriorityBlockingQueueTest {
     }
 
     public static void func3() throws InterruptedException {
-       offer(new ArrayBlockingQueue<>(2));
-       offer(new LinkedBlockingQueue<>(2));
-       offer(new PriorityBlockingQueue<>(2));
-       offer(new SynchronousQueue<>());
+        offer(new ArrayBlockingQueue<>(2));
+        offer(new LinkedBlockingQueue<>(2));
+        offer(new PriorityBlockingQueue<>(2));
+        offer(new SynchronousQueue<>());
     }
 
     public static void offer(BlockingQueue<Integer> queue) throws InterruptedException {

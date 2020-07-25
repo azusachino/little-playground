@@ -15,10 +15,10 @@ import java.io.Writer;
  * @date 2020/3/7
  */
 @WebServlet(name = "my",
-urlPatterns = "/my",
-initParams = {
-        @WebInitParam(name = "aa", value = "bb")
-})
+        urlPatterns = "/my",
+        initParams = {
+                @WebInitParam(name = "aa", value = "bb")
+        })
 public class MyServlet extends HttpServlet {
 
     private String value;

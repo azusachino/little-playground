@@ -4,6 +4,7 @@ import cn.hutool.log.Log;
 
 /**
  * 线程在预设的地点检测flag，来决定是否停止。
+ *
  * @author az
  * @date 2020/3/22
  */

@@ -45,6 +45,7 @@ public class ForkJoinSumCalculator extends RecursiveTask<Long> {
     public static void main(String[] args) {
         ParallelDemo.measurePerformance(ForkJoinSumCalculator::forkJoinSum, 10_100_100);
     }
+
     @Override
     protected Long compute() {
         int len = end - start;

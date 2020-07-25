@@ -4,6 +4,7 @@ import cn.hutool.log.Log;
 
 /**
  * join方法可以让某个线程插到自己前面，等它执行完，自己才会继续执行。
+ *
  * @author az
  * @date 2020/3/22
  */

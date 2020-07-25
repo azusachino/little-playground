@@ -3,7 +3,6 @@
 ## structure
 
 - little-css
-- little-http
 - little-java
 - little-js
 - little-node

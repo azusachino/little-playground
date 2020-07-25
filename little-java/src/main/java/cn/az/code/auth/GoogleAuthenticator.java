@@ -66,7 +66,7 @@ public class GoogleAuthenticator {
             Base32 codec = new Base32();
             byte[] bEncodedKey = codec.encode(buffer);
             return new String(bEncodedKey);
-        }catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             // should never occur... configuration error
         }
         return null;
@@ -108,7 +108,7 @@ public class GoogleAuthenticator {
             long hash;
             try {
                 hash = verifyCode(decodedKey, t + i);
-            }catch (Exception e) {
+            } catch (Exception e) {
                 // Yes, this is bad form - but
                 // the exceptions thrown would be rare and a static configuration problem
                 e.printStackTrace();

@@ -26,7 +26,7 @@ public class StreamTrick {
         Stream<String> strStream = Stream.of("one", "two", "three", "four");
 
         //由数组构成
-        String [] strArray = new String[] {"a", "bb", "c"};
+        String[] strArray = new String[]{"a", "bb", "c"};
         stream = Stream.of(strArray);
         stream = Arrays.stream(strArray);
 

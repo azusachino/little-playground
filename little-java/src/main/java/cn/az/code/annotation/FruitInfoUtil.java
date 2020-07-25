@@ -8,7 +8,8 @@ import java.lang.reflect.Field;
  */
 public class FruitInfoUtil {
 
-    protected FruitInfoUtil() {}
+    protected FruitInfoUtil() {
+    }
 
     public static void getFruitInfo(Class<?> clazz) {
         StringBuilder strFruitProvider = new StringBuilder("provider: ");

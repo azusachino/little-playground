@@ -41,14 +41,17 @@ public class NutritionFacts {
             calories = val;
             return this;
         }
+
         public Builder fat(int val) {
             fat = val;
             return this;
         }
+
         public Builder sodium(int val) {
             sodium = val;
             return this;
         }
+
         public Builder carbohydrate(int val) {
             carbohydrate = val;
             return this;

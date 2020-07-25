@@ -9,7 +9,7 @@ package cn.az.code.function;
  * @date 1 /7/2020
  */
 @FunctionalInterface
-public interface ThrowingConsumer<T,E extends Exception> {
+public interface ThrowingConsumer<T, E extends Exception> {
 
     /**
      * Accept.

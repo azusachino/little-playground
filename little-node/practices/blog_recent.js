@@ -15,7 +15,7 @@ http.createServer((req, res) => {
                         res.end('server error')
                     } else {
                         const tmp = data.toString();
-                        const html = tmp.replace('%', titles.join('</l1><l1>'))
+                        const html = tmp.replace('%', titles.join('</li><li>'))
                         res.writeHead(200,{'Content-Type': 'text/html'})
                         res.end(html)
                     }
