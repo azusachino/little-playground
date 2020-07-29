@@ -4,7 +4,7 @@ package cn.az.code.proxy.service;
  * The interface User service.
  *
  * @author az
- * @since 2020 -04-09
+ * @since 2020-04-09
  */
 public interface UserService {
 

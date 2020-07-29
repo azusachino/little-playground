@@ -17,7 +17,7 @@ import java.util.zip.ZipOutputStream;
  */
 public class ZipUtil {
 
-    private static final int BUFFER_SIZE = 10 * 1024;
+    private static final int BUFFER_SIZE = 4 * 1024;
 
     private static final Log LOG = Log.get(ZipUtil.class);
 

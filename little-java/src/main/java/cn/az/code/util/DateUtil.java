@@ -19,7 +19,7 @@ import java.util.stream.Stream;
  */
 public class DateUtil {
 
-    private static ThreadLocal<SimpleDateFormat> threadLocal =
+    private static final ThreadLocal<SimpleDateFormat> SIMPLE_DATE_FORMAT_THREAD_LOCAL =
             ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 
     private DateUtil() {
@@ -71,8 +71,7 @@ public class DateUtil {
     }
 
     public static String getCurrentDate() {
-        SimpleDateFormat sdf = threadLocal.get();
-        return sdf.format(Date.from(LocalDateTime.now().atZone(ZoneId.of("GMT+8")).toInstant()));
+        return SIMPLE_DATE_FORMAT_THREAD_LOCAL.get().format(Date.from(LocalDateTime.now().atZone(ZoneId.of("GMT+8")).toInstant()));
     }
 
     /**

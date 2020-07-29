@@ -41,7 +41,7 @@ public class CyclicBarrierDemo {
     }
 
     static class Writer extends Thread {
-        private CyclicBarrier cyclicBarrier;
+        private final CyclicBarrier cyclicBarrier;
 
         public Writer(CyclicBarrier cyclicBarrier) {
             this.cyclicBarrier = cyclicBarrier;
@@ -57,7 +57,6 @@ public class CyclicBarrierDemo {
          *
          * @see #start()
          * @see #stop()
-         * @see #Thread(ThreadGroup, Runnable, String)
          */
         @Override
         public void run() {

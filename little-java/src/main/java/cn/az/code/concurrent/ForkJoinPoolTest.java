@@ -8,11 +8,11 @@ import java.util.concurrent.ForkJoinPool;
  */
 public class ForkJoinPoolTest {
 
-    private static ForkJoinPool pool = ForkJoinPool.commonPool();
+    private static final ForkJoinPool POOL = ForkJoinPool.commonPool();
 
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
-            pool.submit(ForkJoinPoolTest::action);
+            POOL.submit(ForkJoinPoolTest::action);
         }
     }
 

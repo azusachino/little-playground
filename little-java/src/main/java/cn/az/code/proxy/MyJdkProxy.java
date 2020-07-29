@@ -6,6 +6,7 @@ import cn.az.code.proxy.service.UserServiceImpl;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.lang.reflect.UndeclaredThrowableException;
 
 
 /**
