@@ -59,5 +59,9 @@ public class StreamDemo {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // 基本类型数组 => 转换成 集合
+        int[] ints = new int[]{1, 2, 3, 4, 5};
+        Arrays.stream(ints).boxed().distinct().limit(5).collect(Collectors.toList()).forEach(System.out::print);
     }
 }

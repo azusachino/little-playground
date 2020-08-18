@@ -1,0 +1,14 @@
+{
+  "name": "practices",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src_old/blog_recent.js",
+  "scripts": {
+    "test": "node src_old/test.js"
+  },
+  "author": "az",
+  "license": "MIT",
+  "dependencies": {
+    "glob": "^7.1.4"
+  }
+}
