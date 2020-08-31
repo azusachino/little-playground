@@ -25,6 +25,12 @@ public class SimpleTest {
 
     private static final Log log = Log.get();
 
+    int a;
+
+    public void say(){
+
+    }
+
     public static void main(String[] args) {
         printAbc2();
 //        ExecutorService service = ThreadUtil.newExecutor(10);
@@ -145,5 +151,13 @@ public class SimpleTest {
             }
         }
         log.error("last sentence");
+    }
+
+    public int getA() {
+        return a;
+    }
+
+    public void setA(int a) {
+        this.a = a;
     }
 }
