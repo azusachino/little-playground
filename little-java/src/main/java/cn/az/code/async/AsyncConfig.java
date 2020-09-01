@@ -3,6 +3,7 @@ package cn.az.code.async;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
@@ -15,7 +16,8 @@ import java.util.concurrent.Executor;
  * @since 08/29/20
  */
 @EnableAsync
-public class AsyncConfig extends AsyncConfigurerSupport{
+@Configuration
+public class AsyncConfig extends AsyncConfigurerSupport {
 
     private AsyncTaskExecutor asyncTaskExecutor;
 
@@ -35,7 +37,7 @@ public class AsyncConfig extends AsyncConfigurerSupport{
     }
 
     @Bean
-    public AsyncTaskExecutor asyncTaskExecutor(){
+    public AsyncTaskExecutor asyncTaskExecutor() {
         return new SimpleAsyncTaskExecutor();
     }
 }
