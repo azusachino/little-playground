@@ -15,10 +15,6 @@ import java.util.Optional;
 @Component
 public class SpringUtil implements ApplicationContextAware {
 
-    SpringUtil() {
-        throw new Error("Invalid Operation");
-    }
-
     private static ApplicationContext context;
 
     public static Optional<Object> getBean(String name) {

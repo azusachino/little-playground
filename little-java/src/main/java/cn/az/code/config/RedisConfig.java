@@ -12,7 +12,6 @@ import java.util.Set;
  * @author az
  * @since 2020-04-14
  */
-@Configuration
 public class RedisConfig {
 
     @Value("${spring.redis.host}")

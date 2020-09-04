@@ -10,3 +10,30 @@ spring:
     sentinel:
       master: RedisLord
       nodes: 180.76.139.35:6379
+
+  datasource:
+    druid:
+      url: jdbc:mysql://180.76.169.35:3306/playground?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      username: root
+      password: azusa520
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      validation-query: SELECT 1
+  aop:
+    proxy-target-class: true
+
+  messages:
+    encoding: UTF-8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+#mybatis plus 设置
+mybatis-plus:
+  type-aliases-package: cn.az.code.mvc.entity
+  configuration:
+    jdbc-type-for-null: null
+    default-enum-type-handler: com.baomidou.mybatisplus.extension.handlers.MybatisEnumTypeHandler
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto

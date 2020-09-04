@@ -1,5 +1,6 @@
 package cn.az.code.config;
 
+import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -18,8 +19,11 @@ public class ValidatorConfig {
     @Primary
     public Validator validator() {
         return Validation
-                .byDefaultProvider()
+                // 采用HibernateValidator
+                .byProvider(HibernateValidator.class)
                 .configure()
+                // 一次获取所有的错误信息
+                .failFast(false)
                 .buildValidatorFactory()
                 .getValidator();
     }

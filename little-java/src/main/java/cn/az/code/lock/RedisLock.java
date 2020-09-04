@@ -10,6 +10,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.params.SetParams;
 
+import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.Objects;
 
@@ -17,17 +18,12 @@ import java.util.Objects;
  * @author az
  * @since 2020-04-14
  */
-@Component
 public class RedisLock {
 
     private static final Log log = Log.get();
 
-    final JedisPool jedisPool;
-
-    @Autowired
-    public RedisLock(JedisPool jedisPool) {
-        this.jedisPool = jedisPool;
-    }
+    @Resource
+    private JedisPool jedisPool;
 
     private static final String LOCK_KEY = "az";
     private static final String LOCK_OK = "OK";

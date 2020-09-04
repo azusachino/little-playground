@@ -26,6 +26,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
     }
 
     // 可以通过http访问附件
+
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 配置目录映射
