@@ -87,10 +87,6 @@
       <groupId>cn.bestwu</groupId>
       <artifactId>fastdfs-client-java</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.flowable</groupId>
-      <artifactId>flowable-spring-boot-starter</artifactId>
-    </dependency>
     <!--JWT解析库-->
     <dependency>
       <groupId>com.nimbusds</groupId>
