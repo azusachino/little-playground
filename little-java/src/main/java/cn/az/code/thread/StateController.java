@@ -29,7 +29,7 @@ public class StateController {
 
     @RequestMapping("/stat")
     public Integer stat() {
-        return set.stream().map(Val::get).reduce(Integer::sum).get();
+        return set.stream().map(Val::get).reduce(Integer::sum).orElseThrow(RuntimeException::new);
     }
 
     @RequestMapping("/add")

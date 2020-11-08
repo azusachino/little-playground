@@ -21,8 +21,8 @@ public class SendMessageTask extends RecursiveAction {
      * 每个“小任务”只最多只给10名用户发送短信
      */
     private static final int THRESHOLD = 10;
-    private int start;
-    private int end;
+    private final int start;
+    private final int end;
     List<String> list;
 
     /**
@@ -32,6 +32,22 @@ public class SendMessageTask extends RecursiveAction {
         this.start = start;
         this.end = end;
         this.list = list;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        int jobs = 32;
+        List<String> list = new ArrayList<>();
+        for (int i = 1; i <= jobs; i++) {
+            //假设此处为手机号码--项目中从数据库中获取
+            list.add(RandomUtil.randomNumbers(11));
+        }
+        ForkJoinPool pool = new ForkJoinPool();
+        // 提交可分解的PrintTask任务
+        pool.submit(new SendMessageTask(0, list.size(), list));
+        //线程阻塞，等待所有任务完成
+        pool.awaitTermination(10, TimeUnit.SECONDS);
+        // 关闭线程池
+        pool.shutdown();
     }
 
     @Override
@@ -54,22 +70,6 @@ public class SendMessageTask extends RecursiveAction {
             right.fork();
         }
 
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-        int jobs = 32;
-        List<String> list = new ArrayList<>();
-        for (int i = 1; i <= jobs; i++) {
-            //假设此处为手机号码--项目中从数据库中获取
-            list.add(RandomUtil.randomNumbers(11));
-        }
-        ForkJoinPool pool = new ForkJoinPool();
-        // 提交可分解的PrintTask任务
-        pool.submit(new SendMessageTask(0, list.size(), list));
-        //线程阻塞，等待所有任务完成
-        pool.awaitTermination(10, TimeUnit.SECONDS);
-        // 关闭线程池
-        pool.shutdown();
     }
 
 }

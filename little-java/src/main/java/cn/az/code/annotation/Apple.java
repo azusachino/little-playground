@@ -7,14 +7,10 @@ package cn.az.code.annotation;
  */
 public class Apple {
 
-    @FruitProvider(id = 1, name = "a", address = "beijing")
+    @FruitProvider(id = 1, name = "苹果", address = "北京")
     private String appleProvider;
 
-    public String getAppleProvider() {
-        return appleProvider;
-    }
+    @FruitProvider(id = 2, name = "橘子", address = "合肥")
+    private String orangeProvider;
 
-    public void setAppleProvider(String appleProvider) {
-        this.appleProvider = appleProvider;
-    }
 }

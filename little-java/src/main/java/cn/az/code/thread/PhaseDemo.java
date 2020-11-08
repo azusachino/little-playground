@@ -13,9 +13,9 @@ import static cn.az.code.thread.ThreadTravel.doingLongTime;
  * @author az
  * @date 2020/3/22
  */
-public class ThreadGame {
+public class PhaseDemo {
 
-    private static Log log = Log.get();
+    private static final Log log = Log.get();
 
     static final int COUNT = 6;
 
@@ -26,8 +26,8 @@ public class ThreadGame {
         new Thread(new Challenger("赵六")).start();
         new Thread(new Challenger("大胖")).start();
         new Thread(new Challenger("小白")).start();
-        synchronized (ThreadGame.class) {
-            ThreadGame.class.wait();
+        synchronized (PhaseDemo.class) {
+            PhaseDemo.class.wait();
         }
     }
 
@@ -66,7 +66,7 @@ public class ThreadGame {
                     log.warn(e);
                 }
                 if (state == 0) {
-                    if (Decide.goon()) {
+                    if (Decide._continue()) {
                         h = ph.arriveAndAwaitAdvance();
                         if (h < 0) {
                             log.info("No{}.[{}]继续，但已胜利。。。", phase, name);
@@ -79,7 +79,7 @@ public class ThreadGame {
                         log.info("No{}.[{}]退出at({})。。。", phase, name, h);
                     }
                 } else {
-                    if (Decide.revive()) {
+                    if (Decide._revive()) {
                         state = 0;
                         h = ph.register();
                         if (h < 0) {
@@ -103,11 +103,11 @@ public class ThreadGame {
 
     static class Decide {
 
-        static boolean goon() {
+        static boolean _continue() {
             return RandomUtil.randomInt(1, 10) > 5;
         }
 
-        static boolean revive() {
+        static boolean _revive() {
             return RandomUtil.randomInt(1, 10) < 5;
         }
     }

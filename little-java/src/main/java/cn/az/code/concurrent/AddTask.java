@@ -15,9 +15,9 @@ import java.util.concurrent.RecursiveTask;
 public class AddTask extends RecursiveTask<Integer> {
 
     private static final int THRESHOLD = 20;
-    private int[] arr;
-    private int start;
-    private int end;
+    private final int[] arr;
+    private final int start;
+    private final int end;
 
     public AddTask(int[] arr, int start, int end) {
         // 累加从start到end的数组元素

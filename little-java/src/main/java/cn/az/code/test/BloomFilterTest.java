@@ -1,5 +1,6 @@
 package cn.az.code.test;
 
+import com.google.common.annotations.Beta;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
 
@@ -9,6 +10,7 @@ import com.google.common.hash.Funnels;
  * @author az
  * @date 2020/2/29
  */
+@Beta
 public class BloomFilterTest {
 
     private static int total = 1000000;

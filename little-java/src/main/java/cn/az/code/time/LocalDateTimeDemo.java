@@ -19,18 +19,17 @@ import java.util.stream.Stream;
  */
 public class LocalDateTimeDemo {
 
-    private static Log log = Log.get();
+    private static final Log log = Log.get();
 
     public static void main(String[] args) {
         LocalDate localDate = LocalDate.of(2020, Month.DECEMBER, 31);
-        LocalTime localTime = LocalTime.MIDNIGHT;
         LocalDateTime localDateTime = localDate.atStartOfDay();
 
         log.info(String.valueOf(LocalDateTime.now().get(ChronoField.DAY_OF_YEAR)));
         Duration duration = Duration.between(Instant.now(), Instant.MAX);
         log.info(duration.toString());
         log.warn(String.valueOf(new NextWorkingDay().adjustInto(LocalDateTime.now())));
-        log.error(String.valueOf(nextWorkingDay().adjustInto(localDate)));
+        log.error("next working day" + nextWorkingDay().adjustInto(LocalDate.now()));
         DateTimeFormatter dtf = new DateTimeFormatterBuilder()
                 .appendText(ChronoField.DAY_OF_MONTH)
                 .appendLiteral(". ")

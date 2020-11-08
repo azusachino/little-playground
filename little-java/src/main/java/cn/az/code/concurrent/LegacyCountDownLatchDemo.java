@@ -22,6 +22,8 @@ public class LegacyCountDownLatchDemo {
                 latch.countDown();
             });
         }
+
+        // main lock
         latch.await();
         service.shutdown();
     }

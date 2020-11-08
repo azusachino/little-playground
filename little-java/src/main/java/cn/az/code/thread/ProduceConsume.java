@@ -15,7 +15,7 @@ import static cn.az.code.thread.ThreadTravel.doingLongTime;
  */
 public class ProduceConsume {
 
-    private static Log log = Log.get(ProduceConsume.class);
+    private static final Log log = Log.get(ProduceConsume.class);
 
     public static void main(String[] args) {
         Queue queue = new Queue();

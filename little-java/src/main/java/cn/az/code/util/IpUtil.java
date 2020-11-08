@@ -16,7 +16,7 @@ public class IpUtil {
     /**
      * Instantiates a new Ip util.
      */
-    protected IpUtil() {
+    private IpUtil() {
 
     }
 

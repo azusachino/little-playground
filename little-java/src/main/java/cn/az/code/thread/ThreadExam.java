@@ -1,8 +1,10 @@
 package cn.az.code.thread;
 
+import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.log.Log;
 
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
 
 /**
  * 每完成一个线程，计数器减1，当减到0时，被阻塞的线程自动执行。
@@ -12,17 +14,17 @@ import java.util.concurrent.CountDownLatch;
  */
 public class ThreadExam {
 
-    private static Log log = Log.get();
+    private static final Log log = Log.get();
 
     private static final int COUNT = 20;
-
+    private static final ExecutorService executor = ThreadUtil.newExecutor();
     static CountDownLatch cdl = new CountDownLatch(COUNT);
 
     public static void main(String[] args) throws InterruptedException {
-        new Thread(new TeacherRunnable(cdl)).start();
+        executor.execute(new TeacherRunnable(cdl));
         Thread.sleep(1000L);
         for (int i = 0; i < COUNT; i++) {
-            new Thread(new StudentRunnable(i, cdl)).start();
+            executor.execute(new StudentRunnable(i, cdl));
         }
 
         synchronized (ThreadExam.class) {
@@ -67,9 +69,11 @@ public class ThreadExam {
                 Thread.sleep(5 * 1000L);
             } catch (InterruptedException e) {
                 log.warn(e);
+            } finally {
+                // make sure count down
+                log.info("{} is finished the paper", this.num);
+                cdl.countDown();
             }
-            log.info("{} is finished the paper", this.num);
-            cdl.countDown();
         }
     }
 }
