@@ -3,6 +3,7 @@ package cn.az.code.converter;
 import cn.hutool.core.convert.Converter;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * @author az
@@ -12,6 +13,6 @@ public class LocalDateTimeStringConverter implements Converter<LocalDateTime> {
 
     @Override
     public LocalDateTime convert(Object value, LocalDateTime defaultValue) throws IllegalArgumentException {
-        return null;
+        return Objects.nonNull(value) ? LocalDateTime.parse(value.toString()) : LocalDateTime.now();
     }
 }
