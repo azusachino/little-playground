@@ -4,7 +4,7 @@ Ensure the value is not undefined or null using Array.prototype.includes(), and 
 
 
 const is = (type, val) =>
-    ![ , null].includes(val) && val.constructor === type
+  ![, null].includes(val) && val.constructor === type
 
 is(Array, [1]); // true
 is(ArrayBuffer, new ArrayBuffer()); // true

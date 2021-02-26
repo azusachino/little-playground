@@ -3,7 +3,7 @@
 Check if the provided value is truthy, use typeof to check if it is an object and Object.constructor to make sure the constructor is equal to Object.*/
 
 const isPlainObject = val =>
-    !!val && typeof val === 'object' && val.constructor === Object
+  !!val && typeof val === 'object' && val.constructor === Object
 
-isPlainObject({ a: 1 }); // true
+isPlainObject({a: 1}); // true
 isPlainObject(new Map()); // false

@@ -4,9 +4,9 @@ Use Array.prototype.map() and Array.prototype.join(delimiter) to combine individ
 
 
 const arrayToCSV = (arr, delimiter = ',') =>
-    arr.map(v => v.map(x => (isNaN(x) ? `"${x.replace(/"/g, '""')}"` : x))
-        .join(delimiter))
-        .join('\n');
+  arr.map(v => v.map(x => (isNaN(x) ? `"${x.replace(/"/g, '""')}"` : x))
+    .join(delimiter))
+    .join('\n');
 
 arrayToCSV([['a', 'b'], ['c', 'd']]); // '"a","b"\n"c","d"'
 arrayToCSV([['a', 'b'], ['c', 'd']], ';'); // '"a";"b"\n"c";"d"'

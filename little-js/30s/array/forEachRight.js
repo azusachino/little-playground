@@ -3,6 +3,6 @@
 Use Array.prototype.slice(0) to clone the given array, Array.prototype.reverse() to reverse it and Array.prototype.forEach() to iterate over the reversed array.*/
 
 const forEachRight = (arr, callback) =>
-    arr.slice(0).reverse().forEach(callback)
+  arr.slice(0).reverse().forEach(callback)
 
 forEachRight([1, 2, 3, 4], val => console.log(val)); // '4', '3', '2', '1'

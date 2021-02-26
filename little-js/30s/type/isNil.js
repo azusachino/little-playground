@@ -3,6 +3,6 @@
 Use the strict equality operator to check if the value and of val are equal to null or undefined.*/
 
 const isNil = val =>
-    val === undefined || val === null
+  val === undefined || val === null
 isNil(null); // true
 isNil(undefined); // true

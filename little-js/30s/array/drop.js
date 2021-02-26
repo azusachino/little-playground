@@ -3,7 +3,7 @@
 Use Array.prototype.slice() to remove the specified number of elements from the left.*/
 
 const drop = (arr, n = 1) => {
-    arr.slice(n)
+  arr.slice(n)
 }
 
 drop([1, 2, 3]); // [2,3]

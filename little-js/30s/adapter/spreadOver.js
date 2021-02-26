@@ -6,4 +6,4 @@ Use closures and the spread operator (...) to map the array of arguments to the 
 const spreadOver = fn => argsArr => fn(...argsArr)
 
 const arrayMax = spreadOver(Math.max)
-arrayMax([1,2,3])  // 3
+arrayMax([1, 2, 3])  // 3

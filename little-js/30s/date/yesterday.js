@@ -4,9 +4,9 @@ Use new Date() to get the current date, decrement by one using Date.getDate() an
 
 
 const yesterday = () => {
-    let t = new Date();
-    t.setDate(t.getDate() - 1);
-    return t.toISOString().split('T')[0];
+  let t = new Date();
+  t.setDate(t.getDate() - 1);
+  return t.toISOString().split('T')[0];
 };
 
 console.log(yesterday())

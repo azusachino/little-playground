@@ -4,11 +4,11 @@ Uses the Object constructor to create an object wrapper for the given value. If 
 
 
 const isObject = obj =>
-    obj === Object(obj)
+  obj === Object(obj)
 
 isObject([1, 2, 3, 4]); // true
 isObject([]); // true
 isObject(['Hello!']); // true
-isObject({ a: 1 }); // true
+isObject({a: 1}); // true
 isObject({}); // true
 isObject(true); // false

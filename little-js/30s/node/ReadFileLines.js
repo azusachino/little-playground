@@ -6,7 +6,7 @@ const fs = require('fs')
 Use readFileSync function in fs node package to create a Buffer from a file.
 * convert buffer to string using toString(encoding) function. creating an array from contents of file by splitting file content line by line (each \n).*/
 const readFileLines = filename =>
-    fs.readFileSync(filename).toString('UTF8').split('\n')
+  fs.readFileSync(filename).toString('UTF8').split('\n')
 
 /*
 contents of test.txt :

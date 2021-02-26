@@ -4,12 +4,12 @@ Create an empty cache by instantiating a new Map object. Return a function which
 
 
 const memoize = fn => {
-    const cache = new Map()
-    const cached = function(val){
-        return cache.has(val) ? cache.get(val) : cache.set(val, fn.call(this, val)) && cache.get(val)
-    }
-    cached.cache = cache
-    return cached
+  const cache = new Map()
+  const cached = function (val) {
+    return cache.has(val) ? cache.get(val) : cache.set(val, fn.call(this, val)) && cache.get(val)
+  }
+  cached.cache = cache
+  return cached
 }
 
 // See the `anagrams` snippet.

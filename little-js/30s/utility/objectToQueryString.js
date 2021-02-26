@@ -6,13 +6,13 @@
 
 
 const objectToQueryString = queryParameters => {
-    return queryParameters
-        ? Object.entries(queryParameters).reduce((queryString, [key, val], index) => {
-            const symbol = index === 0 ? '?' : '&';
-            queryString += typeof val === 'string' ? `${symbol}${key}=${val}` : '';
-            return queryString;
-        }, '')
-        : '';
+  return queryParameters
+    ? Object.entries(queryParameters).reduce((queryString, [key, val], index) => {
+      const symbol = index === 0 ? '?' : '&';
+      queryString += typeof val === 'string' ? `${symbol}${key}=${val}` : '';
+      return queryString;
+    }, '')
+    : '';
 };
 
-objectToQueryString({ page: '1', size: '2kg', key: undefined }); // '?page=1&size=2kg'
+objectToQueryString({page: '1', size: '2kg', key: undefined}); // '?page=1&size=2kg'

@@ -5,4 +5,4 @@ Use Array.prototype.some() to test if any elements in the collection return true
 const any = (arr, fn = Boolean) => arr.some(fn)
 
 
-console.log(any([2,1,1,0], x => x > 2))
+console.log(any([2, 1, 1, 0], x => x > 2))

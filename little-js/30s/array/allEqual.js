@@ -5,4 +5,4 @@ Use Array.prototype.every() to check if all the elements of the array are the sa
 const allEqual = arr => arr.every(val => val === arr[0])
 
 
-console.log(allEqual([1,2,3,4,5,6,7]))
+console.log(allEqual([1, 2, 3, 4, 5, 6, 7]))

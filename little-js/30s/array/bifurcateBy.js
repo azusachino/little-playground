@@ -3,12 +3,11 @@
 Use Array.prototype.reduce() and Array.prototype.push() to add elements to groups, based on the value returned by fn for each element.*/
 
 
-const bifurcateBy = (arr = [], fn = Boolean) =>{
-    let a = []
-    let b = []
-    arr.reduce((acc, val, i) => (acc[fn(val, i) ? 0 : 1].push(val), acc), [a, b])
+const bifurcateBy = (arr = [], fn = Boolean) => {
+  let a = []
+  let b = []
+  arr.reduce((acc, val, i) => (acc[fn(val, i) ? 0 : 1].push(val), acc), [a, b])
 }
-
 
 
 bifurcateBy(['beep', 'boop', 'foo', 'bar'], x => x[0] === 'b'); // [ ['beep', 'boop', 'bar'], ['foo'] ]
