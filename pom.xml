@@ -34,6 +34,7 @@
     <fastdfs.version>1.27</fastdfs.version>
     <nimbus-jwt.version>8.16</nimbus-jwt.version>
     <swagger.version>2.9.2</swagger.version>
+    <rocketmq.version>2.2.0</rocketmq.version>
   </properties>
 
   <dependencyManagement>
@@ -98,6 +99,11 @@
         <groupId>io.springfox</groupId>
         <artifactId>springfox-swagger-ui</artifactId>
         <version>${swagger.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.rocketmq</groupId>
+        <artifactId>rocketmq-spring-boot-starter</artifactId>
+        <version>${rocketmq.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

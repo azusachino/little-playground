@@ -37,3 +37,9 @@ mybatis-plus:
     banner: false
     db-config:
       id-type: auto
+
+rocketmq:
+  consumer:
+    group: CHAT_SENDER
+    topic: LIVE
+  name-server: localhost:9876
