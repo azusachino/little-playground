@@ -1,0 +1,14 @@
+version: "3.5"
+
+services:
+  nacos:
+    image: nacos/nacos-server:latest
+    container_name: nacos
+    restart: always
+    env_file:
+      - /az/nacos/env/nacos.env
+    volumes:
+      - /az/nacos/logs:/home/nacos/logs
+      - /az/nacos/init.d/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - 8848:8848

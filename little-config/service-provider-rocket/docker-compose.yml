@@ -1,18 +1,7 @@
 # 提供基础服务
-version: 3.5
+version: "3.5"
 
 services:
-  nacos:
-    image: nacos/nacos-server:latest
-    container_name: nacos
-    restart: always
-    env_file:
-      - /az/nacos/env/nacos.env
-    volumes:
-      - /az/nacos/logs:/home/nacos/logs
-      - /az/nacos/init.d/custom.properties:/home/nacos/init.d/custom.properties
-    ports:
-      - 8848:8848
   mysql:
     image: mysql:8.0.22
     restart: always
@@ -25,7 +14,6 @@ services:
       - seccomp:unconfined
     ports:
       - 3306:3306
-
   redis:
     image: redis:6.2-alpine
     restart: always

@@ -1,0 +1,56 @@
+# 提供基础服务
+version: "3.5"
+
+services:
+  mysql:
+    image: mysql:8.0.22
+    container_name: sp-mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - service-provider
+    environment:
+      MYSQL_ROOT_PASSWORD: azusa520
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - 3306:3306
+  redis:
+    image: redis:6.2-alpine
+    container_name: sp-redis
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - service-provider
+    volumes:
+      - /az/redis/config:/docker/config
+      - /az/redis/data:/data
+    command: redis-server /docker/config/redis.conf
+
+  rabbitmq:
+    image: rabbitmq:management-alpine
+    container_name: sp-rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    ports:
+      - 5672:5672
+      - 15672:15672
+    privileged: true # 给数据卷赋权限 避免启动出现Permission denied
+    volumes:
+      - ./mqdata:/az/rabbitmq/lib # 挂载RMQ数据
+      - ./log:/az/rabbitmq/log # 挂载RMQ日志
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    networks:
+      - service-provider
+
+networks:
+  service-provider:
+    external: true
+    driver: bridge
