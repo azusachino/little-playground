@@ -35,7 +35,6 @@ public class ExecutionJob extends QuartzJobBean {
             log.info("任务执行完毕，任务名称：{} 总共耗时：{} 毫秒", scheduleJob.getJobName(), times);
         } catch (Exception e) {
             log.error("任务执行失败，任务名称：{}" + scheduleJob.getJobName(), e);
-            long times = System.currentTimeMillis() - startTime;
         }
     }
 }

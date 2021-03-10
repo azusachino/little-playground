@@ -1,16 +1,3 @@
 # little-playground
 
-## structure
-
-- little-css
-- little-java
-- little-js
-- little-node
-- little-ts
-
-## content
-
-- some utils
-- some practices
-
-## cron
+主要是java简单实践的游乐场
