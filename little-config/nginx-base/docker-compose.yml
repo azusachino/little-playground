@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  nginx:
+    image: library/nginx:1.19.8-alpine
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - /az/docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /az/docker/nginx/ssl:/tmp/ssl
+      - /az/volumes/nginx/html:/usr/share/nginx/html
+    networks:
+      - az-server
+
+networks:
+  az-server:
+    external: true
+    driver: bridge
