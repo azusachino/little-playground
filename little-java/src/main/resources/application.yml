@@ -26,6 +26,10 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  rabbitmq:
+    host: 180.76.169.35
+    username: admin
+    password: admin
 
 #mybatis plus 设置
 mybatis-plus:

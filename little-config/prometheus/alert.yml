@@ -1,0 +1,6 @@
+groups:
+  - name: PromAlert
+    rules:
+      - alert: InstanceDown
+        expr: up{job="prometheus"} < 1 # 通过up查询存活的job
+        for: 5m

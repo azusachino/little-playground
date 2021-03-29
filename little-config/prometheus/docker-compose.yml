@@ -1,0 +1,26 @@
+version: "3.5"
+
+services:
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - /az/prometheus:/etc/prometheus
+    command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml
+    networks:
+      - az-server
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - /az/grafana/data:/var/lib/grafana
+      - /az/grafana/log:/var/log/grafana
+    networks:
+      - az-server
+
+networks:
+  az-server:
+    driver: bridge
+    external: true
