@@ -1,6 +1,30 @@
 version: "3"
 
 services:
+  zookeeper:
+    image: confluent/zookeeper
+    environment:
+      zk_id: "1"
+    volumes:
+      - /az/volumes/zookeeper/data:/data
+    ports:
+      - 2081:2081
+    networks:
+      - elastic
+  kafka:
+    image: confluent/kafka
+    environment:
+      KAFKA_BROKER_ID: 0
+      KAFKA_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CREATE_TOPICS: "init_topic" # initialized topic
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    volumes:
+      - /az/volumes/kafka/logs:/kafka
+    depends_on:
+      - zookeeper
+    networks:
+      - elastic
   es01:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.12.0
     container_name: es01
@@ -10,7 +34,7 @@ services:
       - discovery.seed_hosts=es02,es03
       - cluster.initial_master_nodes=es01,es02,es03
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m" # xms must equal xmx
     ulimits:
       memlock:
         soft: -1
@@ -67,7 +91,36 @@ services:
       ELASTICSEARCH_HOSTS: '["http://es01:9200","http://es02:9200","http://es03:9200"]'
     networks:
       - elastic
-
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.12.0
+    user: root
+    volumes:
+      - /az/volumes/server/logs:/var/logs # load logs you wish to fetch
+      - /az/volumes/beats/filebeat/data:/usr/share/filebeat/data
+      - /az/volumes/beats/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/containers/:/var/lib/docker/containers/:ro
+      - /var/log/:/var/log/:ro
+      - /var/log/audit/:/var/log/audit/:ro
+    environment:
+      ELASTICSEARCH_HOST: http://es01:9200
+      KIBANA_HOST: http://kibana:5601
+    command:
+      - "--strict.perms=false"
+    networks:
+      - elastic
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.12.0
+    volumes:
+      - /az/volumes/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:rw
+      - /az/volumes/logstash/pipeline/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:rw
+    ports:
+      - 5044:5044
+      - 9600:9600
+    environment:
+      LS_JAVA_OPTS: "-Xms512m -Xmx512m"
+    networks:
+      - elastic
 networks:
   elastic:
     driver: bridge
