@@ -4,7 +4,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Liz
- * @date 2020/1/7
  */
 public class ThreadId {
     private static final AtomicInteger NEXT_ID = new AtomicInteger(0);

@@ -6,13 +6,12 @@ import java.util.UUID;
 
 /**
  * @author Liz
- * @date 1/18/2020
  */
 public class UuidDemo {
 
     public static void main(String[] args) {
         UUID uuid = UUID.fromString("afac7d90-d1e1-468d-9835-aa5ccde086a8");
-        System.out.println("uuid = " + uuid.toString());
+        System.out.println("uuid = " + uuid);
         String cU = compressUuid(uuid);
         System.out.println("compressedUUID = " + cU);
         System.out.println("uncompressedUUID = " + uncompress(cU));

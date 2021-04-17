@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 /**
  * @author az
- * @date 4/6/2020
  */
 public class HeapSort implements Sort<Integer> {
 

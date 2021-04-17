@@ -10,7 +10,6 @@ import java.util.concurrent.ExecutorService;
  * 每完成一个线程，计数器减1，当减到0时，被阻塞的线程自动执行。
  *
  * @author az
- * @date 2020/3/22
  */
 public class ThreadExam {
 

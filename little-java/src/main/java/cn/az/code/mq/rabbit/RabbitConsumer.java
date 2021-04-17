@@ -25,9 +25,9 @@ public class RabbitConsumer {
 
     @RabbitListener(
             bindings = @QueueBinding(
-                    value = @Queue(value = "", durable = "true"),
-                    exchange = @Exchange(value = "", type = "topic"),
-                    key = ""
+                    value = @Queue(value = "queue", durable = "true"),
+                    exchange = @Exchange(value = "exchanger", type = "topic"),
+                    key = "rabbitKey"
             )
     )
     @RabbitHandler

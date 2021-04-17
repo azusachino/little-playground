@@ -11,7 +11,6 @@ import static cn.az.code.thread.ThreadTravel.doingLongTime;
 
 /**
  * @author az
- * @date 2020/3/22
  */
 public class ProduceConsume {
 

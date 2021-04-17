@@ -7,7 +7,6 @@ import java.util.stream.Stream;
  * 在使用同步容器的时候， 如果涉及到多个线程同时执行删除操作， 要考虑是否加锁
  *
  * @author az
- * @date 2020/3/22
  */
 public class VectorDemo {
 

@@ -4,7 +4,6 @@ import java.util.Objects;
 
 /**
  * @author Liz
- * @date 1/16/2020
  */
 public class CreateSlip {
 

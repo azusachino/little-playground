@@ -6,11 +6,10 @@ import cn.hutool.log.Log;
  * 线程在预设的地点检测flag，来决定是否停止。
  *
  * @author az
- * @date 2020/3/22
  */
 public class ThreadStopDemo {
 
-    private static Log log = Log.get();
+    private static final Log log = Log.get();
 
     public static void main(String[] args) {
         StopRunnable sr = new StopRunnable();

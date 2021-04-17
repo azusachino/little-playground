@@ -21,7 +21,7 @@ public class AesDecryptUtil {
      */
     public static final int MODE_CBC = 2;
 
-    private static byte[] IN = new byte[]{
+    private static final byte[] IN = new byte[]{
             0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00,

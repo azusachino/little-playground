@@ -2,7 +2,6 @@ package cn.az.code.concurrent;
 
 /**
  * @author Liz
- * @date 1/14/2020
  */
 public class Singleton {
 

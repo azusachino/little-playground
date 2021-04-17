@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 /**
  * @author az
- * @date 2020/3/7
  */
 public class User implements Serializable {
 

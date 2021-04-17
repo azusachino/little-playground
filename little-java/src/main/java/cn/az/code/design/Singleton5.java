@@ -2,9 +2,6 @@ package cn.az.code.design;
 
 /**
  * @author az
- * @date 2020-03-04
- * <p>
- * 优点：将懒加载和线程安全完美结合的一种方式（无锁）。（推荐）
  */
 public class Singleton5 {
 
@@ -20,7 +17,7 @@ public class Singleton5 {
         /**
          * 静态初始化器，由JVM来保证线程安全
          */
-        private static Singleton5 s = new Singleton5();
+        private static final Singleton5 s = new Singleton5();
     }
 
     public static Singleton5 getInstance() {

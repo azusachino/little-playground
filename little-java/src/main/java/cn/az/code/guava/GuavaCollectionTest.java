@@ -14,6 +14,6 @@ public class GuavaCollectionTest {
         Set<Integer> set = Sets.union(Sets.newHashSet(1, 2, 3), Sets.newHashSetWithExpectedSize(4));
         Sets.filter(set, x -> (x & 1) == 0).forEach(System.out::println);
         Sets.symmetricDifference(Sets.newHashSet(1, 2, 3), Sets.newHashSet(2, 3, 4));
-        System.out.println(Sets.powerSet(Sets.newHashSet(1,2,3)));
+        System.out.println(Sets.powerSet(Sets.newHashSet(1, 2, 3)));
     }
 }

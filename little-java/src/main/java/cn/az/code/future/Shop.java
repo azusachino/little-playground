@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 /**
  * @author Liz
- * @date 1/9/2020
  */
 public class Shop {
 
@@ -105,6 +104,6 @@ public class Shop {
     public void calculateSeconds(Consumer<Object> consumer, Object o) {
         long start = System.nanoTime();
         consumer.accept(o);
-        System.out.println(consumer.toString() + " : " + (System.nanoTime() - start) / 1_000_000 + " msecs");
+        System.out.println(consumer + " : " + (System.nanoTime() - start) / 1_000_000 + " msecs");
     }
 }

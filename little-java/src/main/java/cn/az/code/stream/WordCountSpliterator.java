@@ -5,7 +5,6 @@ import java.util.function.Consumer;
 
 /**
  * @author Liz
- * @date 1/9/2020
  */
 public class WordCountSpliterator implements Spliterator<Character> {
 
@@ -63,16 +62,6 @@ public class WordCountSpliterator implements Spliterator<Character> {
      *
      * @return a {@code Spliterator} covering some portion of the
      * elements, or {@code null} if this spliterator cannot be split
-     * @apiNote An ideal {@code trySplit} method efficiently (without
-     * traversal) divides its elements exactly in half, allowing
-     * balanced parallel computation.  Many departures from this ideal
-     * remain highly effective; for example, only approximately
-     * splitting an approximately balanced tree, or for a tree in
-     * which leaf nodes may contain either one or two elements,
-     * failing to further split these nodes.  However, large
-     * deviations in balance and/or overly inefficient {@code
-     * trySplit} mechanics typically result in poor parallel
-     * performance.
      */
     @Override
     public Spliterator<Character> trySplit() {
@@ -104,12 +93,6 @@ public class WordCountSpliterator implements Spliterator<Character> {
      *
      * @return the estimated size, or {@code Long.MAX_VALUE} if infinite,
      * unknown, or too expensive to compute.
-     * @apiNote Even an inexact estimate is often useful and inexpensive to compute.
-     * For example, a sub-spliterator of an approximately balanced binary tree
-     * may return a value that estimates the number of elements to be half of
-     * that of its parent; if the root Spliterator does not maintain an
-     * accurate count, it could estimate size to be the power of two
-     * corresponding to its maximum depth.
      */
     @Override
     public long estimateSize() {
@@ -131,10 +114,6 @@ public class WordCountSpliterator implements Spliterator<Character> {
      * about any computation using this Spliterator.
      *
      * @return a representation of characteristics
-     * @apiNote The characteristics of a given spliterator before splitting
-     * may differ from the characteristics after splitting.  For specific
-     * examples see the characteristic values {@link #SIZED}, {@link #SUBSIZED}
-     * and {@link #CONCURRENT}.
      */
     @Override
     public int characteristics() {

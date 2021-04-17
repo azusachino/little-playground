@@ -1,8 +1,8 @@
 package cn.az.code.config;
 
+import cn.az.code.mapper.CronMapper;
 import cn.hutool.core.util.StrUtil;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.quartz.Scheduler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +15,7 @@ import org.springframework.scheduling.support.CronTrigger;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 /**
  * @author ycpang
@@ -23,18 +24,6 @@ import java.time.LocalDateTime;
 @Configuration
 @EnableScheduling
 public class ScheduleConfig implements SchedulingConfigurer {
-
-    @Mapper
-    public interface CronMapper {
-
-        /**
-         * 获取表达式
-         *
-         * @return cron
-         */
-        @Select("select cron from cron limit 1")
-        String getCron();
-    }
 
     @Resource
     private CronMapper cronMapper;
@@ -64,7 +53,7 @@ public class ScheduleConfig implements SchedulingConfigurer {
     @Override
     public void configureTasks(@NonNull ScheduledTaskRegistrar scheduledTaskRegistrar) {
         scheduledTaskRegistrar.addTriggerTask(
-                () -> System.out.println("Hello" + LocalDateTime.now().toString()),
+                () -> System.out.println("Hello" + LocalDateTime.now()),
                 triggerContext -> {
                     String cron = cronMapper.getCron();
                     if (StrUtil.isBlank(cron)) {
@@ -73,5 +62,10 @@ public class ScheduleConfig implements SchedulingConfigurer {
                     return new CronTrigger(cron).nextExecutionTime(triggerContext);
                 }
         );
+    }
+
+    @Bean
+    public ScheduledThreadPoolExecutor scheduledThreadPoolExecutor() {
+        return new ScheduledThreadPoolExecutor(Runtime.getRuntime().availableProcessors() << 1, new ThreadFactoryBuilder().setNameFormat("scheduler-").build());
     }
 }

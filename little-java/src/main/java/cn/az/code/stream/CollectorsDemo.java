@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 /**
  * @author Liz
- * @date 2020/1/7
  */
 public class CollectorsDemo {
 

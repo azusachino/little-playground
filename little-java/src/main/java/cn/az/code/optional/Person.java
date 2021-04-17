@@ -4,7 +4,6 @@ import java.util.Optional;
 
 /**
  * @author Liz
- * @date 1/9/2020
  */
 public class Person {
 

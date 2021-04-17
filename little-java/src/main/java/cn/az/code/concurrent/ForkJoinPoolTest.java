@@ -4,7 +4,6 @@ import java.util.concurrent.ForkJoinPool;
 
 /**
  * @author az
- * @date 2020-03-05
  */
 public class ForkJoinPoolTest {
 

@@ -21,7 +21,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(rateLimiterInterceptor)
-        .addPathPatterns("/api/**");
+                .addPathPatterns("/api/**");
         super.addInterceptors(registry);
     }
 

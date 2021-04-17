@@ -12,7 +12,6 @@ import java.io.Writer;
 
 /**
  * @author az
- * @date 2020/3/7
  */
 @WebServlet(name = "my",
         urlPatterns = "/my",

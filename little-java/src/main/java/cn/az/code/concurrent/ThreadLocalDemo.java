@@ -3,16 +3,17 @@ package cn.az.code.concurrent;
 import cn.hutool.log.Log;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 /**
  * @author Liz
- * @date 2020/1/7
  */
 
 public class ThreadLocalDemo {
 
-    private static Log log = Log.get();
+    private static final Log log = Log.get();
 
     public static ThreadLocal<Index> index = ThreadLocal.withInitial(Index::new);
 

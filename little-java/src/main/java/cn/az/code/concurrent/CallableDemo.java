@@ -9,7 +9,6 @@ import java.util.concurrent.Future;
 
 /**
  * @author Liz
- * @date 1/18/2020
  */
 public class CallableDemo<T> {
 

@@ -11,7 +11,6 @@ import static cn.az.code.thread.ThreadTravel.doingLongTime;
  * 某个线程到达预设点后，可以选择等待同伴或自己退出，等大家都到达后，再一起向下一个预设点出发，随时都可以有新的线程加入，退出的也可以再次加入。
  *
  * @author az
- * @date 2020/3/22
  */
 public class PhaseDemo {
 
@@ -40,7 +39,6 @@ public class PhaseDemo {
                     (phase != 0 && registeredParties == COUNT);
         }
 
-        ;
     };
 
     static class Challenger implements Runnable {

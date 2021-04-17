@@ -7,7 +7,6 @@ import java.util.concurrent.ExecutorService;
 
 /**
  * @author az
- * @date 2020/3/5
  */
 public class CountDownLatchDemo {
 

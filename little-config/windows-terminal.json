@@ -48,16 +48,6 @@
         "fontFace": "Cascadia Code"
       },
       {
-        "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
-        "hidden": false,
-        "name": "Ubuntu-18.04",
-        "source": "Windows.Terminal.Wsl",
-        "colorScheme": "Ubuntu 18.04",
-        "acrylicOpacity": 0.75,
-        "useAcrylic": true,
-        "icon": "ms-appdata:///roaming/ubuntu_icon.png"
-      },
-      {
         "tabTitle": "Git Bash",
         "acrylicOpacity": 0.75,
         "closeOnExit": true,
@@ -93,28 +83,6 @@
     ]
   },
   "schemes": [
-    {
-      "name": "Ubuntu 18.04",
-      "foreground": "#CCCCCC",
-      "background": "#300A24",
-      "cursorColor": "#FFFFFF",
-      "black": "#0C0C0C",
-      "red": "#C50F1F",
-      "green": "#13A10E",
-      "yellow": "#C19C00",
-      "blue": "#0037DA",
-      "purple": "#881798",
-      "cyan": "#3A96DD",
-      "white": "#CCCCCC",
-      "brightBlack": "#767676",
-      "brightRed": "#E74856",
-      "brightGreen": "#16C60C",
-      "brightYellow": "#F9F1A5",
-      "brightBlue": "#3B78FF",
-      "brightPurple": "#B4009E",
-      "brightCyan": "#61D6D6",
-      "brightWhite": "#F2F2F2"
-    },
     {
       "name": "Atom",
       "black": "#000000",

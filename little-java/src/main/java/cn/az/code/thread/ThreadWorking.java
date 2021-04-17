@@ -10,11 +10,10 @@ import static cn.az.code.thread.ThreadTravel.doingLongTime;
  * 两个线程在预设点交换变量，先到达的等待对方。
  *
  * @author az
- * @date 2020/3/22
  */
 public class ThreadWorking {
 
-    private static Log log = Log.get();
+    private static final Log log = Log.get();
 
     static Exchanger<Tool> ex = new Exchanger<>();
 

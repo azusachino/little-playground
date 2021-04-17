@@ -10,7 +10,6 @@ import java.util.Optional;
 
 /**
  * @author az
- * @date 2020/3/28
  */
 @Component
 public class SpringUtil implements ApplicationContextAware {

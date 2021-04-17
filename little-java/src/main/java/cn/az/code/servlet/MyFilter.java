@@ -12,7 +12,6 @@ import java.io.IOException;
 
 /**
  * @author az
- * @date 2020/3/7
  */
 @WebFilter(urlPatterns = {"/my"})
 public class MyFilter extends OncePerRequestFilter {

@@ -5,7 +5,6 @@ import cn.hutool.log.Log;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisSentinelPool;
 
 import javax.annotation.Resource;
 import java.util.Optional;
@@ -21,8 +20,8 @@ public class RedisService {
     @Resource
     private JedisPool jedisPool;
 
-    @Resource
-    private JedisSentinelPool jedisSentinelPool;
+//    @Resource
+//    private JedisSentinelPool jedisSentinelPool;
 
     public <T> Optional<T> execute(JedisExecutor<Jedis, T> j) {
         try (Jedis jedis = jedisPool.getResource()) {
@@ -33,13 +32,13 @@ public class RedisService {
         return Optional.empty();
     }
 
-    public <T> Optional<T> executeSentinel(JedisExecutor<Jedis, T> j) {
-        try (Jedis jedis = jedisSentinelPool.getResource()) {
-            return Optional.of(j.execute(jedis));
-        } catch (Exception e) {
-            log.error(e);
-        }
-        return Optional.empty();
-    }
+//    public <T> Optional<T> executeSentinel(JedisExecutor<Jedis, T> j) {
+//        try (Jedis jedis = jedisSentinelPool.getResource()) {
+//            return Optional.of(j.execute(jedis));
+//        } catch (Exception e) {
+//            log.error(e);
+//        }
+//        return Optional.empty();
+//    }
 
 }

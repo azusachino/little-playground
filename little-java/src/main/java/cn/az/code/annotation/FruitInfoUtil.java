@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 
 /**
  * @author az
- * @date 2020-03-06
  */
 public class FruitInfoUtil {
 

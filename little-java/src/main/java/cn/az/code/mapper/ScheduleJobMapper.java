@@ -1,5 +1,6 @@
-package cn.az.code.job;
+package cn.az.code.mapper;
 
+import cn.az.code.job.ScheduleJob;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 

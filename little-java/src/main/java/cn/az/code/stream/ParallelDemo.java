@@ -8,11 +8,10 @@ import java.util.stream.Stream;
 
 /**
  * @author Liz
- * @date 2020/1/8
  */
 public class ParallelDemo {
 
-    private static Log log = Log.get();
+    private static final Log log = Log.get();
 
     public static long parallelRun(int n) {
         return Stream.iterate(1L, i -> i + 1)

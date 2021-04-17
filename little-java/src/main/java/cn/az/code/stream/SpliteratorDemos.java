@@ -11,11 +11,10 @@ import java.util.stream.StreamSupport;
 
 /**
  * @author Liz
- * @date 1/9/2020
  */
 public class SpliteratorDemos {
 
-    private static Log log = Log.get();
+    private static final Log log = Log.get();
 
     private static final String SENTENCE = "Hello World Java TypeScript";
 

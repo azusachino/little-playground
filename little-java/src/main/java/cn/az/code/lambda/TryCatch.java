@@ -7,7 +7,6 @@ import java.util.List;
 
 /**
  * @author Liz
- * @date 1/7/2020
  */
 public class TryCatch {
 

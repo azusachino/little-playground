@@ -6,7 +6,6 @@ import java.util.concurrent.ExecutorService;
 
 /**
  * @author az
- * @date 2020-03-06
  */
 public class SimpleTest {
     public static void main(String[] args) {

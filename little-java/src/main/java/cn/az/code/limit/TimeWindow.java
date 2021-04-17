@@ -15,17 +15,17 @@ import java.util.stream.IntStream;
  */
 public class TimeWindow {
 
-    private ConcurrentLinkedQueue<Long> queue = new ConcurrentLinkedQueue<>();
+    private final ConcurrentLinkedQueue<Long> queue = new ConcurrentLinkedQueue<>();
 
     /**
      * 间隔秒数
      */
-    private int seconds;
+    private final int seconds;
 
     /**
      * 最大限流
      */
-    private int max;
+    private final int max;
 
     public TimeWindow(int max, int seconds) {
         this.seconds = seconds;

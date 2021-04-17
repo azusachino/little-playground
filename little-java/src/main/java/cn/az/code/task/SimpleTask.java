@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleTask {
 
-    @Scheduled(cron = "0/5 * * * * ? *")
-    public void execute(){
+    @Scheduled(cron = "0/5 * * * * *")
+    public void execute() {
         System.out.println("Hello Simple Job");
     }
 }

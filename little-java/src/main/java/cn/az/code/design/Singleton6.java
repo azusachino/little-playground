@@ -10,5 +10,5 @@ public enum Singleton6 {
     /**
      * Instance singleton 6.
      */
-    INSTANCE;
+    INSTANCE
 }

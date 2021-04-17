@@ -12,7 +12,6 @@ import java.io.IOException;
 
 /**
  * @author az
- * @date 2020/2/29
  */
 @Component
 public class CorsFilter extends HttpFilter {

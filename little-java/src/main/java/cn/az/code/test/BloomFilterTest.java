@@ -8,13 +8,12 @@ import com.google.common.hash.Funnels;
  * 测试布隆过滤器(可用于redis缓存穿透)
  *
  * @author az
- * @date 2020/2/29
  */
 @Beta
 public class BloomFilterTest {
 
-    private static int total = 1000000;
-    private static BloomFilter<Integer> bf = BloomFilter.create(Funnels.integerFunnel(), total);
+    private static final int total = 1000000;
+    private static final BloomFilter<Integer> bf = BloomFilter.create(Funnels.integerFunnel(), total);
 //    private static BloomFilter<Integer> bf = BloomFilter.create(Funnels.integerFunnel(), total, 0.001);
 
     public static void main(String[] args) {

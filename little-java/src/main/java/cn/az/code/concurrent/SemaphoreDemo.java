@@ -4,7 +4,6 @@ import java.util.concurrent.Semaphore;
 
 /**
  * @author az
- * @date 2020-03-06
  */
 public class SemaphoreDemo {
 
@@ -17,8 +16,8 @@ public class SemaphoreDemo {
     }
 
     static class Worker extends Thread {
-        private int num;
-        private Semaphore semaphore;
+        private final int num;
+        private final Semaphore semaphore;
 
         public Worker(int num, Semaphore semaphore) {
             this.num = num;
@@ -35,7 +34,6 @@ public class SemaphoreDemo {
          *
          * @see #start()
          * @see #stop()
-         * @see #Thread(ThreadGroup, Runnable, String)
          */
         @Override
         public void run() {

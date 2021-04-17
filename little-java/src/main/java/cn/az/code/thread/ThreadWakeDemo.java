@@ -6,11 +6,10 @@ import cn.hutool.log.Log;
  * 线程在sleep或wait时，是处于无法交互的状态的，此时只能使用interrupt方法中断它，线程会被激活并收到中断异常。
  *
  * @author az
- * @date 2020/3/22
  */
 public class ThreadWakeDemo {
 
-    private static Log log = Log.get();
+    private static final Log log = Log.get();
 
     public static void main(String[] args) throws InterruptedException {
         WakeRunnable wr = new WakeRunnable();

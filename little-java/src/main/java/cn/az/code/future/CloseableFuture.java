@@ -2,11 +2,14 @@ package cn.az.code.future;
 
 import cn.hutool.core.thread.ThreadUtil;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * @author az
- * @date 2020/3/16
  */
 public class CloseableFuture {
 

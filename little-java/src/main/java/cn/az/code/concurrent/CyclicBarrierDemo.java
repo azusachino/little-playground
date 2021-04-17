@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author az
- * @date 2020-03-06
  */
 public class CyclicBarrierDemo {
 

@@ -31,7 +31,7 @@ public class AsyncConfig {
         executor.setTaskDecorator(r -> {
             // 获取当前上下文
             RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-            return () ->{
+            return () -> {
                 try {
                     // 传递到异步线程
                     RequestContextHolder.setRequestAttributes(requestAttributes);

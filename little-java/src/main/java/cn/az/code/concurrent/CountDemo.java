@@ -15,10 +15,10 @@ import java.util.concurrent.Semaphore;
  */
 public class CountDemo {
 
-    private static Log log = Log.get();
+    private static final Log log = Log.get();
 
-    private static int threadTotal = 200;
-    private static int clientTotal = 5000;
+    private static final int threadTotal = 200;
+    private static final int clientTotal = 5000;
 
     private static long count = 0;
 

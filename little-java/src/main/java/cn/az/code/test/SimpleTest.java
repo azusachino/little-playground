@@ -27,7 +27,7 @@ public class SimpleTest {
 
     int a;
 
-    public void say(){
+    public void say() {
 
     }
 

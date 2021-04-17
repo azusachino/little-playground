@@ -1,13 +1,10 @@
 package cn.az.code.serialize;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 /**
  * @author az
- * @date 2020/3/7
  */
 public class UserSerializeTest {
 

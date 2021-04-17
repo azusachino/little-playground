@@ -6,11 +6,10 @@ import cn.hutool.log.Log;
  * join方法可以让某个线程插到自己前面，等它执行完，自己才会继续执行。
  *
  * @author az
- * @date 2020/3/22
  */
 public class ThreadJoinDemo {
 
-    private static Log log = Log.get();
+    private static final Log log = Log.get();
 
     public static void main(String[] args) {
         JoinRunnable jr = new JoinRunnable();

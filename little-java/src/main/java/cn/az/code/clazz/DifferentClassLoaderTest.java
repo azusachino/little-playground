@@ -6,7 +6,6 @@ import java.util.Objects;
 
 /**
  * @author az
- * @date 2020-03-10
  */
 public class DifferentClassLoaderTest {
 

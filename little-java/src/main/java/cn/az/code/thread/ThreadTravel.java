@@ -8,11 +8,10 @@ import java.util.concurrent.CyclicBarrier;
  * 某个线程到达预设点时就在此等待，等所有的线程都到达时，大家再一起向下个预设点出发。如此循环反复下去。
  *
  * @author az
- * @date 2020/3/22
  */
 public class ThreadTravel {
 
-    private static Log log = Log.get(ProduceConsume.class);
+    private static final Log log = Log.get(ProduceConsume.class);
 
     static final int COUNT = 5;
     static CyclicBarrier cb = new CyclicBarrier(COUNT, new SingerRunnable());

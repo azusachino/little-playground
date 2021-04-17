@@ -9,7 +9,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
  * The type Properties xml util.
  *
  * @author az
- * @date 2020-03-06
  */
 public class PropertiesXmlUtil {
 
@@ -22,7 +21,7 @@ public class PropertiesXmlUtil {
         try {
             document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse("filePath");
         } catch (Exception pe) {
-            System.out.println(pe.toString());
+            System.out.println(pe);
         }
     }
 

@@ -11,7 +11,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class ReentrantLockTest {
 
-    private static ReentrantLock LOCK = new ReentrantLock();
+    private static final ReentrantLock LOCK = new ReentrantLock();
 
     public static void main(String[] args) {
         synchronizedFunction(ReentrantLockTest::action1);

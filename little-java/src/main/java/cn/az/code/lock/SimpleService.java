@@ -6,14 +6,13 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author az
- * @date 2020-03-06
  */
 public class SimpleService {
 
-    private Lock lock = new ReentrantLock();
+    private final Lock lock = new ReentrantLock();
 
     private boolean flag = false;
-    private Condition condition = lock.newCondition();
+    private final Condition condition = lock.newCondition();
 
     private int number = 1;
 

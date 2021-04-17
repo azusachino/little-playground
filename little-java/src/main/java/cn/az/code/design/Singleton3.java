@@ -2,10 +2,6 @@ package cn.az.code.design;
 
 /**
  * @author az
- * @date 2020-03-04
- * <p>
- * 优点：懒加载，线程安全。
- * 注：实例必须有 volatile 关键字修饰，其保证初始化完全。
  */
 public class Singleton3 {
 

@@ -2,7 +2,6 @@ package cn.az.code.optional;
 
 /**
  * @author Liz
- * @date 1/9/2020
  */
 public class Insurance {
 

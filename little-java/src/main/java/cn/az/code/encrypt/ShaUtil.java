@@ -11,7 +11,6 @@ import java.util.Optional;
  * The type SHA256 util.
  *
  * @author Liz
- * @date 2019 -09-12
  */
 public class ShaUtil {
 

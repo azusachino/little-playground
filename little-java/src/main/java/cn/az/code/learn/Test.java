@@ -3,18 +3,14 @@ package cn.az.code.learn;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.thread.ExecutorBuilder;
 import cn.hutool.core.thread.ThreadFactoryBuilder;
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.http.HttpUtil;
 
 import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ThreadFactory;
-import java.util.function.BiFunction;
 
 /**
  * @author Liz
- * @date 12/31/2019
  */
 public class Test {
 

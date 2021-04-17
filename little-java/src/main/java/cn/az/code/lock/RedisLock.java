@@ -4,8 +4,6 @@ import cn.az.code.function.JedisExecutor;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.log.Log;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.params.SetParams;

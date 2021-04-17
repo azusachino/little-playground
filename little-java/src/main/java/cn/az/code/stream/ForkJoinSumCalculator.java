@@ -7,7 +7,6 @@ import java.util.stream.LongStream;
 
 /**
  * @author Liz
- * @date 2020/1/8
  */
 
 public class ForkJoinSumCalculator extends RecursiveTask<Long> {

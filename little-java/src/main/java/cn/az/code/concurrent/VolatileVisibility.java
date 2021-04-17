@@ -8,7 +8,6 @@ import java.util.concurrent.ThreadFactory;
 
 /**
  * @author Liz
- * @date 1/14/2020
  */
 public class VolatileVisibility {
 
