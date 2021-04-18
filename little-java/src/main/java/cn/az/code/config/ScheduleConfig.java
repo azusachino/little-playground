@@ -5,9 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.quartz.Scheduler;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -21,8 +19,6 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
  * @author ycpang
  * @since 2021-01-26 14:04
  */
-@Configuration
-@EnableScheduling
 public class ScheduleConfig implements SchedulingConfigurer {
 
     @Resource

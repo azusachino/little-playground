@@ -3,7 +3,6 @@ package cn.az.code.service;
 import cn.az.code.task.RunnableTask;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.RandomUtil;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -16,7 +15,6 @@ import java.util.concurrent.TimeUnit;
  * @author az
  * @since 02/25/21 22:59
  */
-@Service
 public class RunnableService {
 
     /**

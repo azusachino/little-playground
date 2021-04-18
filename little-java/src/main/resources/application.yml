@@ -13,7 +13,7 @@ spring:
 
   datasource:
     druid:
-      url: jdbc:mysql://180.76.169.35:3306/playground?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      url: jdbc:mysql://180.76.169.35:3306/mysql?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
       username: root
       password: azusa520
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -42,8 +42,8 @@ mybatis-plus:
     db-config:
       id-type: auto
 
-rocketmq:
-  consumer:
-    group: CHAT_SENDER
-    topic: LIVE
-  name-server: localhost:9876
+#rocketmq:
+#  consumer:
+#    group: CHAT_SENDER
+#    topic: LIVE
+#  name-server: localhost:9876

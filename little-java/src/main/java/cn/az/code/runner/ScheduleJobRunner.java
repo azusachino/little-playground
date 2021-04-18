@@ -6,7 +6,6 @@ import cn.az.code.job.ScheduleManager;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -17,7 +16,6 @@ import java.util.List;
  * @author ycpang
  * @since 2021-01-26 14:06
  */
-@Component
 public class ScheduleJobRunner implements ApplicationRunner {
 
     @Resource
