@@ -34,5 +34,4 @@ public class MyServlet extends HttpServlet {
         writer.write(value);
     }
 
-
 }

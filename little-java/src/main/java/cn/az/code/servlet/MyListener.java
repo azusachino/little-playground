@@ -27,5 +27,4 @@ public class MyListener implements ServletRequestListener {
         context.log(MyListener.class.getName() + " destroy his job");
     }
 
-
 }
