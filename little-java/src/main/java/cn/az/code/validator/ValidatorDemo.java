@@ -22,6 +22,7 @@ public class ValidatorDemo {
         applicationContext.register(ValidatorDemo.class);
         applicationContext.register(ValidatorConfig.class);
 
+        // as the application started
         applicationContext.refresh();
 
         Validator validator = applicationContext.getBean(Validator.class);

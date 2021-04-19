@@ -35,7 +35,7 @@ public class RunnableService {
         }
     }
 
-    public void endTask() {
+    public void endTasks() {
         int index = RandomUtil.randomInt(TASK_MAP.size());
         String key = TASK_MAP.keySet().toArray()[index].toString();
         ScheduledFuture<?> sf = TASK_MAP.get(key);

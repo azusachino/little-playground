@@ -2,7 +2,6 @@ package cn.az.code.validator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.groups.Default;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -21,8 +20,10 @@ public @interface Phone {
 
     String message() default "手机号校验失败";
 
+    // by using ConstraintValidator, the annotation must have groups and payload, probably
+
     // 分组
-    Class<?>[] groups() default {Default.class};
+    Class<?>[] groups() default {};
 
     // 约束注解的有效负载
     Class<? extends Payload>[] payload() default {};
