@@ -13,7 +13,7 @@ import java.security.SecureRandom;
  * The type Google authenticator.
  *
  * @author Liz
- * @version 2019 /11/25
+ * @version 2019/11/25
  */
 public class GoogleAuthenticator {
 

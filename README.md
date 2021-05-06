@@ -1,3 +1,3 @@
 # little-playground
 
-主要是java简单实践的游乐场
+Java相关零碎知识点的practices
