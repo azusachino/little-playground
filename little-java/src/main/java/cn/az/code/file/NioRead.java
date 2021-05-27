@@ -40,7 +40,7 @@ public class NioRead {
                     stringBuffer.put(b);
                 } else {
                     String s = UTF8.decode(stringBuffer).toString();
-                    LOGGER.info("解析到..., {}",s);
+                    LOGGER.info("解析到..., {}", s);
                 }
             }
         } catch (Exception e) {

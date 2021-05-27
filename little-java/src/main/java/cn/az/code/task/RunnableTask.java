@@ -1,12 +1,11 @@
 package cn.az.code.task;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * @author az
  * @since 02/25/21 22:57
  */
-@Slf4j
 public class RunnableTask implements Runnable {
 
     /**
@@ -21,6 +20,6 @@ public class RunnableTask implements Runnable {
      */
     @Override
     public void run() {
-        log.info("doing runnable TASK...");
+        LogUtil.info("doing runnable TASK...");
     }
 }

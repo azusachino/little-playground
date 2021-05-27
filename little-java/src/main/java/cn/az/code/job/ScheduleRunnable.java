@@ -2,7 +2,6 @@ package cn.az.code.job;
 
 import cn.az.code.util.SpringUtil;
 import cn.hutool.core.util.StrUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Method;
@@ -12,7 +11,6 @@ import java.util.concurrent.Callable;
  * @author ycpang
  * @since 2021-01-26 14:10
  */
-@Slf4j
 public class ScheduleRunnable implements Callable<Object> {
 
     private final Object target;

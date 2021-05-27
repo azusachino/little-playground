@@ -1,7 +1,7 @@
 package cn.az.code.test;
 
+import cn.az.code.util.LogUtil;
 import cn.hutool.core.lang.UUID;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -17,7 +17,6 @@ import java.util.stream.LongStream;
  * @author ycpang
  * @since 2021-02-03 14:37
  */
-@Slf4j
 @SpringBootTest
 public class ConcurrentHashMapTest {
 
@@ -36,7 +35,7 @@ public class ConcurrentHashMapTest {
     @Test
     public String wrong() throws InterruptedException {
         ConcurrentHashMap<String, Long> map = createMap(ITEM_COUNT - 100);
-        log.info("init size: {}", map.size());
+        LogUtil.info("init size: {}" + map.size());
 
         ForkJoinPool fjp = new ForkJoinPool(THREAD_SIZE);
 
@@ -45,20 +44,20 @@ public class ConcurrentHashMapTest {
                 .forEach(i -> {
                     // 需要加锁
                     int gap = ITEM_COUNT - map.size();
-                    log.info("current gap is {}", gap);
+                    LogUtil.info("current gap is {}" + gap);
                     map.putAll(createMap(gap));
                 }));
 
         fjp.shutdown();
         fjp.awaitTermination(1, TimeUnit.HOURS);
-        log.info("final size is {}", map.size());
+        LogUtil.info("final size is {}" + map.size());
         return "wrong";
     }
 
     @Test
     public String ok() throws InterruptedException {
         ConcurrentHashMap<String, Long> map = createMap(ITEM_COUNT - 100);
-        log.info("init size: {}", map.size());
+        LogUtil.info("init size: {}" + map.size());
 
         ForkJoinPool fjp = new ForkJoinPool(THREAD_SIZE);
 
@@ -67,14 +66,14 @@ public class ConcurrentHashMapTest {
                 .forEach(i -> {
                     synchronized (map) {
                         int gap = ITEM_COUNT - map.size();
-                        log.info("current gap is {}", gap);
+                        LogUtil.info("current gap is {}" + gap);
                         map.putAll(createMap(gap));
                     }
                 }));
 
         fjp.shutdown();
         fjp.awaitTermination(1, TimeUnit.HOURS);
-        log.info("final size is {}", map.size());
+        LogUtil.info("final size is {}" + map.size());
         return "ok";
     }
 }

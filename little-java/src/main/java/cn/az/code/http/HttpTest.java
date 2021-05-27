@@ -1,13 +1,7 @@
 package cn.az.code.http;
 
 import cn.hutool.log.Log;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Headers;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
+import okhttp3.*;
 import org.springframework.util.Assert;
 
 import java.io.IOException;

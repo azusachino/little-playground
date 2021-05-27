@@ -1,15 +1,7 @@
 package cn.az.code.job;
 
-import lombok.extern.slf4j.Slf4j;
-import org.quartz.CronScheduleBuilder;
-import org.quartz.CronTrigger;
-import org.quartz.JobBuilder;
-import org.quartz.JobDataMap;
-import org.quartz.JobDetail;
-import org.quartz.JobKey;
-import org.quartz.Scheduler;
-import org.quartz.Trigger;
-import org.quartz.TriggerKey;
+import cn.az.code.util.LogUtil;
+import org.quartz.*;
 import org.quartz.impl.triggers.CronTriggerImpl;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +14,6 @@ import static org.quartz.TriggerBuilder.newTrigger;
  * @author ycpang
  * @since 2021-01-26 14:10
  */
-@Slf4j
 @Component
 public class ScheduleManager {
 
@@ -57,7 +48,7 @@ public class ScheduleManager {
                 pauseJob(scheduleJob);
             }
         } catch (Exception e) {
-            log.error("创建定时任务失败", e);
+            LogUtil.error("创建定时任务失败", e);
         }
     }
 
@@ -85,7 +76,7 @@ public class ScheduleManager {
                 pauseJob(scheduleJob);
             }
         } catch (Exception e) {
-            log.error("更新定时任务失败", e);
+            LogUtil.error("更新定时任务失败", e);
             throw new RuntimeException("更新定时任务失败");
         }
 
@@ -100,7 +91,7 @@ public class ScheduleManager {
             scheduler.pauseJob(jobKey);
             scheduler.deleteJob(jobKey);
         } catch (Exception e) {
-            log.error("删除定时任务失败", e);
+            LogUtil.error("删除定时任务失败", e);
             throw new RuntimeException("删除定时任务失败");
         }
     }
@@ -119,7 +110,7 @@ public class ScheduleManager {
             JobKey jobKey = JobKey.jobKey(JOB_NAME + scheduleJob.getId());
             scheduler.resumeJob(jobKey);
         } catch (Exception e) {
-            log.error("恢复定时任务失败", e);
+            LogUtil.error("恢复定时任务失败", e);
             throw new RuntimeException("恢复定时任务失败");
         }
     }
@@ -140,7 +131,7 @@ public class ScheduleManager {
             JobKey jobKey = JobKey.jobKey(JOB_NAME + scheduleJob.getId());
             scheduler.triggerJob(jobKey, dataMap);
         } catch (Exception e) {
-            log.error("定时任务执行失败", e);
+            LogUtil.error("定时任务执行失败", e);
             throw new RuntimeException("定时任务执行失败");
         }
     }
@@ -153,7 +144,7 @@ public class ScheduleManager {
             JobKey jobKey = JobKey.jobKey(JOB_NAME + scheduleJob.getId());
             scheduler.pauseJob(jobKey);
         } catch (Exception e) {
-            log.error("定时任务暂停失败", e);
+            LogUtil.error("定时任务暂停失败", e);
             throw new RuntimeException("定时任务暂停失败");
         }
     }

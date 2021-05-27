@@ -1,9 +1,9 @@
 package cn.az.code.mq.rabbit;
 
+import cn.az.code.util.LogUtil;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -14,7 +14,6 @@ import java.util.concurrent.TimeoutException;
  * @author ycpang
  * @since 2021-03-12 10:38
  */
-@Slf4j
 @Component
 public class SimpleRabbitDemo {
 
@@ -30,7 +29,7 @@ public class SimpleRabbitDemo {
             String msg = "Hello MSG";
 
             channel.basicPublish("", QUEUE_DEMO, null, msg.getBytes(StandardCharsets.UTF_8));
-            log.info("sent, {}", msg);
+            LogUtil.info("sent, {}" + msg);
 
         }
     }

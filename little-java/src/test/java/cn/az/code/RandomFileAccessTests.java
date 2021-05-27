@@ -17,7 +17,7 @@ public class RandomFileAccessTests {
     public void test() {
         File file = new File("E://temp//Report_20191016_000000001.csv");
         try (RandomAccessFile raf = new RandomAccessFile(file, "rw")) {
-           raf.seek(raf.length());
+            raf.seek(raf.length());
         } catch (Exception e) {
             e.printStackTrace();
         }

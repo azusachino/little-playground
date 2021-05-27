@@ -1,6 +1,6 @@
 package cn.az.code.config;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListenerConfigurer;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerEndpoint;
@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
  * @author ycpang
  * @since 2021-03-13 11:38
  */
-@Slf4j
 @EnableRabbit
 @Configuration
 public class RabbitmqConfig implements RabbitListenerConfigurer {
@@ -20,7 +19,7 @@ public class RabbitmqConfig implements RabbitListenerConfigurer {
     public void configureRabbitListeners(RabbitListenerEndpointRegistrar registrar) {
         SimpleRabbitListenerEndpoint endpoint = new SimpleRabbitListenerEndpoint();
         endpoint.setMessageListener(message -> {
-            log.info(new String(message.getBody()));
+            LogUtil.info(new String(message.getBody()));
         });
     }
 }

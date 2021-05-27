@@ -1,12 +1,8 @@
 package cn.az.code.mq.rabbit;
 
+import cn.az.code.util.LogUtil;
 import com.rabbitmq.client.Channel;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.annotation.Exchange;
-import org.springframework.amqp.rabbit.annotation.Queue;
-import org.springframework.amqp.rabbit.annotation.QueueBinding;
-import org.springframework.amqp.rabbit.annotation.RabbitHandler;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.annotation.*;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -19,7 +15,6 @@ import java.util.Map;
  * @author ycpang
  * @since 2021-03-13 11:34
  */
-@Slf4j
 @Component
 public class RabbitConsumer {
 
@@ -33,7 +28,7 @@ public class RabbitConsumer {
     @RabbitHandler
     public void onMessage(@Payload Object o, @Headers Map<String, Object> headers, Channel channel) throws IOException {
 
-        log.info(o.toString());
+        LogUtil.info(o.toString());
 
         /*
          * Delivery Tag 用来标识信道中投递的消息。RabbitMQ 推送消息给 Consumer 时，会附带一个 Delivery Tag，

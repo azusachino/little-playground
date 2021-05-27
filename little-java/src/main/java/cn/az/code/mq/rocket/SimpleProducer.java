@@ -1,6 +1,6 @@
 package cn.az.code.mq.rocket;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;
@@ -11,7 +11,6 @@ import java.nio.charset.StandardCharsets;
  * @author ycpang
  * @since 2021-03-12 10:33
  */
-@Slf4j
 public class SimpleProducer {
 
     private final String topic;
@@ -24,7 +23,7 @@ public class SimpleProducer {
         try {
             this.producer.start();
         } catch (MQClientException e) {
-            log.error("error ", e);
+            LogUtil.error("error ", e);
         }
         this.topic = topic;
     }
@@ -34,7 +33,7 @@ public class SimpleProducer {
         try {
             this.producer.send(message);
         } catch (Exception e) {
-            log.error("error ", e);
+            LogUtil.error("error ", e);
         }
     }
 
