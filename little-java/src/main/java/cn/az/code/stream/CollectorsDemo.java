@@ -15,7 +15,6 @@ public class CollectorsDemo {
     private static final Log LOG = Log.get(CollectorsDemo.class);
 
     public static void main(String[] args) {
-        List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5);
         List<Dish> dishes = Arrays.asList(new Dish(), new Dish());
         LOG.debug(String.valueOf(dishes.stream().mapToInt(Dish::getCalories).sum()));
 

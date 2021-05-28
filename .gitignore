@@ -3,7 +3,14 @@
 *.class
 **/package-lock.json
 
-#folder
+## vscode
+.vscode/
+**/.project
+**/org.eclipse.*
+**/.factorypath
+**/.classpath
+
+# folder
 .idea/
 **/target/
 **/dist/
