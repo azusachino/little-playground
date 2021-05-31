@@ -12,8 +12,10 @@ import java.util.concurrent.*;
  */
 public class ThreadTest {
     public static void main(String[] args) {
-        ThreadFactory threadFactory = new ThreadFactoryBuilder().setPriority(5).setNameFormat("Thread-test-%d").setUncaughtExceptionHandler(UncaughtExceptionHandlers.systemExit()).build();
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(3, 3, 100L, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(10), threadFactory);
+        ThreadFactory threadFactory = new ThreadFactoryBuilder().setPriority(5).setNameFormat("Thread-test-%d")
+                .setUncaughtExceptionHandler(UncaughtExceptionHandlers.systemExit()).build();
+        // ThreadPoolExecutor executor = new ThreadPoolExecutor(3, 3, 100L,
+        // TimeUnit.MILLISECONDS, new ArrayBlockingQueue<>(10), threadFactory);
         ExecutorService service = Executors.newCachedThreadPool(threadFactory);
 
         Executor exe = MoreExecutors.directExecutor();

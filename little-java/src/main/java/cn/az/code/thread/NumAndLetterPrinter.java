@@ -7,8 +7,8 @@ package cn.az.code.thread;
 public class NumAndLetterPrinter {
 
     static final Object LOCK = new Object();
-    private static final char C = 'A';
-    private static final int I = 0;
+    // private static final char C = 'A';
+    // private static final int I = 0;
 
     public static void main(String[] args) {
         new Thread(() -> printer(), "numThread").start();

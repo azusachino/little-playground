@@ -19,9 +19,8 @@ public class FutureDemo {
         applicationContext.refresh();
 
         FutureService futureService = applicationContext.getBean(FutureService.class);
-        futureService.transfer("az", "chino", BigDecimal.valueOf(1000))
-                .thenRun(FutureDemo::demo)
-                .get(10, TimeUnit.SECONDS);
+        futureService.transfer("az", "chino", BigDecimal.valueOf(1000)).thenRun(FutureDemo::demo).get(10,
+                TimeUnit.SECONDS);
 
         applicationContext.close();
 
@@ -34,7 +33,7 @@ public class FutureDemo {
         System.out.println(9.0);
 
         try {
-            double result = future.get(1, TimeUnit.SECONDS);
+            future.get(1, TimeUnit.SECONDS);
         } catch (ExecutionException e) {
             System.out.println(e.getMessage());
         } catch (InterruptedException e) {

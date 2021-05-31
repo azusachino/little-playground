@@ -6,8 +6,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.stream.IntStream;
 
 /**
- * 滑动窗口
- * <b>滑动窗口是对计数器方式的改进,增加一个时间粒度的度量单位</b>
+ * 滑动窗口 <b>滑动窗口是对计数器方式的改进,增加一个时间粒度的度量单位</b>
  *
  * @author <a href="mailto:azusa146@gmail.com">az</a>
  * @see ConcurrentLinkedQueue
@@ -77,10 +76,7 @@ public class TimeWindow {
      */
     public void take() {
 
-
-        long start = System.currentTimeMillis();
         try {
-
 
             int size = sizeOfValid();
             if (size > max) {
@@ -102,7 +98,6 @@ public class TimeWindow {
 
     }
 
-
     public int sizeOfValid() {
         Iterator<Long> it = queue.iterator();
         long ms = System.currentTimeMillis() - seconds * 1000;
@@ -117,7 +112,6 @@ public class TimeWindow {
 
         return count;
     }
-
 
     /**
      * 清理过期的时间

@@ -12,11 +12,11 @@ public class DifferentClassLoaderTest {
     public static void main(String[] args) throws ClassNotFoundException {
         ClassLoader classLoader = new ClassLoader() {
             /**
-             * Loads the class with the specified <a href="#name">binary name</a>.
-             * This method searches for classes in the same manner as the {@link
-             * #loadClass(String, boolean)} method.  It is invoked by the Java virtual
-             * machine to resolve class references.  Invoking this method is equivalent
-             * to invoking {@link #loadClass(String, boolean) <tt>loadClass(name,
+             * Loads the class with the specified <a href="#name">binary name</a>. This
+             * method searches for classes in the same manner as the
+             * {@link #loadClass(String, boolean)} method. It is invoked by the Java virtual
+             * machine to resolve class references. Invoking this method is equivalent to
+             * invoking {@link #loadClass(String, boolean) <tt>loadClass(name,
              * false)</tt>}.
              *
              * @param name The <a href="#name">binary name</a> of the class
@@ -41,7 +41,8 @@ public class DifferentClassLoaderTest {
             }
         };
         // throw ClassCastException (differentClassLoader) 两者不属于同一类加载器加载，所以不能转化！
-        Class<?> obj = classLoader.loadClass("cn.az.code.clazz.DifferentClassLoaderTest");
+        // Class<?> obj =
+        // classLoader.loadClass("cn.az.code.clazz.DifferentClassLoaderTest");
 
         Class<?> o = classLoader.loadClass("cn.az.code.clazz.DifferentClassLoaderTest");
         System.out.println(o);

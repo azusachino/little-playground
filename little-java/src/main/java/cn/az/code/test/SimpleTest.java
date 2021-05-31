@@ -33,14 +33,16 @@ public class SimpleTest {
 
     public static void main(String[] args) {
         printAbc2();
-//        ExecutorService service = ThreadUtil.newExecutor(10);
-//        for (int i = 0; i < 1000; i++) {
-//            service.submit(() -> {
-//                System.out.println(DateUtil.getCurrentDate());
-//            });
-//        }
-//
-//        service.shutdown();
+        // ExecutorService service = ThreadUtil.newExecutor(10);
+        // for (int i = 0; i < 1000; i++) {
+        // service.submit(() -> {
+        // System.out.println(DateUtil.getCurrentDate());
+        // });
+        // }
+        //
+        // service.shutdown();
+        test1();
+        test2();
     }
 
     public static void printAbc() {

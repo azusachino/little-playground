@@ -21,7 +21,9 @@ public class Test {
         ExecutorService service = ExecutorBuilder.create().setThreadFactory(threadFactory).setCorePoolSize(10).build();
         Object[] objects = Arrays.asList(1, 2, 3, 4, 5, 6).toArray();
 
-
+        service.execute(() -> {
+            objects.getClass();
+        });
     }
 
     public static int hash(Object key) {

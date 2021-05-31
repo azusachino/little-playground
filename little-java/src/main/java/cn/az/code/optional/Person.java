@@ -39,14 +39,12 @@ public class Person {
         car.ifPresent(System.out::println);
         Optional<Car> c = Optional.of(new Car());
         Optional<String> a = c.map(Car::getName);
+        a.get();
     }
 
     public static String getInsuranceName(Person person) {
 
-        return Optional.of(person)
-                .flatMap(p -> Optional.of(p.getCar()))
-                .flatMap(pc -> Optional.of(pc.getInsurance()))
-                .map(Insurance::getName)
-                .orElse("haha");
+        return Optional.of(person).flatMap(p -> Optional.of(p.getCar())).flatMap(pc -> Optional.of(pc.getInsurance()))
+                .map(Insurance::getName).orElse("haha");
     }
 }

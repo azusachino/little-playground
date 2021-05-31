@@ -14,16 +14,17 @@ public class CallableDemo<T> {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         TicketCallable<String> ticketCallable = new TicketCallable<>(10);
-//        FutureTask<String> futureTask = new FutureTask<>(ticketCallable);
+        // FutureTask<String> futureTask = new FutureTask<>(ticketCallable);
         ExecutorService service = ThreadUtil.newExecutor();
         Future<String> future = service.submit(ticketCallable);
         System.out.println(future.get());
     }
 
-
     public static class TicketCallable<T> implements Callable<T> {
 
         private int tickets;
+
+        private T t;
 
         public TicketCallable(int tickets) {
             this.tickets = tickets;
@@ -40,8 +41,8 @@ public class CallableDemo<T> {
                 System.out.println("left : " + tickets);
                 tickets--;
             }
-            String res = "all sold";
-            return (T) res;
+            // String res = "all sold";
+            return t;
         }
     }
 }
