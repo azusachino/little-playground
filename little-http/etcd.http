@@ -1,0 +1,16 @@
+GET http://104.224.188.126:2379/version
+
+###
+GET http://64.64.224.190:2379/v3/keys/mysql
+
+###
+POST http://64.64.224.190:2379/v3/kv/put
+Content-Type: application/json 
+
+{
+    "key": "/mysql/host",
+    "value": "127.0.0.1"
+}
+
+###
+PUT http://104.224.188.126:2379/v3/keys/mysql/host value=="hello, etcd"
