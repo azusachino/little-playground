@@ -1,6 +1,5 @@
 package cn.az.code.design;
 
-
 /**
  * @author az
  */
@@ -69,4 +68,47 @@ public class NutritionFacts {
         sodium = builder.sodium;
         carbohydrate = builder.carbohydrate;
     }
+
+    /**
+     * @return the servingSize
+     */
+    public int getServingSize() {
+        return servingSize;
+    }
+
+    /**
+     * @return the servings
+     */
+    public int getServings() {
+        return servings;
+    }
+
+    /**
+     * @return the calories
+     */
+    public int getCalories() {
+        return calories;
+    }
+
+    /**
+     * @return the fat
+     */
+    public int getFat() {
+        return fat;
+    }
+
+    /**
+     * @return the sodium
+     */
+    public int getSodium() {
+        return sodium;
+    }
+
+    /**
+     * @return the carbohydrate
+     */
+    public int getCarbohydrate() {
+        return carbohydrate;
+    }
+
 }
