@@ -1,10 +1,8 @@
 package cn.az.code.job;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-
-import org.springframework.stereotype.Service;
-
 import cn.az.code.mapper.ScheduleJobMapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
 
 /**
  * @author ycpang

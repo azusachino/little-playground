@@ -1,5 +1,7 @@
 package cn.az.code.file;
 
+import com.nimbusds.jose.util.StandardCharset;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -8,11 +10,9 @@ import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.util.stream.Stream;
 
-import com.nimbusds.jose.util.StandardCharset;
-
 /**
  * Read
- * 
+ *
  * @author az
  */
 public class NioRead {

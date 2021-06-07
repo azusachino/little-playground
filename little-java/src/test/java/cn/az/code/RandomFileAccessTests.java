@@ -8,7 +8,6 @@ import java.io.RandomAccessFile;
 
 /**
  * @author Liz
- * @date 1/13/2020
  */
 @SpringBootTest
 public class RandomFileAccessTests {

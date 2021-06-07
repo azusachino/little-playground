@@ -1,13 +1,13 @@
 package cn.az.code.trick;
 
+import com.google.common.collect.Lists;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-
-import com.google.common.collect.Lists;
 
 /**
  * The type Stream trick.
@@ -29,7 +29,7 @@ public class StreamTrick {
         strStream.sorted();
 
         // 由数组构成
-        String[] strArray = new String[] { "a", "bb", "c" };
+        String[] strArray = new String[]{"a", "bb", "c"};
         stream = Stream.of(strArray);
         stream = Arrays.stream(strArray);
 
