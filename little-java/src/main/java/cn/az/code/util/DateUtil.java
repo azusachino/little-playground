@@ -1,5 +1,6 @@
 package cn.az.code.util;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -22,8 +23,8 @@ import java.util.stream.Stream;
  */
 public class DateUtil {
 
-    private static final ThreadLocal<SimpleDateFormat> SIMPLE_DATE_FORMAT_THREAD_LOCAL =
-            ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+    private static final ThreadLocal<SimpleDateFormat> SIMPLE_DATE_FORMAT_THREAD_LOCAL = ThreadLocal
+            .withInitial(() -> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 
     private DateUtil() {
         throw new Error();
@@ -74,7 +75,8 @@ public class DateUtil {
     }
 
     public static String getCurrentDate() {
-        return SIMPLE_DATE_FORMAT_THREAD_LOCAL.get().format(Date.from(LocalDateTime.now().atZone(ZoneId.of("GMT+8")).toInstant()));
+        return SIMPLE_DATE_FORMAT_THREAD_LOCAL.get()
+                .format(Date.from(LocalDateTime.now().atZone(ZoneId.of("GMT+8")).toInstant()));
     }
 
     /**
@@ -105,6 +107,30 @@ public class DateUtil {
 
     public static List<String> getMonthBetweenYear(int year) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern(YYYY_MM);
-        return Stream.iterate(1, s -> s + 1).limit(12).map(m -> LocalDate.of(year, m, 1).format(dtf)).collect(Collectors.toList());
+        return Stream.iterate(1, s -> s + 1).limit(12).map(m -> LocalDate.of(year, m, 1).format(dtf))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * 格式化时间区间
+     * 
+     * @param miliseconds 毫秒
+     * @return readable时间单位
+     */
+    public static String formatDuration(long miliseconds) {
+
+        DecimalFormat df = new DecimalFormat("#.00");
+        StringBuffer sb = new StringBuffer();
+
+        if (miliseconds < 1000) {
+            sb.append(miliseconds).append("毫秒");
+        } else if (miliseconds < 60000) {
+            sb.append(df.format((double) miliseconds / 1000)).append("秒");
+        } else if (miliseconds < 3600000) {
+            sb.append(df.format((double) miliseconds / 60000)).append("分钟");
+        } else {
+            sb.append(df.format((double) miliseconds / 3600000)).append("小时");
+        }
+        return sb.toString();
     }
 }
