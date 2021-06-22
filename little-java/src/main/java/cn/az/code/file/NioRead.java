@@ -1,12 +1,11 @@
 package cn.az.code.file;
 
-import com.nimbusds.jose.util.StandardCharset;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.stream.Stream;
 
@@ -32,7 +31,7 @@ public class NioRead {
                     // \r or \n
                     if (b == 10 || b == 13) {
                         stringBuffer.flip();
-                        String line = StandardCharset.UTF_8.decode(stringBuffer).toString();
+                        String line = StandardCharsets.UTF_8.decode(stringBuffer).toString();
                         System.out.println(line);
                         stringBuffer.clear();
                     } else {
