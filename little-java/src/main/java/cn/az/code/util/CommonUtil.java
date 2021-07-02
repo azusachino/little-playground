@@ -70,7 +70,7 @@ public class CommonUtil {
      * @param si    是否MBi
      * @return 可读的文件大小
      */
-    public static strictfp String humanReadalbeByteCount(long bytes, boolean si) {
+    public static strictfp String humanReadableByteCount(long bytes, boolean si) {
         int unit = si ? 1000 : 1024;
         long absBytes = bytes == Long.MIN_VALUE ? Long.MAX_VALUE : Math.abs(bytes);
 
