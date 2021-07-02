@@ -62,4 +62,29 @@ public class CommonUtil {
         value *= Long.signum(bytes);
         return String.format("%.2f %cB", value / 1024.0, ci.current());
     }
+
+    /**
+     * 当对一个类或接口使用 strictfp 关键字时，该类中的所有代码，包括嵌套类型中的初始设定值和代码，都将严格地进行计算。
+     * 
+     * @param bytes 字节大小
+     * @param si    是否MBi
+     * @return 可读的文件大小
+     */
+    public static strictfp String humanReadalbeByteCount(long bytes, boolean si) {
+        int unit = si ? 1000 : 1024;
+        long absBytes = bytes == Long.MIN_VALUE ? Long.MAX_VALUE : Math.abs(bytes);
+
+        if (absBytes < unit)
+            return bytes + " B";
+        int exp = (int) (Math.log(absBytes) / Math.log(unit));
+        long th = (long) Math.ceil(Math.pow(unit, exp) * (unit - 0.05));
+        if (exp < 6 && absBytes >= th - ((th & 0xFFF) == 0xD00 ? 51 : 0))
+            exp++;
+        String pre = (si ? "kMGTPE" : "KMGTPE").charAt(exp - 1) + (si ? "" : "i");
+        if (exp > 4) {
+            bytes /= unit;
+            exp -= 1;
+        }
+        return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
+    }
 }
