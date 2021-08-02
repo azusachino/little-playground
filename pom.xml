@@ -19,6 +19,7 @@
 
     <modules>
         <module>little-java</module>
+        <module>little-webflux</module>
     </modules>
 
     <properties>
