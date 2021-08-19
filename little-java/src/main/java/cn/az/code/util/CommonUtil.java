@@ -1,8 +1,12 @@
 package cn.az.code.util;
 
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.text.CharacterIterator;
+import java.text.DecimalFormat;
 import java.text.StringCharacterIterator;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author az
@@ -74,12 +78,14 @@ public class CommonUtil {
         int unit = si ? 1000 : 1024;
         long absBytes = bytes == Long.MIN_VALUE ? Long.MAX_VALUE : Math.abs(bytes);
 
-        if (absBytes < unit)
+        if (absBytes < unit) {
             return bytes + " B";
+        }
         int exp = (int) (Math.log(absBytes) / Math.log(unit));
         long th = (long) Math.ceil(Math.pow(unit, exp) * (unit - 0.05));
-        if (exp < 6 && absBytes >= th - ((th & 0xFFF) == 0xD00 ? 51 : 0))
+        if (exp < 6 && absBytes >= th - ((th & 0xFFF) == 0xD00 ? 51 : 0)) {
             exp++;
+        }
         String pre = (si ? "kMGTPE" : "KMGTPE").charAt(exp - 1) + (si ? "" : "i");
         if (exp > 4) {
             bytes /= unit;
@@ -87,4 +93,55 @@ public class CommonUtil {
         }
         return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
     }
+
+    /**
+     * 通过反射转换成map
+     *
+     * @param obj 对象
+     * @return map
+     */
+    public static Map<String, Object> convertToMap(Object obj) {
+        Map<String, Object> map = new HashMap<>(8);
+        Field[] fields = obj.getClass().getDeclaredFields();
+        try {
+            for (Field field : fields) {
+                String varName = field.getName();
+                boolean accessFlag = field.isAccessible();
+                field.setAccessible(true);
+                Object o = field.get(obj);
+                if (o != null) {
+                    map.put(varName, o);
+                }
+                field.setAccessible(accessFlag);
+            }
+        } catch (Exception e) {
+            return map;
+        }
+        return map;
+    }
+
+    /**
+     * 格式化时间区间
+     *
+     * @param milliSeconds 毫秒
+     * @return readable时间单位
+     */
+    public static String formatDuration(long milliSeconds) {
+
+        DecimalFormat df = new DecimalFormat("#.00");
+        StringBuilder sb = new StringBuilder();
+        int thousand = 1000;
+
+        if (milliSeconds < thousand) {
+            sb.append(milliSeconds).append("毫秒");
+        } else if (milliSeconds < (60 * thousand)) {
+            sb.append(df.format((double) milliSeconds / thousand)).append("秒");
+        } else if (milliSeconds < (60 * 60 * thousand)) {
+            sb.append(df.format((double) milliSeconds / (60 * thousand))).append("分钟");
+        } else {
+            sb.append(df.format((double) milliSeconds / (60 * 60 * thousand))).append("小时");
+        }
+        return sb.toString();
+    }
+
 }
