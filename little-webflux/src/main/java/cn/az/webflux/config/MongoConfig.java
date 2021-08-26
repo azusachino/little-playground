@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractReactiveMongoConfiguration;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.lang.NonNull;
 
 /**
  * TODO
@@ -19,18 +20,17 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages = "cn.az.webflux.mongo.repo")
 public class MongoConfig extends AbstractReactiveMongoConfiguration {
 
-    @Value("${mongo.port}")
-    private String port;
-
     @Value("${mongo.dbName}")
     private String dbName;
 
     @Override
+    @NonNull
     public MongoClient reactiveMongoClient() {
         return MongoClients.create();
     }
 
     @Override
+    @NonNull
     protected String getDatabaseName() {
         return dbName;
     }
