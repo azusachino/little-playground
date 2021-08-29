@@ -3,7 +3,11 @@ package cn.az.webflux.service;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.stream.Stream;
 
 /**
  * Common Service
@@ -25,5 +29,18 @@ public class CommonService {
                 e.printStackTrace();
             }
         });
+    }
+
+    public void someWork(Path path) {
+        try (Stream<String> s = Files.lines(path)) {
+            s.forEach(System.out::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            Files.delete(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

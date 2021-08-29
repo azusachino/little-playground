@@ -18,7 +18,6 @@ import java.util.Objects;
  * @author az
  * @since 2021/8/2 22:24
  */
-@Component
 public class HttpCustomFilter implements WebFilter {
 
     private final CommonService commonService;

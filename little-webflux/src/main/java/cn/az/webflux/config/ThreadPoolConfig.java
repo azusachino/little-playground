@@ -13,7 +13,6 @@ import java.util.concurrent.Executor;
  * @author az
  * @since 2021-08-26 21:52
  */
-@Configuration
 public class ThreadPoolConfig implements AsyncConfigurer {
 
     @Bean
