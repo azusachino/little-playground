@@ -9,11 +9,11 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
  */
 public class Percolation {
 
-    private boolean[][] grid;
-    private int length;
-    private int top;
-    private int bottom;
-    private WeightedQuickUnionUF uf;
+    private final boolean[][] grid;
+    private final int length;
+    private final int top;
+    private final int bottom;
+    private final WeightedQuickUnionUF uf;
 
     public Percolation(int n) {
         if (n <= 0) {
@@ -58,7 +58,7 @@ public class Percolation {
 
     public boolean isFull(int i, int j) {
         this.checkRange(i, j);
-        return this.uf.connected(generateIndex(i, j), this.top);
+        return this.uf.find(this.generateIndex(i, j)) == this.uf.find(this.top);
     }
 
     public int numberOfOpenSites() {
@@ -74,7 +74,7 @@ public class Percolation {
     }
 
     public boolean percolates() {
-        return this.uf.connected(this.top, this.bottom);
+        return this.uf.find(this.top) == this.uf.find(this.bottom);
     }
 
     private void checkRange(int p, int q) {
