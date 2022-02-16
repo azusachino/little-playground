@@ -2,26 +2,14 @@ server:
   port: 8989
   shutdown: graceful
 
+
 logging:
   config: classpath:logback-spring.xml
+  file:
+    path: ./
 
 management:
   endpoints:
     web:
       exposure:
         include: '*'
-
-spring:
-  lifecycle:
-    timeout-per-shutdown-phase: 30s
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:mysql://sh-cynosdbmysql-grp-gdj3i6os.sql.tencentcdb.com:20958/iris-demo?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: root
-    password: Chino1204_
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
-mybatis-plus:
-  type-aliases-package: cn.az.webflux.entity
-  global-config:
-    banner: off
