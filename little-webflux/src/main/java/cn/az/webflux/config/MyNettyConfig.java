@@ -1,6 +1,7 @@
 package cn.az.webflux.config;
 
 import org.springframework.boot.web.embedded.netty.NettyServerCustomizer;
+import reactor.netty.ConnectionObserver;
 import reactor.netty.http.server.HttpServer;
 
 /**
@@ -14,12 +15,12 @@ public class MyNettyConfig implements NettyServerCustomizer {
     @Override
     public HttpServer apply(HttpServer httpServer) {
         // 最新版本使用http.childObserve(ConnectionObserver)
-        return httpServer.tcpConfiguration(
-            tcpServer -> {
-                tcpServer.configure()
-                    .childHandler(new MyChannelInitializer());
-                return tcpServer;
-            }
+        return httpServer.childObserve(
+            ((connection, newState) -> {
+                if (ConnectionObserver.State.CONNECTED.equals(newState)) {
+                    connection.addHandlerLast(new MyChannelInitializer());
+                }
+            })
         );
     }
 }

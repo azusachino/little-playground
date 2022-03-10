@@ -12,7 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * TODO
+ * Test executor
  *
  * @author az
  * @since 2021-08-26 21:59
@@ -27,7 +27,7 @@ public class SampleService {
 
     public Mono<String> test(long milli) {
         return this.commonService.doSomethingBad(milli)
-            .subscribeOn(Schedulers.newElastic("Custom Scheduler"))
+            .subscribeOn(Schedulers.newBoundedElastic(1, 10, "Custom Scheduler"))
             .thenReturn("ok");
     }
 
@@ -35,7 +35,7 @@ public class SampleService {
         Path p = createFile(filePart.filename());
         return filePart.transferTo(p)
             .doOnNext(v -> Mono.fromRunnable(() -> this.commonService.someWork(p))
-                .subscribeOn(Schedulers.elastic())
+                .subscribeOn(Schedulers.newSingle("uploadExecutor"))
                 .subscribe())
             .map(v -> "ok");
     }

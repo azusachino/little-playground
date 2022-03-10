@@ -2,7 +2,6 @@ package cn.az.code;
 
 import cn.az.code.auth.GoogleAuthenticator;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
 
@@ -10,7 +9,6 @@ import java.io.IOException;
  * @author Liz
  * @version 2019/11/27
  */
-@SpringBootTest
 public class GoogleAuthTest {
 
     @Test

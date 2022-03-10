@@ -10,6 +10,7 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
@@ -17,7 +18,7 @@ import java.io.IOException;
  * @author az
  * @since 2021-04-18 13:24
  */
-public class App {
+public class SimpleEsTests {
     final private static String[] FETCH_FIELDS = {"@timestamp", "@message"};
 
     final private static String MATCH_FIELD = "@message";
@@ -30,10 +31,11 @@ public class App {
 
     final private static String INDEX = "logstash-2015.05.20"; // accepts * as wildcard, .e.g log*
 
-    public static void main(String[] args) throws IOException {
+    @Test
+    public void main(String[] args) throws IOException {
 
         RestHighLevelClient client = new RestHighLevelClient(
-                RestClient.builder(new HttpHost("localhost", 9200, "http")));
+            RestClient.builder(new HttpHost("localhost", 9200, "http")));
         SearchRequest searchRequest = new SearchRequest();
 
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
