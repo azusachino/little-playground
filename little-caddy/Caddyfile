@@ -1,0 +1,7 @@
+rin.azusachino.com {
+    reverse_proxy 172.31.103.161
+}
+
+note.azusachino.com {
+    reverse_proxy 172.31.103.116:20080
+}

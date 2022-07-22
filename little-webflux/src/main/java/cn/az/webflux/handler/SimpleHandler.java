@@ -1,7 +1,7 @@
 package cn.az.webflux.handler;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
+
 import reactor.core.publisher.Mono;
 
 /**

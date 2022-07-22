@@ -24,5 +24,6 @@ public class NamingService {
 
         List<String> ch = zk.getChildren("/", null);
         System.out.println(ch);
+        zk.close();
     }
 }

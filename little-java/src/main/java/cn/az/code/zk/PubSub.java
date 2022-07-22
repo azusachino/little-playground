@@ -21,6 +21,7 @@ public class PubSub {
         zk.getData("/config", System.out::println, null);
 
         zk.setData("/config", "dddd".getBytes(StandardCharsets.UTF_8), 0);
+        zk.close();
     }
 
 }

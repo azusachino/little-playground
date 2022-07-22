@@ -1,27 +1,25 @@
-package com.iflytek.scv.logging.utils;
+package cn.az.code.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.commands.JedisCommands;
 import redis.clients.jedis.params.SetParams;
 
-import java.util.Collections;
-import java.util.List;
-
 /**
- * TODO
  *
- * @author ycpang
+ * @author az
  * @since 2021-08-06 14:48
  */
 @Component
 public class RedisLockHelper {
-
 
     public static final String UNLOCK_LUA = "if redis.call(\"get\",KEYS[1]) == ARGV[1] " +
             "then " +
@@ -30,10 +28,8 @@ public class RedisLockHelper {
             "    return 0 " +
             "end ";
 
-
     private final StringRedisTemplate stringRedisTemplate;
 
-    @Autowired
     public RedisLockHelper(StringRedisTemplate stringRedisTemplate) {
         this.stringRedisTemplate = stringRedisTemplate;
     }

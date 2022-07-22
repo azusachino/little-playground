@@ -1,14 +1,14 @@
 package cn.az.code.zk;
 
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooDefs;
 import org.apache.zookeeper.ZooKeeper;
-
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Lock
@@ -23,7 +23,7 @@ public class DisLock {
         final String resource = "/resource";
 
         final String lockNumber = zk
-            .create("/resource/lock-", null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+                .create("/resource/lock-", null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 
         List<String> locks = zk.getChildren(resource, false, null);
         Collections.sort(locks);
@@ -33,8 +33,7 @@ public class DisLock {
             zk.delete(lockNumber, 0);
         } else {
             zk.getChildren(resource, watchedEvent -> {
-                try {
-                    ZooKeeper zk1 = new ZooKeeper("localhost", 3000, null);
+                try (ZooKeeper zk1 = new ZooKeeper("localhost", 3000, null)) {
                     List<String> locks1 = zk1.getChildren(resource, null, null);
                     Collections.sort(locks1);
 
@@ -47,14 +46,14 @@ public class DisLock {
                 }
             }, null);
         }
+        zk.close();
     }
 
     public void lock2() throws IOException, InterruptedException, KeeperException {
         ZooKeeper zk = new ZooKeeper("localhost", 3000, null);
-        final String resource = "/resource";
 
         final String lockNumber = zk
-            .create("/resource/lock-", null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+                .create("/resource/lock-", null, ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
 
         Integer number = Integer.parseInt(lockNumber.replace("/resource/lock-", "")) - 1;
         String previousLock = "/resource/lock-" + String.format("%010d", number);
@@ -65,9 +64,11 @@ public class DisLock {
                     System.out.println("Acquire Lock");
                     ZooKeeper zk1 = new ZooKeeper("localhost", 3000, null);
                     zk1.delete(lockNumber, 0);
+                    zk1.close();
                 }
             } catch (Exception ignored) {
             }
         }, null);
+        zk.close();
     }
 }

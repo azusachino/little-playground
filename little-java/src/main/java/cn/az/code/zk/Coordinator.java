@@ -26,5 +26,6 @@ public class Coordinator {
             Op.create(path + "/cohort", new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT_SEQUENTIAL)
         );
         zk.multi(ops);
+        zk.close();
     }
 }
