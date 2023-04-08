@@ -6,7 +6,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.scheduling.quartz.AdaptableJobFactory;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 /**
  * 解决Job中注入Spring Bean为null的问题

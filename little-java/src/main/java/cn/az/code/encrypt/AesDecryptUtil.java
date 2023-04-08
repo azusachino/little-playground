@@ -1,10 +1,12 @@
 package cn.az.code.encrypt;
 
+
+import java.security.Key;
+import java.util.Locale;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.Key;
-import java.util.Locale;
 
 /**
  * @author az

@@ -1,0 +1,9 @@
+version: "3"
+
+vars:
+  PROJ_VER: 1.1.0
+
+tasks:
+  ver:
+    cmds:
+     - mvn 

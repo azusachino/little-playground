@@ -5,9 +5,9 @@ import cn.az.code.test.SimpleTest;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
-import javax.validation.executable.ExecutableValidator;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
+import jakarta.validation.executable.ExecutableValidator;
 import java.lang.reflect.Method;
 import java.util.Set;
 
@@ -63,10 +63,14 @@ public class ValidatorDemo {
         Set<ConstraintViolation<SimpleTest>> constraintViolationSet = executableValidator.validateParameters(
                 simpleTest,
                 method,
-                new Object[]{}
-        );
+                new Object[] {});
         constraintViolationSet.parallelStream().forEach(System.out::println);
 
         applicationContext.close();
+    }
+
+    public void demoFunc() {
+        DateFormatValidation dfv = Demo.class.getAnnotation(DateFormatValidation.class);
+        System.out.println(dfv.message());
     }
 }

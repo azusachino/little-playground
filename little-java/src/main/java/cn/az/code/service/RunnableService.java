@@ -4,7 +4,7 @@ import cn.az.code.task.RunnableTask;
 import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.RandomUtil;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;

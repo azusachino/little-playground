@@ -1,7 +1,7 @@
 package cn.az.code.validator;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -14,7 +14,7 @@ public class DateFormatValidator implements ConstraintValidator<DateFormatValida
 
     @Override
     public void initialize(DateFormatValidation constraintAnnotation) {
-        dateTimeFormatter = DateTimeFormatter.ofPattern(constraintAnnotation.format());
+        this.dateTimeFormatter = DateTimeFormatter.ofPattern(constraintAnnotation.format());
         System.out.println("initialize called");
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
