@@ -32,6 +32,7 @@
         <hutool.version>5.6.6</hutool.version>
         <commons-io.version>2.7</commons-io.version>
         <commons-text.version>1.10.0</commons-text.version>
+        <commons-collection4.version>4.4</commons-collection4.version>
         <mybatis.plus.version>3.4.2</mybatis.plus.version>
         <druid.version>1.2.2</druid.version>
         <easyexcel.version>2.2.9</easyexcel.version>
@@ -134,6 +135,11 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collection4.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
