@@ -198,4 +198,21 @@ public class Solution {
         }
         return dummy.next;
     }
+
+    ListNode deleteDup2(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        if (head.val == head.next.val) {
+            // 2->2->2->3
+            while (head.next != null && head.val == head.next.val) {
+                head = head.next;
+            }
+            // 3->
+            return deleteDup2(head.next);
+        } else {
+            head.next = deleteDup2(head.next);
+            return head;
+        }
+    }
 }

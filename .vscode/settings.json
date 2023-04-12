@@ -1,8 +1,12 @@
 {
     "java.configuration.runtimes": [
+        // {
+        //     "name": "JavaSE-17",
+        //     "path": "C:\\Program Files\\Java\\jdk-17"
+        // },
         {
             "name": "JavaSE-17",
-            "path": "C:\\Program Files\\Java\\jdk-17"
+            "path": "C:\\Program Files\\Java\\jdk-17.0.2"
         }
     ],
     "java.configuration.updateBuildConfiguration": "interactive",
