@@ -17,46 +17,56 @@ public class LRU {
     public Map<Integer, Node> cache;
     public NodeList data;
     public int len;
-    public int size;
 
     public LRU(int len) {
         this.cache = new HashMap<>();
         this.data = new NodeList();
         this.len = len;
-        this.size = 0;
     }
 
     public void put(int key, int val) {
         // check hash
         Node node = this.cache.get(key);
         if (node != null) {
-            // move to head
-            this.data.removeNode(node);
-            this.data.newHead(node);
-        } else {
-            // check size
-            if (this.size >= this.len) {
-                // remove the tail
-                this.data.removeTail();
-                this.size--;
-            }
-            Node newNode = new Node(key, val);
-            // set to head
-            this.data.newHead(newNode);
-            this.cache.put(key, newNode);
-            this.size++;
+            this.deleteKey(key);
+            this.addRecently(key, val);
+            return;
         }
+        if (this.len <= this.data.size) {
+            this.remoteLeastRecently();
+        }
+        this.addRecently(key, val);
     }
 
-    public int get(int key) {
+    public Integer get(int key) {
         Node node = this.cache.get(key);
         if (node != null) {
-            // move to head
-            this.data.removeNode(node);
-            this.data.newHead(node);
+            this.makeRecently(key);
             return node.val;
         }
-        return -1;
+        return null;
+    }
+
+    private void makeRecently(int k) {
+        Node n = this.cache.get(k);
+        this.data.remove(n);
+        this.data.addLast(n);
+    }
+
+    private void addRecently(int k, int v) {
+        Node n = new Node(k, v);
+        this.data.addLast(n);
+        this.cache.put(k, n);
+    }
+
+    private void deleteKey(int k) {
+        Node n = this.cache.remove(k);
+        this.data.remove(n);
+    }
+
+    private void remoteLeastRecently() {
+        Node n = this.data.removeFirst();
+        this.cache.remove(n.key);
     }
 
     class Node {
@@ -76,43 +86,50 @@ public class LRU {
 
     class NodeList {
 
+        public int size;
+
         public Node head;
         public Node tail;
 
         public NodeList() {
+            this.head = new Node();
+            this.tail = new Node();
+            this.head.next = this.tail;
+            this.tail.prev = this.head;
+            this.size = 0;
         }
 
-        public void removeTail() {
-            if (this.tail != null) {
-                if (this.tail.prev != null) {
-                    this.tail = this.tail.prev;
-                    this.tail.next = null;
-                } else {
-                    this.head = null;
-                    this.tail = null;
-                }
-            }
+        public void addLast(Node x) {
+            x.prev = this.tail.prev;
+            x.next = this.tail;
+            this.tail.prev.next = x;
+            this.tail.prev = x;
+
+            this.size++;
         }
 
-        public void newHead(Node node) {
-            if (this.head != null) {
-                node.next = this.head;
-                this.head.prev = node;
-                this.head = node;
-            } else {
-                this.head = node;
-                this.tail = node;
-            }
+        // must exist in List
+        public void remove(Node x) {
+            x.prev.next = x.next;
+            x.next.prev = x.prev;
+            // help gc
+            x = null;
+            this.size--;
         }
 
-        public void removeNode(Node node) {
-            if (node.prev != null) {
-                node.prev.next = node.next;
+        public Node removeFirst() {
+            if (this.head.next == this.tail) {
+                return null;
             }
-            if (node.next != null) {
-                node.next.prev = node.prev;
-            }
+            Node n = this.head.next;
+            this.remove(n);
+            return n;
         }
+
+        public int size() {
+            return this.size;
+        }
+
     }
 
 }
