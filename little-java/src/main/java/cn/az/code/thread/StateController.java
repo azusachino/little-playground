@@ -1,9 +1,9 @@
 package cn.az.code.thread;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.util.HashSet;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author az
@@ -26,12 +26,12 @@ public class StateController {
         v.set(v.get() + 1);
     }
 
-    @RequestMapping("/stat")
+    @GetMapping("/stat")
     public Integer stat() {
-        return set.stream().map(Val::get).reduce(Integer::sum).orElseThrow(RuntimeException::new);
+        return set.stream().map(Val::get).reduce((Integer a, Integer b) -> a + b).orElseThrow(RuntimeException::new);
     }
 
-    @RequestMapping("/add")
+    @GetMapping("/add")
     public Integer add() throws InterruptedException {
         _add();
         return 1;

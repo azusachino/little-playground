@@ -8,7 +8,7 @@ public class Add {
 
     public static void main(String[] args) {
         Runnable r = System::currentTimeMillis;
-        Adder<Integer> add = Integer::sum;
+        Adder<Integer> add = (Integer a, Integer b) -> a + b;
         Adder<String> a = Add::add;
         System.out.println(add.add(2, 3));
         System.out.println(a.add("2", "3"));

@@ -2,8 +2,12 @@ package cn.az.code.validator;
 
 import cn.az.code.config.ValidatorConfig;
 import cn.az.code.test.SimpleTest;
+
+import org.springframework.boot.autoconfigure.condition.ConditionalOnCloudPlatform;
+import org.springframework.boot.cloud.CloudPlatform;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
@@ -15,6 +19,8 @@ import java.util.Set;
  * @author az
  * @since 08/31/20
  */
+@Configuration
+@ConditionalOnCloudPlatform(CloudPlatform.KUBERNETES)
 public class ValidatorDemo {
 
     public static void main(String[] args) throws NoSuchMethodException {

@@ -42,7 +42,7 @@ public class ForkJoinSumCalculator extends RecursiveTask<Long> {
     }
 
     public static void main(String[] args) {
-        ParallelDemo.measurePerformance(ForkJoinSumCalculator::forkJoinSum, 10_100_100);
+        ParallelDemo.measurePerformance(ForkJoinSumCalculator::forkJoinSum, 10_100_100L);
     }
 
     @Override
@@ -51,11 +51,9 @@ public class ForkJoinSumCalculator extends RecursiveTask<Long> {
         if (len == THRESHOLD) {
             return computeSequentially();
         }
-        ForkJoinSumCalculator leftFork =
-                new ForkJoinSumCalculator(nums, start, start + len / 2);
+        ForkJoinSumCalculator leftFork = new ForkJoinSumCalculator(nums, start, start + len / 2);
         leftFork.fork();
-        ForkJoinSumCalculator rightFork =
-                new ForkJoinSumCalculator(nums, start + len / 2, end);
+        ForkJoinSumCalculator rightFork = new ForkJoinSumCalculator(nums, start + len / 2, end);
         Long rightResult = rightFork.compute();
         Long leftResult = leftFork.join();
         return leftResult + rightResult;
@@ -69,7 +67,7 @@ public class ForkJoinSumCalculator extends RecursiveTask<Long> {
         return sum;
     }
 
-    public static long forkJoinSum(long n) {
+    public static long forkJoinSum(Long n) {
         long[] nums = LongStream.rangeClosed(1, n).toArray();
         ForkJoinTask<Long> task = new ForkJoinSumCalculator(nums);
         return FORK_JOIN_POOL.invoke(task);

@@ -40,7 +40,7 @@
         <nimbus-jwt.version>8.16</nimbus-jwt.version>
         <swagger.version>2.9.2</swagger.version>
         <rocketmq.version>2.2.0</rocketmq.version>
-        <algs4.version>1.0.2</algs4.version>
+        <algs4.version>1.0.4</algs4.version>
         <spring-cloud.version>2022.0.2</spring-cloud.version>
         <zk.version>3.7.0</zk.version>
         <mysql.version>8.0.32</mysql.version>

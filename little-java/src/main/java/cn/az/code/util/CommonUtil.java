@@ -2,6 +2,7 @@ package cn.az.code.util;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.CharacterIterator;
 import java.text.DecimalFormat;
 import java.text.StringCharacterIterator;
@@ -20,7 +21,7 @@ public class CommonUtil {
         if (value < 1024) {
             return String.valueOf(value) + "B";
         } else {
-            value = new BigDecimal(value / 1024).setScale(2, BigDecimal.ROUND_DOWN).doubleValue();
+            value = new BigDecimal(value / 1024).setScale(2, RoundingMode.DOWN).doubleValue();
         }
         // 如果原字节数除于1024之后，少于1024，则可以直接以KB作为单位
         // 因为还没有到达要使用另一个单位的时候
@@ -28,13 +29,13 @@ public class CommonUtil {
         if (value < 1024) {
             return String.valueOf(value) + "KB";
         } else {
-            value = new BigDecimal(value / 1024).setScale(2, BigDecimal.ROUND_DOWN).doubleValue();
+            value = new BigDecimal(value / 1024).setScale(2, RoundingMode.DOWN).doubleValue();
         }
         if (value < 1024) {
             return String.valueOf(value) + "MB";
         } else {
             // 否则如果要以GB为单位的，先除于1024再作同样的处理
-            value = new BigDecimal(value / 1024).setScale(2, BigDecimal.ROUND_DOWN).doubleValue();
+            value = new BigDecimal(value / 1024).setScale(2, RoundingMode.DOWN).doubleValue();
             return String.valueOf(value) + "GB";
         }
     }
@@ -74,7 +75,7 @@ public class CommonUtil {
      * @param si    是否MBi
      * @return 可读的文件大小
      */
-    public static strictfp String humanReadableByteCount(long bytes, boolean si) {
+    public static String humanReadableByteCount(long bytes, boolean si) {
         int unit = si ? 1000 : 1024;
         long absBytes = bytes == Long.MIN_VALUE ? Long.MAX_VALUE : Math.abs(bytes);
 
@@ -106,7 +107,7 @@ public class CommonUtil {
         try {
             for (Field field : fields) {
                 String varName = field.getName();
-                boolean accessFlag = field.isAccessible();
+                boolean accessFlag = field.canAccess(obj);
                 field.setAccessible(true);
                 Object o = field.get(obj);
                 if (o != null) {

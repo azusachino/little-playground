@@ -1,7 +1,10 @@
 package cn.az.code.future;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnCloudPlatform;
+import org.springframework.boot.cloud.CloudPlatform;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.math.BigDecimal;
 import java.util.concurrent.ExecutionException;
@@ -14,6 +17,8 @@ import java.util.concurrent.TimeoutException;
 /**
  * @author Liz
  */
+@Configuration
+@ConditionalOnCloudPlatform(CloudPlatform.KUBERNETES)
 public class FutureDemo {
 
     public static void main(String[] args) throws Exception {

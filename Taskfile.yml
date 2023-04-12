@@ -6,4 +6,7 @@ vars:
 tasks:
   ver:
     cmds:
-     - mvn 
+      - mvn 
+  package:
+    cmds:
+      - mvn clean package -DskipTests

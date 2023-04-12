@@ -14,7 +14,7 @@ public class ParallelDemo {
     private static final Log log = Log.get();
 
     public static long parallelRun(int n) {
-        return Stream.iterate(1L, i -> i + 1).limit(n).parallel().reduce(0L, Long::sum);
+        return Stream.iterate(1L, i -> i + 1).limit(n).parallel().reduce(0L, (Long a, Long b) -> a + b);
     }
 
     public static void measurePerformance(Function<Long, Long> function, long n) {
