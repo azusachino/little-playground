@@ -1,13 +1,15 @@
 package cn.az.webflux.service;
 
-import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
+
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Service;
+
+import reactor.core.publisher.Mono;
 
 /**
  * Common Service
@@ -18,7 +20,13 @@ import java.util.stream.Stream;
 @Service
 public class CommonService {
 
-    public final ThreadLocal<String> LOCAL_STRING = ThreadLocal.withInitial(() -> "100000");
+    private final StringRedisTemplate t;
+
+    public CommonService(StringRedisTemplate t) {
+        this.t = t;
+    }
+
+    public static final ThreadLocal<String> LOCAL_STRING = ThreadLocal.withInitial(() -> "100000");
 
     public Mono<Void> doSomethingBad(long milli) {
         return Mono.create(sink -> {
@@ -43,4 +51,14 @@ public class CommonService {
             e.printStackTrace();
         }
     }
+
+    public void put(String k, String v) {
+
+    }
+
+    public String get(String k) {
+        return "";
+
+    }
+
 }

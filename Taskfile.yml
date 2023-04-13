@@ -4,9 +4,17 @@ vars:
   PROJ_VER: 1.1.0
 
 tasks:
+  src:
+    cmds:
+      - mvn dependency:sources
   ver:
     cmds:
-      - mvn 
+      - mvn versions:set -DnewVersion={{.PROJ_VERSION}}
+      - find ./ -name pom.xml.versionsBackup | xargs rm
+      - echo "set to new version {{.PROJ_VERSION}} successfully"
+  install:
+    cmds:
+      - mvn clean install -DskipTests
   package:
     cmds:
       - mvn clean package -DskipTests
