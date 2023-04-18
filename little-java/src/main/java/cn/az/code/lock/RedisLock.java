@@ -1,16 +1,15 @@
 package cn.az.code.lock;
 
-import cn.az.code.function.JedisExecutor;
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.log.Log;
-import org.apache.commons.lang3.StringUtils;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.params.SetParams;
-
+import io.lettuce.core.RedisFuture;
+import io.lettuce.core.ScriptOutputType;
+import io.lettuce.core.SetArgs;
+import io.lettuce.core.api.StatefulRedisConnection;
 import jakarta.annotation.Resource;
-import java.util.Collections;
-import java.util.Objects;
 
 /**
  * @author az
@@ -21,19 +20,11 @@ public class RedisLock {
     private static final Log log = Log.get();
 
     @Resource
-    private JedisPool jedisPool;
+    private StatefulRedisConnection<String, String> redisConnection;
 
     private static final String LOCK_KEY = "az";
     private static final String LOCK_OK = "OK";
     private static final Long RELEASE_OK = 1L;
-
-    public <T> T execute(JedisExecutor<Jedis, T> j) throws Exception {
-        try (Jedis jedis = jedisPool.getResource()) {
-            return j.execute(jedis);
-        } catch (Exception e) {
-            throw new Exception();
-        }
-    }
 
     public String acquire() {
         long timeout = 1000;
@@ -42,9 +33,9 @@ public class RedisLock {
         try {
             String token = IdUtil.fastSimpleUUID();
             while (System.currentTimeMillis() <= endTime) {
-                SetParams setParams = SetParams.setParams().nx().px(timeout);
-                String res = execute(j -> j.set(LOCK_KEY, token, setParams));
-                if (StringUtils.equals(LOCK_OK, res)) {
+                RedisFuture<String> rf = this.redisConnection.async().set(LOCK_KEY, token,
+                        SetArgs.Builder.nx().px(timeout));
+                if (rf.get(10, TimeUnit.SECONDS).equals(LOCK_OK)) {
                     return token;
                 }
             }
@@ -59,11 +50,12 @@ public class RedisLock {
             return false;
         }
         String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
-        Object res;
 
         try {
-            res = execute(j -> j.eval(script, Collections.singletonList(LOCK_KEY), Collections.singletonList(identity)));
-            if (RELEASE_OK.equals(res)) {
+            RedisFuture<Object> rf = this.redisConnection.async().eval(script,
+                    ScriptOutputType.INTEGER, LOCK_KEY, identity);
+
+            if (RELEASE_OK.equals(rf.get(10, TimeUnit.SECONDS))) {
                 log.info("release lock success, required token: {}", identity);
                 return true;
             }

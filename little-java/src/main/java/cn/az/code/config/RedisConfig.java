@@ -1,9 +1,10 @@
 package cn.az.code.config;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import redis.clients.jedis.JedisPool;
+
+import io.lettuce.core.RedisClient;
+import io.lettuce.core.api.StatefulRedisConnection;
 
 /**
  * @author az
@@ -12,25 +13,8 @@ import redis.clients.jedis.JedisPool;
 @Configuration
 public class RedisConfig {
 
-    @Value("${spring.redis.host}")
-    private String host;
-
-    @Value("${spring.redis.port}")
-    private Integer port;
-
-//    @Value("${spring.redis.sentinel.master}")
-//    private String masterName;
-//
-//    @Value("${spring.redis.sentinel.master}")
-//    private Set<String> sentinels;
-
     @Bean
-    public JedisPool jedisPool() {
-        return new JedisPool(host, port);
+    StatefulRedisConnection<String, String> redisConnection() {
+        return RedisClient.create().connect();
     }
-
-//    @Bean
-//    public JedisSentinelPool jedisSentinelPool() {
-//        return new JedisSentinelPool(masterName, sentinels);
-//    }
 }

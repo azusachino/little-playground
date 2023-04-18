@@ -28,8 +28,8 @@
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <guava.version>30.1-jre</guava.version>
-        <hutool.version>5.8.4</hutool.version>
+        <guava.version>31.1-jre</guava.version>
+        <hutool.version>5.8.17</hutool.version>
         <commons-io.version>2.7</commons-io.version>
         <commons-text.version>1.10.0</commons-text.version>
         <commons-collection4.version>4.4</commons-collection4.version>
@@ -38,13 +38,12 @@
         <easyexcel.version>2.2.9</easyexcel.version>
         <fastdfs.version>1.27</fastdfs.version>
         <nimbus-jwt.version>8.16</nimbus-jwt.version>
-        <swagger.version>2.9.2</swagger.version>
         <rocketmq.version>2.2.0</rocketmq.version>
         <algs4.version>1.0.4</algs4.version>
         <spring-cloud.version>2022.0.2</spring-cloud.version>
         <zk.version>3.7.0</zk.version>
         <mysql.version>8.0.32</mysql.version>
-        <redisson.version>3.9.0</redisson.version>
+        <redisson.version>3.20.1</redisson.version>
     </properties>
 
     <dependencyManagement>
@@ -106,16 +105,6 @@
                 <groupId>org.hibernate.validator</groupId>
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate-validator.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-common</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>${swagger.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>
