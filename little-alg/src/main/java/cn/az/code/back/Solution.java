@@ -12,6 +12,7 @@ public class Solution {
         Solution s = new Solution();
         int[] nums = new int[] { 1, 2, 3 };
         GsonUtil.print(s.fullArrange(nums));
+        GsonUtil.print(s.subset(nums));
     }
 
     public List<List<Integer>> fullArrange(int[] nums) {
@@ -86,6 +87,21 @@ public class Solution {
             }
         }
         return true;
+    }
+
+    public List<List<Integer>> subset(int[] nums) {
+        List<List<Integer>> list = new ArrayList<>();
+backtrack2(list, nums, 0, new LinkedList<>());
+        return list;
+    }
+
+    void backtrack2(List<List<Integer>> list, int[] nums, int start, LinkedList<Integer> tmp) {
+        list.add(new ArrayList<>(tmp));
+        for (int i = start; i < nums.length; i++) {
+            tmp.addLast(nums[i]);
+            backtrack2(list, nums,i+1, tmp);
+            tmp.removeLast();
+        }
     }
 
 }
