@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
+import cn.az.code.utils.GsonUtil;
+
 public class Solution {
 
     public static void main(String[] args) {
@@ -19,6 +21,8 @@ public class Solution {
         TreeNode other = s.deserializePreOrder(string);
         System.out.println(s.serializePreOrder(other));
         s.myTree();
+        // GsonUtil.print(s.longestZigZag(root));
+        GsonUtil.print(s.widthOfBinaryTree(new TreeNode(1)));
     }
 
     // https://dev.to/abdisalan_js/4-ways-to-traverse-binary-trees-with-animations-5bi5
@@ -280,5 +284,67 @@ public class Solution {
         }
         return left == null ? right : left;
 
+    }
+
+    int ret = 0;
+
+    public int longestZigZag(TreeNode root) {
+        zigZag(root);
+        longestZigZag(root.left);
+        longestZigZag(root.right);
+        return 0;
+    }
+
+    public int zigZag(TreeNode node) {
+        if (node == null) {
+            return 0;
+        }
+        int cnt = 0;
+        boolean right = true;
+        while (node != null) {
+            cnt++;
+            if (right) {
+                node = node.right;
+            } else {
+                node = node.left;
+            }
+        }
+        ret = Math.max(ret, cnt);
+        return cnt;
+    }
+
+    public int widthOfBinaryTree(TreeNode root) {
+        Queue<TreeNode> q = new LinkedList<>();
+        // simulate heap
+        Queue<Integer> indexQ = new LinkedList<>();
+        q.offer(root);
+        indexQ.offer(1);
+
+        int width = 0;
+        while (!q.isEmpty()) {
+            int sz = q.size();
+            // each level
+            int start = 0, end = 0;
+            for (int i = 0; i < sz; i++) {
+                var node = q.poll();
+                var index = indexQ.poll();
+                if (i == 0) {
+                    start = index;
+                }
+                if (i == sz - 1) {
+                    end = index;
+                }
+                if (node.left != null) {
+                    q.offer(node.left);
+                    indexQ.offer(index * 2);
+                }
+                if (node.right != null) {
+                    q.offer(node.right);
+                    indexQ.offer(index * 2 + 1);
+                }
+            }
+            width = Math.max(width, end - start + 1);
+        }
+        return width;
     }
 }
