@@ -19,19 +19,13 @@ import reactor.core.publisher.Mono;
  */
 public class HttpCustomFilter implements WebFilter {
 
-    private final CommonService commonService;
-
-    public HttpCustomFilter(CommonService commonService) {
-        this.commonService = commonService;
-    }
-
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         String key = "Content-Type";
         HttpHeaders httpHeaders = request.getHeaders();
         if (httpHeaders.containsKey(key)) {
-            commonService.LOCAL_STRING.set(Objects.requireNonNull(httpHeaders.get(key)).toString());
+            CommonService.LOCAL_STRING.set(Objects.requireNonNull(httpHeaders.get(key)).toString());
         }
         return chain.filter(exchange);
     }

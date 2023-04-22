@@ -1,8 +1,10 @@
 package cn.az.code.back;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import cn.az.code.utils.GsonUtil;
 
@@ -91,7 +93,7 @@ public class Solution {
 
     public List<List<Integer>> subset(int[] nums) {
         List<List<Integer>> list = new ArrayList<>();
-backtrack2(list, nums, 0, new LinkedList<>());
+        backtrack2(list, nums, 0, new LinkedList<>());
         return list;
     }
 
@@ -99,9 +101,71 @@ backtrack2(list, nums, 0, new LinkedList<>());
         list.add(new ArrayList<>(tmp));
         for (int i = start; i < nums.length; i++) {
             tmp.addLast(nums[i]);
-            backtrack2(list, nums,i+1, tmp);
+            backtrack2(list, nums, i + 1, tmp);
             tmp.removeLast();
         }
+    }
+
+    static int L = 9;
+
+    boolean validSodoku(char[][] board) {
+        return backtrack3(board, 0, 0);
+    }
+
+    boolean backtrack3(char[][] board, int r, int c) {
+        if (c == L) {
+            return backtrack3(board, r + 1, 0);
+        }
+        if (r == L) {
+            return true;
+        }
+        if (board[r][c] != '.') {
+            return backtrack3(board, r, c + 1);
+        }
+        for (char i = '1'; i <= '9'; i++) {
+            if (!isValid(board, r, c, i)) {
+                continue;
+            }
+            board[r][c] = i;
+
+            if (backtrack3(board, r, c + 1)) {
+                return true;
+            }
+            board[r][c] = '.';
+
+        }
+        return false;
+    }
+
+    boolean isValid(char[][] board, int r, int c, char n) {
+        for (int i = 0; i < L; i++) {
+            if (board[r][i] == n) {
+                return false;
+            }
+            if (board[i][c] == n) {
+                return false;
+            }
+            if (board[(r / 3) * 3 + i / 3][(c / 3) * 3 + i % 3] == n) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    public boolean isValidSudoku(char[][] board) {
+        Set<String> seen = new HashSet<>();
+        for (int i = 0; i < 9; ++i) {
+            for (int j = 0; j < 9; ++j) {
+                char number = board[i][j];
+                if (number != '.')
+                    if (!seen.add(number + " in row " + i) ||
+                            !seen.add(number + " in column " + j) ||
+                            !seen.add(number + " in block " + i / 3 + "-" + j / 3))
+                        return false;
+            }
+        }
+        return true;
     }
 
 }

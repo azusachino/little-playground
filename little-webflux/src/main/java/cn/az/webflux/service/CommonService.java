@@ -57,7 +57,7 @@ public class CommonService {
     }
 
     public String get(String k) {
-        return "";
+        return this.t.opsForValue().get(k);
 
     }
 
