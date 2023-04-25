@@ -1,5 +1,6 @@
 package cn.az.webflux;
 
+import org.redisson.spring.starter.RedissonAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
@@ -14,7 +15,8 @@ import org.springframework.web.reactive.config.EnableWebFlux;
  * @since 2021/8/2
  */
 @EnableWebFlux
-@SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class, MongoReactiveAutoConfiguration.class})
+@SpringBootApplication(exclude = { MongoAutoConfiguration.class, MongoDataAutoConfiguration.class,
+        MongoReactiveAutoConfiguration.class, RedissonAutoConfiguration.class })
 public class LittleWebfluxApplication {
 
     public static void main(String[] args) {

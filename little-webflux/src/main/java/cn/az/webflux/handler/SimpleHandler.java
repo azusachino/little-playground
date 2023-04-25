@@ -13,7 +13,17 @@ import reactor.core.publisher.Mono;
 @Service
 public class SimpleHandler {
 
+    private final Object MUTEX = new Object();
+
     public Mono<String> hello() {
+        // mechanism of singleton handler
+        synchronized (this.MUTEX) {
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         return Mono.just("hello");
     }
 

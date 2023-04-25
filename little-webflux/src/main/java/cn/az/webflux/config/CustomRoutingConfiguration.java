@@ -26,7 +26,7 @@ public class CustomRoutingConfiguration {
     }
 
     @Bean
-    public HandlerMapping handlerMapping() {
+    HandlerMapping handlerMapping() {
         Map<String, WebSocketHandler> map = Map.of("/ws", this.webSocketHandler);
         SimpleUrlHandlerMapping handlerMapping = new SimpleUrlHandlerMapping();
         handlerMapping.setUrlMap(map);

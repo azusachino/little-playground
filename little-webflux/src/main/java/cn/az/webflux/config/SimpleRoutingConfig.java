@@ -24,9 +24,9 @@ public class SimpleRoutingConfig {
     }
 
     @Bean
-    public RouterFunction<ServerResponse> simpleRouting() {
+    RouterFunction<ServerResponse> simpleRouting() {
         return RouterFunctions.route(
-            RequestPredicates.GET("/hello"),
-            request -> ServerResponse.ok().body(this.simpleHandler.hello(), String.class));
+                RequestPredicates.GET("/hello"),
+                request -> ServerResponse.ok().body(this.simpleHandler.hello(), String.class));
     }
 }

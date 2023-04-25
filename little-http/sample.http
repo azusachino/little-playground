@@ -5,3 +5,6 @@ Content-Type: application/json
 {
   "milli": 1000
 }
+
+### Hello
+GET http://localhost:8989/hello
