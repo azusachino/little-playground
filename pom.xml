@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.6</version>
+        <version>3.0.7</version>
         <relativePath />
     </parent>
 
@@ -20,6 +20,7 @@
 
     <modules>
         <module>little-alg</module>
+        <module>little-dubbo</module>
         <module>little-java</module>
         <module>little-webflux</module>
     </modules>
@@ -28,8 +29,8 @@
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <guava.version>31.1-jre</guava.version>
-        <hutool.version>5.8.17</hutool.version>
+        <guava.version>32.0.0-jre</guava.version>
+        <hutool.version>5.8.19</hutool.version>
         <commons-io.version>2.7</commons-io.version>
         <commons-text.version>1.10.0</commons-text.version>
         <commons-collection4.version>4.4</commons-collection4.version>
@@ -44,6 +45,7 @@
         <zk.version>3.7.0</zk.version>
         <mysql.version>8.0.32</mysql.version>
         <redisson.version>3.20.1</redisson.version>
+        <dubbo.version>3.2.0</dubbo.version>
     </properties>
 
     <dependencyManagement>
@@ -55,6 +57,15 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- Dubbo -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-bom</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
