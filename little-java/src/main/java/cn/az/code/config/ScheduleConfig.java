@@ -1,8 +1,8 @@
 package cn.az.code.config;
 
-import cn.az.code.mapper.CronMapper;
-import cn.hutool.core.util.StrUtil;
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import java.time.LocalDateTime;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+
 import org.quartz.Scheduler;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnCloudPlatform;
 import org.springframework.boot.cloud.CloudPlatform;
@@ -14,9 +14,11 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.scheduling.support.CronTrigger;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
+import cn.az.code.mapper.CronMapper;
+import cn.hutool.core.util.StrUtil;
 import jakarta.annotation.Resource;
-import java.time.LocalDateTime;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 /**
  * @author ycpang
@@ -60,7 +62,7 @@ public class ScheduleConfig implements SchedulingConfigurer {
                     if (StrUtil.isBlank(cron)) {
                         cron = "* * * 1 * * *";
                     }
-                    return new CronTrigger(cron).nextExecution(triggerContext);
+                    return new CronTrigger(cron).nextExecutionTime(triggerContext);
                 });
     }
 

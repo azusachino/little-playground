@@ -13,7 +13,11 @@ import java.util.concurrent.TimeUnit;
 public class CyclicBarrierDemo {
 
     public static void main(String[] args) throws InterruptedException {
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
+        // 等待所有任务完成后执行 CyclicBarrier 的 action
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(5,
+                () -> {
+                    System.out.println("All previous tasks are completed");
+                });
         ExecutorService service = ThreadUtil.newExecutor(5);
         // 10 = CyclicBarrier(5) + CyclicBarrier.reset()
         for (int i = 0; i < 20; i++) {

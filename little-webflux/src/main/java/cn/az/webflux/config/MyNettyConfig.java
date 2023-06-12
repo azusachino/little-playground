@@ -1,6 +1,9 @@
 package cn.az.webflux.config;
 
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.web.embedded.netty.NettyServerCustomizer;
+
+import reactor.core.publisher.Mono;
 import reactor.netty.ConnectionObserver;
 import reactor.netty.http.server.HttpServer;
 
@@ -10,7 +13,7 @@ import reactor.netty.http.server.HttpServer;
  * @author az
  * @since 2022-02-20 10:08
  */
-public class MyNettyConfig implements NettyServerCustomizer {
+public class MyNettyConfig implements NettyServerCustomizer, InitializingBean {
 
     @Override
     public HttpServer apply(HttpServer httpServer) {
@@ -23,4 +26,12 @@ public class MyNettyConfig implements NettyServerCustomizer {
             })
         );
     }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Mono.just("hello").subscribe();
+        
+    }
+
+    
 }
