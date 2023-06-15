@@ -28,7 +28,7 @@
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <guava.version>31.1-jre</guava.version>
+        <guava.version>32.0.0-jre</guava.version>
         <hutool.version>5.8.17</hutool.version>
         <commons-io.version>2.7</commons-io.version>
         <commons-text.version>1.10.0</commons-text.version>
