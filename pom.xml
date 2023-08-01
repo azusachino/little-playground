@@ -30,7 +30,6 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <guava.version>32.0.0-jre</guava.version>
-        <hutool.version>5.8.19</hutool.version>
         <commons-io.version>2.7</commons-io.version>
         <commons-text.version>1.10.0</commons-text.version>
         <commons-collection4.version>4.4</commons-collection4.version>
@@ -70,11 +69,6 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
             </dependency>
             <dependency>
                 <groupId>commons-io</groupId>

@@ -1,19 +1,19 @@
 package cn.az.code.test;
 
-import cn.az.code.util.DateUtil;
-import cn.hutool.core.thread.ThreadUtil;
-import cn.hutool.log.Log;
-
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Stream;
+
+import cn.az.code.util.DateUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * SimpleTest
@@ -21,9 +21,8 @@ import java.util.stream.Stream;
  * @author <a href="mailto:azusa146@gmail.com">az</a>
  * @since 2020-03-13
  */
+@Slf4j
 public class SimpleTest {
-
-    private static final Log log = Log.get();
 
     int a;
 
@@ -46,7 +45,7 @@ public class SimpleTest {
     }
 
     public static void printAbc() {
-        ExecutorService service = ThreadUtil.newExecutor(3);
+        ExecutorService service = Executors.newFixedThreadPool(3);
 
         for (int i = 0; i < 3; i++) {
             service.execute(() -> System.out.println("abc"));
@@ -70,7 +69,7 @@ public class SimpleTest {
                     c1.await();
                 }
             } catch (InterruptedException e) {
-                log.error(e);
+                e.printStackTrace();
             } finally {
                 lock.unlock();
             }
@@ -85,7 +84,7 @@ public class SimpleTest {
 
                 }
             } catch (InterruptedException e) {
-                log.error(e);
+                e.printStackTrace();
             } finally {
                 lock.unlock();
             }
@@ -100,7 +99,7 @@ public class SimpleTest {
 
                 }
             } catch (InterruptedException e) {
-                log.error(e);
+                e.printStackTrace();
             } finally {
                 lock.unlock();
             }

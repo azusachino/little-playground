@@ -1,4 +1,4 @@
-package cn.az.code.structure;
+package cn.az.code.servlet.structure;
 
 /**
  * @author Liz

@@ -1,15 +1,15 @@
 package cn.az.code.service;
 
-import cn.az.code.task.RunnableTask;
-import cn.hutool.core.lang.UUID;
-import cn.hutool.core.util.RandomUtil;
-
-import jakarta.annotation.Resource;
 import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
+import cn.az.code.task.RunnableTask;
+import jakarta.annotation.Resource;
 
 /**
  * @author az
@@ -29,14 +29,14 @@ public class RunnableService {
 
     public void startTasks() {
         for (int i = 0; i < SIZE; ++i) {
-            String uuid = UUID.fastUUID().toString(true);
+            String uuid = UUID.randomUUID().toString();
             RunnableTask rt = new RunnableTask();
             TASK_MAP.put(uuid, scheduledThreadPoolExecutor.schedule(rt, 10, TimeUnit.SECONDS));
         }
     }
 
     public void endTasks() {
-        int index = RandomUtil.randomInt(TASK_MAP.size());
+        int index = new Random().nextInt(SIZE);
         String key = TASK_MAP.keySet().toArray()[index].toString();
         ScheduledFuture<?> sf = TASK_MAP.get(key);
         sf.cancel(true);

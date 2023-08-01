@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import org.springframework.util.Assert;
 
-import cn.hutool.log.Log;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Headers;
@@ -18,11 +18,10 @@ import okhttp3.ResponseBody;
  * @author az
  * @since 2020-04-17
  */
+@Slf4j
 public class HttpTest {
 
     private final OkHttpClient httpClient = new OkHttpClient();
-
-    private static final Log log = Log.get();
 
     public static void main(String[] args) {
         HttpTest ht = new HttpTest();

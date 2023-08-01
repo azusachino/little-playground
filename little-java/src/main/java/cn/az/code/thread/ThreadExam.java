@@ -1,22 +1,21 @@
 package cn.az.code.thread;
 
-import cn.hutool.core.thread.ThreadUtil;
-import cn.hutool.log.Log;
-
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 每完成一个线程，计数器减1，当减到0时，被阻塞的线程自动执行。
  *
  * @author az
  */
+@Slf4j
 public class ThreadExam {
 
-    private static final Log log = Log.get();
-
     private static final int COUNT = 20;
-    private static final ExecutorService executor = ThreadUtil.newExecutor();
+    private static final ExecutorService executor = Executors.newCachedThreadPool();
     static CountDownLatch cdl = new CountDownLatch(COUNT);
 
     public static void main(String[] args) throws InterruptedException {
@@ -67,7 +66,7 @@ public class ThreadExam {
             try {
                 Thread.sleep(5 * 1000L);
             } catch (InterruptedException e) {
-                log.warn(e);
+                e.printStackTrace();
             } finally {
                 // make sure count down
                 log.info("{} is finished the paper", this.num);

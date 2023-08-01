@@ -1,15 +1,14 @@
 package cn.az.code.thread;
 
-import cn.hutool.log.Log;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 在预设的地点检测flag。然后就是wait/notify配合使用。
  *
  * @author az
  */
+@Slf4j
 public class ThreadPauseDemo {
-
-    private static final Log log = Log.get();
 
     public static void main(String[] args) {
         PauseRunnable pr = new PauseRunnable();
@@ -23,13 +22,19 @@ public class ThreadPauseDemo {
     }
 
     /**
-     * 16:01:04.986 [Thread-0] INFO cn.az.code.thread.ThreadPauseDemo - thread is running, 1
-     * 16:01:10.001 [Thread-0] INFO cn.az.code.thread.ThreadPauseDemo - thread is finished,1
-     * 16:01:10.001 [Thread-0] INFO cn.az.code.thread.ThreadPauseDemo - check status of stop flag: true
-     * 16:01:10.001 [Thread-0] INFO cn.az.code.thread.ThreadPauseDemo - thread paused
+     * 16:01:04.986 [Thread-0] INFO cn.az.code.thread.ThreadPauseDemo - thread is
+     * running, 1
+     * 16:01:10.001 [Thread-0] INFO cn.az.code.thread.ThreadPauseDemo - thread is
+     * finished,1
+     * 16:01:10.001 [Thread-0] INFO cn.az.code.thread.ThreadPauseDemo - check status
+     * of stop flag: true
+     * 16:01:10.001 [Thread-0] INFO cn.az.code.thread.ThreadPauseDemo - thread
+     * paused
      * 16:01:10.983 [Thread-0] INFO cn.az.code.thread.ThreadPauseDemo - resumed...
-     * 16:01:10.983 [Thread-0] INFO cn.az.code.thread.ThreadPauseDemo - thread is running 2
-     * 16:01:13.984 [Thread-0] INFO cn.az.code.thread.ThreadPauseDemo - thread is finished 2
+     * 16:01:10.983 [Thread-0] INFO cn.az.code.thread.ThreadPauseDemo - thread is
+     * running 2
+     * 16:01:13.984 [Thread-0] INFO cn.az.code.thread.ThreadPauseDemo - thread is
+     * finished 2
      */
     static class PauseRunnable implements Runnable {
 

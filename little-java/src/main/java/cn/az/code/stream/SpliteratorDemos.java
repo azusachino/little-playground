@@ -1,7 +1,5 @@
 package cn.az.code.stream;
 
-import cn.hutool.log.Log;
-
 import java.util.Arrays;
 import java.util.Spliterator;
 import java.util.function.Consumer;
@@ -9,17 +7,18 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author Liz
  */
+@Slf4j
 public class SpliteratorDemos {
-
-    private static final Log log = Log.get();
 
     private static final String SENTENCE = "Hello World Java TypeScript";
 
     public static void main(String[] args) {
-        int[] arr = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] arr = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         Spliterator.OfInt sInt = Arrays.spliterator(arr, 2, 5);
         sInt.tryAdvance((Consumer<? super Integer>) i -> log.info(String.valueOf(i)));
         log.error(String.valueOf(countWordsIteratively(SENTENCE)));

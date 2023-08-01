@@ -1,9 +1,5 @@
 package cn.az.code.file;
 
-import cn.hutool.core.date.StopWatch;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -17,6 +13,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.stream.Stream;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.StopWatch;
 
 /**
  * 文件读取
@@ -36,7 +36,7 @@ public class FileRead {
 
     public static void main(String[] args) {
         String file = "C:\\Users\\ycpang\\Desktop\\20210528\\log.log";
-        StopWatch stopWatch = StopWatch.create("1");
+        StopWatch stopWatch = new StopWatch("1");
 
         run(() -> bufferedRead(file), stopWatch);
         run(() -> streamRead(file), stopWatch);
@@ -88,7 +88,7 @@ public class FileRead {
     public static void readLine(String fileName) {
 
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(fileName, "rw");
-             FileChannel channel = randomAccessFile.getChannel()) {
+                FileChannel channel = randomAccessFile.getChannel()) {
             // 每次读取的buffer
             ByteBuffer buffer = ByteBuffer.allocate(1024 * 1024);
             // 期望每行占用的buffer

@@ -1,12 +1,11 @@
 package cn.az.code.future;
 
-import cn.hutool.core.thread.ExecutorBuilder;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -30,7 +29,7 @@ public class Shop {
         this.product = product;
     }
 
-    private static final ExecutorService SERVICE = ExecutorBuilder.create().build();
+    private static final ExecutorService SERVICE = Executors.newCachedThreadPool();
 
     private static final List<Shop> SHOPS = Arrays.asList(new Shop("num1"),
             new Shop("num2"),
@@ -57,7 +56,9 @@ public class Shop {
 
     public List<String> findPricesAsync(String product) {
         return SHOPS.stream()
-                .map(s -> CompletableFuture.supplyAsync(() -> s.getProduct() + " price is " + s.getPrice(product), SERVICE))
+                .map(s -> CompletableFuture.supplyAsync(() -> s.getProduct() + " price is " + s.getPrice(product),
+                        SERVICE))
+
                 .map(CompletableFuture::join)
                 .collect(Collectors.toList());
     }

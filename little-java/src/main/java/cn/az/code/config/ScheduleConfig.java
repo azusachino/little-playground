@@ -1,6 +1,5 @@
 package cn.az.code.config;
 
-import java.time.LocalDateTime;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 import org.quartz.Scheduler;
@@ -12,12 +11,10 @@ import org.springframework.lang.NonNull;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
-import org.springframework.scheduling.support.CronTrigger;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
 import cn.az.code.mapper.CronMapper;
-import cn.hutool.core.util.StrUtil;
 import jakarta.annotation.Resource;
 
 /**
@@ -55,15 +52,15 @@ public class ScheduleConfig implements SchedulingConfigurer {
      */
     @Override
     public void configureTasks(@NonNull ScheduledTaskRegistrar scheduledTaskRegistrar) {
-        scheduledTaskRegistrar.addTriggerTask(
-                () -> System.out.println("Hello" + LocalDateTime.now()),
-                triggerContext -> {
-                    String cron = cronMapper.getCron();
-                    if (StrUtil.isBlank(cron)) {
-                        cron = "* * * 1 * * *";
-                    }
-                    return new CronTrigger(cron).nextExecutionTime(triggerContext);
-                });
+        // scheduledTaskRegistrar.addTriggerTask(
+        // () -> System.out.println("Hello" + LocalDateTime.now()),
+        // triggerContext -> {
+        // String cron = cronMapper.getCron();
+        // if (StrUtil.isBlank(cron)) {
+        // cron = "* * * 1 * * *";
+        // }
+        // return new CronTrigger(cron).nextExecutionTime(triggerContext);
+        // });
     }
 
     @Bean

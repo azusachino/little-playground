@@ -1,8 +1,5 @@
 package cn.az.code.util;
 
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.log.Log;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
@@ -11,15 +8,16 @@ import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author az
  * @since 07/25/20
  */
+@Slf4j
 public class ZipUtil {
 
     private static final int BUFFER_SIZE = 4 * 1024;
-
-    private static final Log LOG = Log.get(ZipUtil.class);
 
     private ZipUtil() {
         throw new RuntimeException("util class no instantiation");
@@ -31,7 +29,7 @@ public class ZipUtil {
             File srcFile = new File(srcDir);
             compress(srcFile, zos, srcFile.getName(), keepDirStructure);
             long end = System.currentTimeMillis();
-            LOG.info("压缩完成, 耗时{}秒", end - start);
+            log.info("压缩完成, 耗时{}秒", end - start);
         } catch (Exception e) {
             throw new RuntimeException("压缩文件时出现了错误");
         }
@@ -52,14 +50,15 @@ public class ZipUtil {
                 fis.close();
             }
             long end = System.currentTimeMillis();
-            LOG.info("压缩完成, 耗时{}秒", end - start);
+            log.info("压缩完成, 耗时{}秒", end - start);
         } catch (Exception e) {
             throw new RuntimeException("zip error from ZipUtil", e);
         }
 
     }
 
-    private static void compress(File sourceFile, ZipOutputStream zos, String zipFilename, boolean keepDirStructure) throws Exception {
+    private static void compress(File sourceFile, ZipOutputStream zos, String zipFilename, boolean keepDirStructure)
+            throws Exception {
         byte[] buf = new byte[BUFFER_SIZE];
         // only one file
         if (sourceFile.isFile()) {
@@ -73,7 +72,7 @@ public class ZipUtil {
             fis.close();
         } else {
             File[] files = sourceFile.listFiles();
-            if (Objects.isNull(files) || ArrayUtil.isEmpty(files)) {
+            if (Objects.isNull(files) || files.length == 0) {
                 if (keepDirStructure) {
                     zos.putNextEntry(new ZipEntry(zipFilename + "/"));
                     // non file exists

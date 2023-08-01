@@ -1,20 +1,19 @@
 package cn.az.code.thread;
 
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.log.Log;
+import static cn.az.code.thread.ThreadTravel.doingLongTime;
 
+import java.util.Random;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import static cn.az.code.thread.ThreadTravel.doingLongTime;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author az
  */
+@Slf4j
 public class ProduceConsume {
-
-    private static final Log log = Log.get(ProduceConsume.class);
 
     public static void main(String[] args) {
         Queue queue = new Queue();
@@ -33,10 +32,11 @@ public class ProduceConsume {
 
         @Override
         public void run() {
+            Random random = new Random();
             try {
                 for (int i = 0; i < 10000; i++) {
                     doingLongTime();
-                    queue.putEle(RandomUtil.randomInt());
+                    queue.putEle(random.nextInt());
                 }
             } catch (Exception e) {
                 e.printStackTrace();

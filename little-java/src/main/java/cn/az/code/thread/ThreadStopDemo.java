@@ -1,15 +1,14 @@
 package cn.az.code.thread;
 
-import cn.hutool.log.Log;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 线程在预设的地点检测flag，来决定是否停止。
  *
  * @author az
  */
+@Slf4j
 public class ThreadStopDemo {
-
-    private static final Log log = Log.get();
 
     public static void main(String[] args) {
         StopRunnable sr = new StopRunnable();
@@ -18,9 +17,12 @@ public class ThreadStopDemo {
     }
 
     /**
-     * 15:56:01.113 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - thread is running 1
-     * 15:56:01.118 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - thread is finished 1
-     * 15:56:01.118 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - check status of stop flag: true
+     * 15:56:01.113 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - thread is
+     * running 1
+     * 15:56:01.118 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - thread is
+     * finished 1
+     * 15:56:01.118 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - check status
+     * of stop flag: true
      * 15:56:01.118 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - thread stop
      */
     static class StopRunnable implements Runnable {
@@ -48,7 +50,6 @@ public class ThreadStopDemo {
             log.info("thread is finished " + 2);
         }
     }
-
 
     static void doSomething(int t) {
         try {

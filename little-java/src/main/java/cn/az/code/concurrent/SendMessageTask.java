@@ -1,9 +1,8 @@
 package cn.az.code.concurrent;
 
-import cn.hutool.core.util.RandomUtil;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveAction;
 import java.util.concurrent.TimeUnit;
@@ -37,14 +36,15 @@ public class SendMessageTask extends RecursiveAction {
     public static void main(String[] args) throws InterruptedException {
         int jobs = 32;
         List<String> list = new ArrayList<>();
+        Random ran = new Random();
         for (int i = 1; i <= jobs; i++) {
-            //假设此处为手机号码--项目中从数据库中获取
-            list.add(RandomUtil.randomNumbers(11));
+            // 假设此处为手机号码--项目中从数据库中获取
+            list.add(ran.nextInt() + "1");
         }
         ForkJoinPool pool = new ForkJoinPool();
         // 提交可分解的PrintTask任务
         pool.submit(new SendMessageTask(0, list.size(), list));
-        //线程阻塞，等待所有任务完成
+        // 线程阻塞，等待所有任务完成
         pool.awaitTermination(10, TimeUnit.SECONDS);
         // 关闭线程池
         pool.shutdown();
@@ -55,7 +55,7 @@ public class SendMessageTask extends RecursiveAction {
         if (end - start < THRESHOLD) {
             StringBuilder mobile = new StringBuilder();
             for (int i = start; i < end; i++) {
-                //此处做手机号码累加，用于发送给短信运营商
+                // 此处做手机号码累加，用于发送给短信运营商
                 mobile.append(list.get(i)).append(",");
             }
             System.out.println("给手机号码==" + mobile + "的用户发送手机短信");

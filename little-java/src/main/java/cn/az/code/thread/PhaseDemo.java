@@ -1,20 +1,19 @@
 package cn.az.code.thread;
 
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.log.Log;
+import static cn.az.code.thread.ThreadTravel.doingLongTime;
 
+import java.util.Random;
 import java.util.concurrent.Phaser;
 
-import static cn.az.code.thread.ThreadTravel.doingLongTime;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 某个线程到达预设点后，可以选择等待同伴或自己退出，等大家都到达后，再一起向下一个预设点出发，随时都可以有新的线程加入，退出的也可以再次加入。
  *
  * @author az
  */
+@Slf4j
 public class PhaseDemo {
-
-    private static final Log log = Log.get();
 
     static final int COUNT = 6;
 
@@ -61,7 +60,7 @@ public class PhaseDemo {
                 try {
                     doingLongTime();
                 } catch (Exception e) {
-                    log.warn(e);
+                    e.printStackTrace();
                 }
                 if (state == 0) {
                     if (Decide._continue()) {
@@ -101,12 +100,14 @@ public class PhaseDemo {
 
     static class Decide {
 
+        private static final Random R = new Random();
+
         static boolean _continue() {
-            return RandomUtil.randomInt(1, 10) > 5;
+            return R.nextInt(1, 10) > 5;
         }
 
         static boolean _revive() {
-            return RandomUtil.randomInt(1, 10) < 5;
+            return R.nextInt(1, 10) < 5;
         }
     }
 }

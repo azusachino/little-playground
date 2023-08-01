@@ -1,7 +1,5 @@
 package cn.az.code.concurrent;
 
-import cn.hutool.core.thread.ThreadFactoryBuilder;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -20,7 +18,12 @@ public class VolatileVisibility {
     }
 
     public static void main(String[] args) {
-        ThreadFactory tf = ThreadFactoryBuilder.create().setNamePrefix("t-%d").build();
+        ThreadFactory tf = new ThreadFactory() {
+            @Override
+            public Thread newThread(Runnable r) {
+                return new Thread(r, "volatile-thread");
+            }
+        };
         ExecutorService service = Executors.newCachedThreadPool(tf);
         final Test t = new Test();
         for (int i = 0; i < 10; i++) {

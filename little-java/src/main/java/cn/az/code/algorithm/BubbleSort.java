@@ -1,10 +1,9 @@
 package cn.az.code.algorithm;
 
-import cn.hutool.core.util.ArrayUtil;
-import cn.hutool.log.Log;
-
 import java.util.Arrays;
 import java.util.Objects;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * BubbleSort
@@ -13,9 +12,8 @@ import java.util.Objects;
  * @see Sort
  * @since 2020-03-24
  */
+@Slf4j
 public class BubbleSort<T extends Comparable<T>> implements Sort<T> {
-
-    Log log = Log.get(BubbleSort.class);
 
     public static void main(String[] args) {
         System.out.println("一般情况");
@@ -45,7 +43,7 @@ public class BubbleSort<T extends Comparable<T>> implements Sort<T> {
      */
     @Override
     public void sort(T[] values) {
-        if (Objects.isNull(values) || ArrayUtil.isEmpty(values)) {
+        if (Objects.isNull(values) || values.length == 0) {
             return;
         }
         int len = values.length;

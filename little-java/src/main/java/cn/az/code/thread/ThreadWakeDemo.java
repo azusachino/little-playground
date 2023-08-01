@@ -1,15 +1,14 @@
 package cn.az.code.thread;
 
-import cn.hutool.log.Log;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 线程在sleep或wait时，是处于无法交互的状态的，此时只能使用interrupt方法中断它，线程会被激活并收到中断异常。
  *
  * @author az
  */
+@Slf4j
 public class ThreadWakeDemo {
-
-    private static final Log log = Log.get();
 
     public static void main(String[] args) throws InterruptedException {
         WakeRunnable wr = new WakeRunnable();
@@ -21,14 +20,17 @@ public class ThreadWakeDemo {
 
     /**
      * 16:42:42.094 [Thread-0] INFO cn.az.code.thread.ThreadWakeDemo - entering stop
-     * 16:42:42.106 [Thread-0] ERROR cn.az.code.thread.ThreadWakeDemo - sleep interrupted
+     * 16:42:42.106 [Thread-0] ERROR cn.az.code.thread.ThreadWakeDemo - sleep
+     * interrupted
      * java.lang.InterruptedException: sleep interrupted
      * at java.lang.Thread.sleep(Native Method)
      * at cn.az.code.thread.ThreadWakeDemo$WakeRunnable.run(ThreadWakeDemo.java:31)
      * at java.lang.Thread.run(Thread.java:748)
      * 16:42:42.106 [Thread-0] WARN cn.az.code.thread.ThreadWakeDemo - interrupted
-     * 16:42:42.106 [Thread-0] INFO cn.az.code.thread.ThreadWakeDemo - doing some funcs
-     * 16:42:42.106 [Thread-0] INFO cn.az.code.thread.ThreadWakeDemo - continue or quit...
+     * 16:42:42.106 [Thread-0] INFO cn.az.code.thread.ThreadWakeDemo - doing some
+     * funcs
+     * 16:42:42.106 [Thread-0] INFO cn.az.code.thread.ThreadWakeDemo - continue or
+     * quit...
      */
     static class WakeRunnable implements Runnable {
 

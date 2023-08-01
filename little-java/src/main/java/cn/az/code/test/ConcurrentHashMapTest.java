@@ -1,10 +1,6 @@
 package cn.az.code.test;
 
-import cn.az.code.util.LogUtil;
-import cn.hutool.core.lang.UUID;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +8,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import cn.az.code.util.LogUtil;
 
 /**
  * @author ycpang
@@ -27,7 +28,7 @@ public class ConcurrentHashMapTest {
     private ConcurrentHashMap<String, Long> createMap(int count) {
         return LongStream.rangeClosed(1, count)
                 .boxed()
-                .collect(Collectors.toConcurrentMap(i -> UUID.fastUUID().toString(true),
+                .collect(Collectors.toConcurrentMap(i -> UUID.randomUUID().toString(),
                         Function.identity(),
                         ((o1, o2) -> o2), ConcurrentHashMap::new));
     }
@@ -77,4 +78,3 @@ public class ConcurrentHashMapTest {
         return "ok";
     }
 }
-

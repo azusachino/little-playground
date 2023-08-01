@@ -1,8 +1,5 @@
 package cn.az.code.time;
 
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.log.Log;
-
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.Instant;
@@ -16,14 +13,16 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Locale;
+import java.util.Random;
 import java.util.stream.Stream;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Liz
  */
+@Slf4j
 public class LocalDateTimeDemo {
-
-    private static final Log log = Log.get();
 
     public static void main(String[] args) {
         LocalDate localDate = LocalDate.of(2020, Month.DECEMBER, 31);
@@ -48,7 +47,8 @@ public class LocalDateTimeDemo {
         log.info(String.valueOf(day));
         log.info(String.valueOf(day.plus(4, ChronoUnit.YEARS)));
         Stream.iterate(1, s -> s + 1).limit(4).forEach(s -> log.info(String.valueOf(day.plus(s, ChronoUnit.YEARS))));
-        Stream.generate(RandomUtil::randomInt).limit(10).forEach(System.out::println);
+        Random random = new Random();
+        Stream.generate(random::nextInt).limit(10).forEach(System.out::println);
     }
 
     public static TemporalAdjuster nextWorkingDay() {
@@ -64,7 +64,6 @@ public class LocalDateTimeDemo {
                         dayToAdd = 1;
                     }
                     return temporal.plus(dayToAdd, ChronoUnit.DAYS);
-                }
-        );
+                });
     }
 }

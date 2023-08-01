@@ -1,19 +1,18 @@
 package cn.az.code.concurrent;
 
-import cn.hutool.log.Log;
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 
+import com.google.common.util.concurrent.ThreadFactoryBuilder;
+
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author Liz
  */
-
+@Slf4j
 public class ThreadLocalDemo {
-
-    private static final Log log = Log.get();
 
     public static ThreadLocal<Index> index = ThreadLocal.withInitial(Index::new);
 

@@ -1,10 +1,10 @@
 package cn.az.code.atomic;
 
-import cn.hutool.core.thread.ThreadUtil;
-import cn.hutool.log.Log;
-
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * AtomicIntegerDemo
@@ -13,13 +13,12 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @see AtomicInteger
  * @since 2020-03-24
  */
+@Slf4j
 public class AtomicIntegerDemo {
-
-    private static final Log log = Log.get();
 
     public static void main(String[] args) {
         AtomicInteger val = new AtomicInteger(999);
-        ExecutorService service = ThreadUtil.newExecutor(10);
+        ExecutorService service = Executors.newFixedThreadPool(10);
 
         for (int i = 0; i < 10; i++) {
             service.submit(() -> {
