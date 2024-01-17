@@ -22,20 +22,20 @@ public class CompletableFutureDemo {
         }).complete("over");
 
         CompletableFuture.runAsync(() -> {
-        })
-                .thenRun(() -> {
-                })
-                .thenAccept(r -> {
-                })
-                .thenApply(r -> "")
-                .obtrudeException(new RuntimeException("ex"));
+            })
+            .thenRun(() -> {
+            })
+            .thenAccept(r -> {
+            })
+            .thenApply(r -> "")
+            .obtrudeException(new RuntimeException("ex"));
 
         CompletableFuture.supplyAsync(() -> {
-            throw new RuntimeException("");
-        })
-                .exceptionally(ex -> "")
-                .thenApply(r -> "")
-                .handle((x, ex) -> x);
+                throw new RuntimeException("");
+            })
+            .exceptionally(ex -> "")
+            .thenApply(r -> "")
+            .handle((x, ex) -> x);
 
         CompletableFuture<String> cfA = CompletableFuture.supplyAsync(() -> "resultA");
         CompletableFuture<String> cfB = CompletableFuture.supplyAsync(() -> "resultB");
@@ -48,16 +48,23 @@ public class CompletableFutureDemo {
 
 
         CompletableFuture<Void> future =
-                CompletableFuture.allOf(CompletableFuture.supplyAsync(() -> "resultA"),
-                        CompletableFuture.supplyAsync(() -> 123),
-                        CompletableFuture.supplyAsync(Object::new));
+            CompletableFuture.allOf(CompletableFuture.supplyAsync(() -> "resultA"),
+                CompletableFuture.supplyAsync(() -> 123),
+                CompletableFuture.supplyAsync(Object::new));
         // 所以这里的 join() 将阻塞，直到所有的任务执行结束
         future.join();
 
         CompletableFuture<Object> future2 =
-                CompletableFuture.anyOf(CompletableFuture.supplyAsync(() -> "resultA"),
-                        CompletableFuture.supplyAsync(() -> 123),
-                        CompletableFuture.supplyAsync(Object::new));
+            CompletableFuture.anyOf(CompletableFuture.supplyAsync(() -> "resultA"),
+                CompletableFuture.supplyAsync(() -> 123),
+                CompletableFuture.supplyAsync(Object::new));
         future2.join();
+
+        Thread t = Thread.ofVirtual().name("my-first-virtual-thread").unstarted(() -> {
+            String name = Thread.currentThread().getName();
+            long pid = Thread.currentThread().threadId();
+            System.out.println("this is the virtual thread" + name + " " + pid);
+        });
+        t.start();
     }
 }
