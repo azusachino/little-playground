@@ -1,5 +1,6 @@
 package cn.az.webflux.handler;
 
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.socket.WebSocketHandler;
 import org.springframework.web.reactive.socket.WebSocketSession;
@@ -16,7 +17,8 @@ import reactor.core.publisher.Mono;
 public class SimpleWebSocketHandler implements WebSocketHandler {
 
     @Override
-    public Mono<Void> handle(WebSocketSession session) {
+    @NonNull
+    public Mono<Void> handle(@NonNull WebSocketSession session) {
         return Mono.empty();
     }
 }
