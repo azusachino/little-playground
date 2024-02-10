@@ -8,13 +8,10 @@ import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author az
  * @since 07/25/20
  */
-@Slf4j
 public class ZipUtil {
 
     private static final int BUFFER_SIZE = 4 * 1024;
@@ -29,7 +26,7 @@ public class ZipUtil {
             File srcFile = new File(srcDir);
             compress(srcFile, zos, srcFile.getName(), keepDirStructure);
             long end = System.currentTimeMillis();
-            log.info("压缩完成, 耗时{}秒", end - start);
+            LogUtil.info("压缩完成, 耗时{}秒", end - start);
         } catch (Exception e) {
             throw new RuntimeException("压缩文件时出现了错误");
         }
@@ -50,7 +47,7 @@ public class ZipUtil {
                 fis.close();
             }
             long end = System.currentTimeMillis();
-            log.info("压缩完成, 耗时{}秒", end - start);
+            LogUtil.info("压缩完成, 耗时{}秒", end - start);
         } catch (Exception e) {
             throw new RuntimeException("zip error from ZipUtil", e);
         }

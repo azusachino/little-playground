@@ -9,10 +9,10 @@ import io.netty.channel.SimpleChannelInboundHandler;
  * {@link SimpleChannelInboundHandler#channelRead(ChannelHandlerContext, Object)}
  * auto release bytebuf
  */
-public class RequestMessageHandler extends SimpleChannelInboundHandler<Message> {
+public class RequestMessageHandler extends SimpleChannelInboundHandler<Message<?>> {
 
     @Override
-    protected void channelRead0(ChannelHandlerContext ctx, Message msg) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, Message<?> msg) throws Exception {
         System.out.println("receive message: " + JsonUtil.toJson(msg));
     }
 

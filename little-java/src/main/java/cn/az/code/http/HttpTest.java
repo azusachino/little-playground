@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import org.springframework.util.Assert;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Headers;
@@ -18,15 +18,14 @@ import okhttp3.ResponseBody;
  * @author az
  * @since 2020-04-17
  */
-@Slf4j
 public class HttpTest {
 
     private final OkHttpClient httpClient = new OkHttpClient();
 
     public static void main(String[] args) {
         HttpTest ht = new HttpTest();
-        log.info(ht.get("https://www.zhihu.com"));
-        log.info(ht.get("https://cn.bing.com"));
+        LogUtil.info(ht.get("https://www.zhihu.com"));
+        LogUtil.info(ht.get("https://cn.bing.com"));
     }
 
     String get(String url) {

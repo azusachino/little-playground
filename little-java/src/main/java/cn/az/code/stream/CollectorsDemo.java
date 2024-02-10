@@ -5,17 +5,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * @author Liz
  */
-@Slf4j
 public class CollectorsDemo {
 
     public static void main(String[] args) {
         List<Dish> dishes = Arrays.asList(new Dish(), new Dish());
-        log.debug(String.valueOf(dishes.stream().mapToInt(Dish::getCalories).sum()));
+        LogUtil.debug(String.valueOf(dishes.stream().mapToInt(Dish::getCalories).sum()));
 
         dishes.stream().collect(Collectors.groupingBy(Dish::getName, Collectors.mapping(d -> {
             if (d.getName().endsWith("fish")) {
@@ -24,6 +23,6 @@ public class CollectorsDemo {
                 return "meat";
             }
         }, Collectors.toCollection(HashSet::new))))
-                .forEach(log::info);
+                .forEach(LogUtil::info);
     }
 }

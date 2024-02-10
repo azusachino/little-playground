@@ -48,6 +48,7 @@ public class SendMessageTask extends RecursiveAction {
         pool.awaitTermination(10, TimeUnit.SECONDS);
         // 关闭线程池
         pool.shutdown();
+        pool.close();
     }
 
     @Override

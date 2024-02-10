@@ -4,12 +4,11 @@ import java.util.function.Function;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * @author Liz
  */
-@Slf4j
 public class ParallelDemo {
 
     public static long parallelRun(int n) {
@@ -22,7 +21,7 @@ public class ParallelDemo {
             long startTime = System.nanoTime();
             function.apply(n);
             long duration = (System.nanoTime() - startTime) / 1_000_000;
-            log.info("Consuming: {}", duration);
+            LogUtil.info("Consuming: {}", duration);
         });
     }
 }

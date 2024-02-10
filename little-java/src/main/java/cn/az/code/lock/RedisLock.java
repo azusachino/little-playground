@@ -3,18 +3,17 @@ package cn.az.code.lock;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import cn.az.code.util.LogUtil;
 import io.lettuce.core.RedisFuture;
 import io.lettuce.core.ScriptOutputType;
 import io.lettuce.core.SetArgs;
 import io.lettuce.core.api.StatefulRedisConnection;
 import jakarta.annotation.Resource;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author az
  * @since 2020-04-14
  */
-@Slf4j
 public class RedisLock {
 
     @Resource
@@ -29,7 +28,7 @@ public class RedisLock {
         long endTime = System.currentTimeMillis() + timeout;
 
         try {
-            String token = String.valueOf(Thread.currentThread().getId());
+            String token = String.valueOf(Thread.currentThread().threadId());
             while (System.currentTimeMillis() <= endTime) {
                 RedisFuture<String> rf = this.redisConnection.async().set(LOCK_KEY, token,
                         SetArgs.Builder.nx().px(timeout));
@@ -54,13 +53,13 @@ public class RedisLock {
                     ScriptOutputType.INTEGER, LOCK_KEY, identity);
 
             if (RELEASE_OK.equals(rf.get(10, TimeUnit.SECONDS))) {
-                log.info("release lock success, required token: {}", identity);
+                LogUtil.info("release lock success, required token: {}", identity);
                 return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        log.info("release lock failed");
+        LogUtil.info("release lock failed");
         return false;
     }
 

@@ -6,12 +6,11 @@ import java.util.concurrent.ThreadFactory;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * @author Liz
  */
-@Slf4j
 public class ThreadLocalDemo {
 
     public static ThreadLocal<Index> index = ThreadLocal.withInitial(Index::new);
@@ -31,7 +30,7 @@ public class ThreadLocalDemo {
             service.execute(threadFactory.newThread(() -> {
                 Index local = index.get();
                 local.incr();
-                log.info(Thread.currentThread().getName() + ", num: {}", index.get().num);
+                LogUtil.info(Thread.currentThread().getName() + ", num: {}", index.get().num);
             }));
         }
     }

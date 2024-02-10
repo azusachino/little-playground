@@ -11,16 +11,20 @@ public class LogUtil {
 
     private static final Logger logger = LoggerFactory.getLogger("LogUtil");
 
-    public static void info(String s) {
-        logger.info(s);
+    public static void debug(String s, Object... param) {
+        logger.debug(s, param);
     }
 
-    public static void warn(String s) {
-        logger.warn(s);
+    public static void info(String s, Object... param) {
+        logger.info(s, param);
     }
 
-    public static void error(String s) {
-        logger.error(s);
+    public static void warn(String s, Object... param) {
+        logger.warn(s, param);
+    }
+
+    public static void error(String s, Object... param) {
+        logger.error(s, param);
     }
 
     public static void error(String s, Throwable t) {

@@ -3,12 +3,11 @@ package cn.az.code.lambda;
 import java.util.Arrays;
 import java.util.List;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * @author Liz
  */
-@Slf4j
 public class TryCatch {
 
     public static void main(String[] args) {
@@ -27,6 +26,6 @@ public class TryCatch {
 
         // 3. specific Exception
         integerList.forEach(
-                LambdaWrapper.lambdaWrapper(integer -> log.error(String.valueOf(integer)), ArithmeticException.class));
+                LambdaWrapper.lambdaWrapper(integer -> LogUtil.error(String.valueOf(integer)), ArithmeticException.class));
     }
 }

@@ -3,7 +3,7 @@ package cn.az.code.algorithm;
 import java.util.Arrays;
 import java.util.Objects;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * BubbleSort
@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
  * @see Sort
  * @since 2020-03-24
  */
-@Slf4j
 public class BubbleSort<T extends Comparable<T>> implements Sort<T> {
 
     public static void main(String[] args) {
@@ -56,7 +55,7 @@ public class BubbleSort<T extends Comparable<T>> implements Sort<T> {
                     values[j + 1] = t;
                 }
             }
-            log.warn("round {}, array: {}", i + 1, values);
+            LogUtil.warn("round {}, array: {}", i + 1, values);
         }
     }
 

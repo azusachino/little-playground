@@ -1,13 +1,12 @@
 package cn.az.code.thread;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * join方法可以让某个线程插到自己前面，等它执行完，自己才会继续执行。
  *
  * @author az
  */
-@Slf4j
 public class ThreadJoinDemo {
 
     public static void main(String[] args) {
@@ -18,9 +17,9 @@ public class ThreadJoinDemo {
         try {
             t.join();
         } catch (InterruptedException e) {
-            log.error(e.getLocalizedMessage(), e);
+            LogUtil.error(e.getLocalizedMessage(), e);
         }
-        log.info("after join, finally my turn");
+        LogUtil.info("after join, finally my turn");
     }
 
     /**
@@ -35,9 +34,9 @@ public class ThreadJoinDemo {
 
         @Override
         public void run() {
-            log.info("thread is running, {}", Thread.currentThread().getId());
+            LogUtil.info("thread is running, {}", Thread.currentThread().threadId());
             doSomething(5);
-            log.info("thread is finished, {} ", Thread.currentThread().getId());
+            LogUtil.info("thread is finished, {} ", Thread.currentThread().threadId());
         }
     }
 
@@ -45,7 +44,7 @@ public class ThreadJoinDemo {
         try {
             Thread.sleep(t * 1000);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            LogUtil.error(e.getMessage(), e);
         }
     }
 }

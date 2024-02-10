@@ -1,6 +1,7 @@
 package cn.az.webflux.config;
 
-import cn.az.webflux.handler.SimpleWebSocketHandler;
+import java.util.Map;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
@@ -8,7 +9,7 @@ import org.springframework.web.reactive.HandlerMapping;
 import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.reactive.socket.WebSocketHandler;
 
-import java.util.Map;
+import cn.az.webflux.handler.SimpleWebSocketHandler;
 
 /**
  * CustomRoutingConfiguration

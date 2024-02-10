@@ -8,13 +8,12 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import org.springframework.lang.NonNull;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * @author az
  * @since 2020-03-31
  */
-@Slf4j
 public class ClhLock implements Lock {
 
     // 1.1 SMP(Symmetric Multi-Processor)
@@ -70,7 +69,7 @@ public class ClhLock implements Lock {
         ClhNode prev = tail.getAndSet(cur);
         if (prev != null) {
             while (prev.getLocked()) {
-                log.info("prev is locked");
+                LogUtil.info("prev is locked");
             }
         }
     }

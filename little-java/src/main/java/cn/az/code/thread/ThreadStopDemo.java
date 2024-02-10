@@ -1,13 +1,12 @@
 package cn.az.code.thread;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * 线程在预设的地点检测flag，来决定是否停止。
  *
  * @author az
  */
-@Slf4j
 public class ThreadStopDemo {
 
     public static void main(String[] args) {
@@ -35,19 +34,19 @@ public class ThreadStopDemo {
 
         @Override
         public void run() {
-            log.info("thread is running " + 1);
+            LogUtil.info("thread is running " + 1);
             doSomething(5);
-            log.info("thread is finished " + 1);
+            LogUtil.info("thread is finished " + 1);
 
-            log.info("check status of stop flag: " + stop);
+            LogUtil.info("check status of stop flag: " + stop);
 
             if (stop) {
-                log.info("thread stop");
+                LogUtil.info("thread stop");
                 return;
             }
-            log.info("thread is running " + 2);
+            LogUtil.info("thread is running " + 2);
             doSomething(3);
-            log.info("thread is finished " + 2);
+            LogUtil.info("thread is finished " + 2);
         }
     }
 
@@ -55,7 +54,7 @@ public class ThreadStopDemo {
         try {
             Thread.sleep(t * 1000);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            LogUtil.error(e.getMessage(), e);
         }
     }
 }

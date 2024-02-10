@@ -69,6 +69,7 @@ public class AddTask extends RecursiveTask<Integer> {
             System.out.println(future.get());
             // 关闭线程池
             pool.shutdown();
+            pool.close();
         }
     }
 

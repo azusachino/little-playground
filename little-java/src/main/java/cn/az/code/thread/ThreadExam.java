@@ -4,14 +4,13 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * 每完成一个线程，计数器减1，当减到0时，被阻塞的线程自动执行。
  *
  * @author az
  */
-@Slf4j
 public class ThreadExam {
 
     private static final int COUNT = 20;
@@ -40,13 +39,13 @@ public class ThreadExam {
 
         @Override
         public void run() {
-            log.info("sending out papers...");
+            LogUtil.info("sending out papers...");
             try {
                 this.cdl.wait();
             } catch (InterruptedException e) {
-                log.error(e.getLocalizedMessage(), e);
+                LogUtil.error(e.getLocalizedMessage(), e);
             }
-            log.info("picking up papers...");
+            LogUtil.info("picking up papers...");
         }
     }
 
@@ -62,14 +61,14 @@ public class ThreadExam {
 
         @Override
         public void run() {
-            log.info("{} is writing hard...", this.num);
+            LogUtil.info("{} is writing hard...", this.num);
             try {
                 Thread.sleep(5 * 1000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } finally {
                 // make sure count down
-                log.info("{} is finished the paper", this.num);
+                LogUtil.info("{} is finished the paper", this.num);
                 cdl.countDown();
             }
         }

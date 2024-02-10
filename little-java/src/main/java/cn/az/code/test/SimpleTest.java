@@ -13,7 +13,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Stream;
 
 import cn.az.code.util.DateUtil;
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * SimpleTest
@@ -21,7 +21,6 @@ import lombok.extern.slf4j.Slf4j;
  * @author <a href="mailto:azusa146@gmail.com">az</a>
  * @since 2020-03-13
  */
-@Slf4j
 public class SimpleTest {
 
     int a;
@@ -129,9 +128,9 @@ public class SimpleTest {
         // stream can't use return to stop execute
         list.forEach(i -> {
             if (i == 1) {
-                log.info(String.valueOf(i));
+                LogUtil.info(String.valueOf(i));
             } else {
-                log.warn(String.valueOf(i));
+                LogUtil.warn(String.valueOf(i));
             }
         });
 
@@ -140,7 +139,7 @@ public class SimpleTest {
             if (i == point) {
                 throw new NullPointerException("break the stream");
             } else {
-                log.warn(String.valueOf(i));
+                LogUtil.warn(String.valueOf(i));
             }
         });
 
@@ -148,10 +147,10 @@ public class SimpleTest {
             if (i == point) {
                 return;
             } else {
-                log.info("current val is {}", i);
+                LogUtil.info("current val is {}", i);
             }
         }
-        log.error("last sentence");
+        LogUtil.error("last sentence");
     }
 
     public int getA() {

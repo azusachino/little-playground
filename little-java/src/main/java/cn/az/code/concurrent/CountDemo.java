@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * CountDemo
@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
  * @see CountDemo
  * @since 2020-03-12
  */
-@Slf4j
 public class CountDemo {
 
     private static final int threadTotal = 200;
@@ -33,13 +32,13 @@ public class CountDemo {
                     add();
                     semaphore.release();
                 } catch (Exception e) {
-                    log.error("exception", e);
+                    LogUtil.error("exception", e);
                 }
             });
 
         }
         service.shutdown();
-        log.info("count:{}", count);
+        LogUtil.info("count:{}", count);
     }
 
     private static void add() {

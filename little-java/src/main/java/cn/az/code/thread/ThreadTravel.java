@@ -2,14 +2,13 @@ package cn.az.code.thread;
 
 import java.util.concurrent.CyclicBarrier;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * 某个线程到达预设点时就在此等待，等所有的线程都到达时，大家再一起向下个预设点出发。如此循环反复下去。
  *
  * @author az
  */
-@Slf4j
 public class ThreadTravel {
 
     static final int COUNT = 5;
@@ -47,7 +46,7 @@ public class ThreadTravel {
 
         @Override
         public void run() {
-            log.info("{} is singing for everyone", Thread.currentThread().getName());
+            LogUtil.info("{} is singing for everyone", Thread.currentThread().getName());
         }
     }
 
@@ -64,31 +63,31 @@ public class ThreadTravel {
         @Override
         public void run() {
             try {
-                log.info("员工{}出发。。。", num);
+                LogUtil.info("员工{}出发。。。", num);
                 doingLongTime();
-                log.info("员工{}到达地点一。。。", num);
+                LogUtil.info("员工{}到达地点一。。。", num);
                 try {
                     cb.await();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                log.info("员工{}再出发。。。", num);
+                LogUtil.info("员工{}再出发。。。", num);
                 doingLongTime();
-                log.info("员工{}到达地点二。。。", num);
+                LogUtil.info("员工{}到达地点二。。。", num);
                 try {
                     cb.await();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                log.info("员工{}再出发。。。", num);
+                LogUtil.info("员工{}再出发。。。", num);
                 doingLongTime();
-                log.info("员工{}到达地点三。。。", num);
+                LogUtil.info("员工{}到达地点三。。。", num);
                 try {
                     cb.await();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                log.info("员工{}结束。。。", num);
+                LogUtil.info("员工{}结束。。。", num);
             } catch (Exception e) {
                 e.printStackTrace();
             }

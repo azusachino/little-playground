@@ -1,13 +1,12 @@
 package cn.az.code.thread;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * 在预设的地点检测flag。然后就是wait/notify配合使用。
  *
  * @author az
  */
-@Slf4j
 public class ThreadPauseDemo {
 
     public static void main(String[] args) {
@@ -52,26 +51,26 @@ public class ThreadPauseDemo {
 
         @Override
         public void run() {
-            log.info("thread is running, {} ", 1);
+            LogUtil.info("thread is running, {} ", 1);
             doSomething(5);
-            log.info("thread is finished,{} ", 1);
+            LogUtil.info("thread is finished,{} ", 1);
 
-            log.info("check status of stop flag: " + pause);
+            LogUtil.info("check status of stop flag: " + pause);
 
             if (pause) {
-                log.info("thread paused");
+                LogUtil.info("thread paused");
                 try {
                     synchronized (this) {
                         this.wait();
                     }
                 } catch (InterruptedException e) {
-                    log.error(e.getLocalizedMessage(), e);
+                    LogUtil.error(e.getLocalizedMessage(), e);
                 }
-                log.info("resumed...");
+                LogUtil.info("resumed...");
             }
-            log.info("thread is running " + 2);
+            LogUtil.info("thread is running " + 2);
             doSomething(3);
-            log.info("thread is finished " + 2);
+            LogUtil.info("thread is finished " + 2);
         }
     }
 
@@ -79,7 +78,7 @@ public class ThreadPauseDemo {
         try {
             Thread.sleep(t * 1000);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            LogUtil.error(e.getMessage(), e);
         }
     }
 }

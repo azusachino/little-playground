@@ -8,11 +8,11 @@
     //     "name": "JavaSE-17",
     //     "path": "C:\\Program Files\\Java\\jdk-17.0.2"
     // }
-    {
-      "name": "JavaSE-17",
-      "path": "/opt/jvm/graalvm-ce-java17-22.3.0/"
-    }
+    // {
+    //   "name": "JavaSE-21",
+    //   "path": "/Users/azusachino/Library/Java/JavaVirtualMachines/graalvm-community-openjdk-21.0.2/Contents/Home"
+    // }
   ],
   "java.configuration.updateBuildConfiguration": "interactive",
-  "java.compile.nullAnalysis.mode": "automatic"
+  "java.compile.nullAnalysis.mode": "disabled"
 }

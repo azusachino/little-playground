@@ -4,14 +4,13 @@ import static cn.az.code.thread.ThreadTravel.doingLongTime;
 
 import java.util.concurrent.Exchanger;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * 两个线程在预设点交换变量，先到达的等待对方。
  *
  * @author az
  */
-@Slf4j
 public class ThreadWorking {
 
     static Exchanger<Tool> ex = new Exchanger<>();
@@ -51,20 +50,20 @@ public class ThreadWorking {
 
         @Override
         public void run() {
-            log.info("{}拿的工具是[{}]，他开始[{}]。。。", name, tool.name, tool.work);
+            LogUtil.info("{}拿的工具是[{}]，他开始[{}]。。。", name, tool.name, tool.work);
             try {
                 doingLongTime();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            log.info("{}开始交换工具。。。", name);
+            LogUtil.info("{}开始交换工具。。。", name);
             try {
                 tool = ex.exchange(tool);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            log.info("{}的工具变为[{}]，他开始[{}]。。。", name, tool.name, tool.work);
+            LogUtil.info("{}的工具变为[{}]，他开始[{}]。。。", name, tool.name, tool.work);
 
         }
     }

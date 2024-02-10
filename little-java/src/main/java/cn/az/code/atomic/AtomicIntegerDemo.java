@@ -4,7 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * AtomicIntegerDemo
@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
  * @see AtomicInteger
  * @since 2020-03-24
  */
-@Slf4j
 public class AtomicIntegerDemo {
 
     public static void main(String[] args) {
@@ -31,6 +30,6 @@ public class AtomicIntegerDemo {
 
     private static void action(AtomicInteger val) {
         val.getAndIncrement();
-        log.info("current val is {}, thread is {}", val.get(), Thread.currentThread().getName());
+        LogUtil.info("current val is {}, thread is {}", val.get(), Thread.currentThread().getName());
     }
 }

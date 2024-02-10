@@ -3,12 +3,11 @@ package cn.az.code.lambda;
 import java.util.function.Consumer;
 
 import cn.az.code.function.ThrowingConsumer;
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * @author Liz
  */
-@Slf4j
 public class LambdaWrapper {
 
     public static Consumer<Integer> lambdaWrapper(Consumer<Integer> consumer) {
@@ -16,7 +15,7 @@ public class LambdaWrapper {
             try {
                 consumer.accept(i);
             } catch (Exception e) {
-                log.error(e.getMessage());
+                LogUtil.error(e.getMessage());
             }
         };
     }
@@ -28,9 +27,9 @@ public class LambdaWrapper {
             } catch (Exception ex) {
                 try {
                     E exCast = clazz.cast(ex);
-                    log.info(exCast.getMessage());
+                    LogUtil.info(exCast.getMessage());
                 } catch (ClassCastException e) {
-                    log.error(e.getMessage());
+                    LogUtil.error(e.getMessage());
                 }
             }
         };
@@ -55,7 +54,7 @@ public class LambdaWrapper {
             } catch (Exception ex) {
                 try {
                     E exCast = exceptionClass.cast(ex);
-                    log.error("Exception occurred : {}", exCast.getMessage());
+                    LogUtil.error("Exception occurred : {}", exCast.getMessage());
                 } catch (ClassCastException ccEx) {
                     throw new RuntimeException(ex);
                 }

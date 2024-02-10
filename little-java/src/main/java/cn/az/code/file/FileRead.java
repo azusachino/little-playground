@@ -35,7 +35,7 @@ public class FileRead {
     private static final int CR = 13;
 
     public static void main(String[] args) {
-        String file = "C:\\Users\\ycpang\\Desktop\\20210528\\log.log";
+        String file = "C:\\Users\\ycpang\\Desktop\\20210528\\LogUtil.log";
         StopWatch stopWatch = new StopWatch("1");
 
         run(() -> bufferedRead(file), stopWatch);

@@ -51,6 +51,7 @@ public class ConcurrentHashMapTest {
 
         fjp.shutdown();
         fjp.awaitTermination(1, TimeUnit.HOURS);
+        fjp.close();
         LogUtil.info("final size is {}" + map.size());
         return "wrong";
     }
@@ -74,6 +75,7 @@ public class ConcurrentHashMapTest {
 
         fjp.shutdown();
         fjp.awaitTermination(1, TimeUnit.HOURS);
+        fjp.close();
         LogUtil.info("final size is {}" + map.size());
         return "ok";
     }

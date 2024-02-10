@@ -1,13 +1,12 @@
 package cn.az.code.thread;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.az.code.util.LogUtil;
 
 /**
  * 线程在sleep或wait时，是处于无法交互的状态的，此时只能使用interrupt方法中断它，线程会被激活并收到中断异常。
  *
  * @author az
  */
-@Slf4j
 public class ThreadWakeDemo {
 
     public static void main(String[] args) throws InterruptedException {
@@ -36,16 +35,16 @@ public class ThreadWakeDemo {
 
         @Override
         public void run() {
-            log.info("entering stop");
+            LogUtil.info("entering stop");
 
             try {
                 Thread.sleep(5 * 1000L);
             } catch (InterruptedException e) {
-                log.error(e.getLocalizedMessage(), e);
-                log.warn("interrupted");
-                log.info("doing some funcs");
+                LogUtil.error(e.getLocalizedMessage(), e);
+                LogUtil.warn("interrupted");
+                LogUtil.info("doing some funcs");
             }
-            log.info("continue or quit...");
+            LogUtil.info("continue or quit...");
         }
     }
 

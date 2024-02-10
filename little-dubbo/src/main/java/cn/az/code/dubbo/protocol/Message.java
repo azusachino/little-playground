@@ -4,26 +4,20 @@ import com.google.common.base.Charsets;
 
 import cn.az.code.dubbo.utils.JsonUtil;
 import io.netty.buffer.ByteBuf;
-import lombok.Data;
 
 /**
  * struct
  * length - version,opCode,streamId - body
  */
-@Data
 public abstract class Message<T extends MessageBody> {
 
     private MessageHeader header;
     private T body;
 
-    private T getBody() {
-        return body;
-    }
-
     public void encode(ByteBuf buf) {
-        buf.writeInt(this.header.getVersion());
-        buf.writeInt(this.header.getOpCode());
-        buf.writeLong(this.header.getStreamId());
+        buf.writeInt(this.header.version());
+        buf.writeInt(this.header.opCode());
+        buf.writeLong(this.header.streamId());
         buf.writeBytes(JsonUtil.toJson(this.body).getBytes());
     }
 
