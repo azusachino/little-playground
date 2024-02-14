@@ -43,6 +43,7 @@
         <mysql.version>8.0.32</mysql.version>
         <redisson.version>3.20.1</redisson.version>
         <dubbo.version>3.2.0</dubbo.version>
+        <spring.statemachine.version>4.0.0</spring.statemachine.version>
     </properties>
 
     <dependencyManagement>
@@ -138,6 +139,16 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.statemachine</groupId>
+                <artifactId>spring-statemachine-starter</artifactId>
+                <version>${spring.statemachine.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.statemachine</groupId>
+                <artifactId>spring-statemachine-data-redis</artifactId>
+                <version>${spring.statemachine.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
