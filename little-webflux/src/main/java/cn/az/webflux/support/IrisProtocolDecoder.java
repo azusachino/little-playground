@@ -20,7 +20,6 @@ public class IrisProtocolDecoder extends ByteToMessageDecoder {
         message.setType(type);
         message.setData(new String(data));
         out.add(message);
-
     }
 
 }

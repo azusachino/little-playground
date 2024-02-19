@@ -1,18 +1,16 @@
 package cn.az.webflux.service;
 
+import cn.az.webflux.ex.BizException;
+import jakarta.annotation.Resource;
+import org.springframework.http.codec.multipart.FilePart;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-import org.springframework.http.codec.multipart.FilePart;
-import org.springframework.messaging.support.GenericMessage;
-import org.springframework.statemachine.StateMachine;
-import org.springframework.stereotype.Service;
-
-import jakarta.annotation.Resource;
-import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 /**
  * Test executor
@@ -28,34 +26,27 @@ public class SampleService {
     @Resource
     private CommonService commonService;
 
-    @Resource
-    private StateMachine<String, String> stateMachine;
-
     public Mono<String> test(long milli) {
         return this.commonService.doSomethingBad(milli)
-                .subscribeOn(Schedulers.newBoundedElastic(1, 10, "Custom Scheduler"))
-                .thenReturn("ok");
+            .subscribeOn(Schedulers.newBoundedElastic(1, 10, "Custom Scheduler"))
+            .thenReturn("ok");
     }
 
     public Mono<String> upload(FilePart filePart) {
         Path p = createFile(filePart.filename());
         return filePart.transferTo(p)
-                .doOnNext(v -> Mono.fromRunnable(() -> this.commonService.someWork(p))
-                        .subscribeOn(Schedulers.newSingle("uploadExecutor"))
-                        .subscribe())
-                .map(v -> "ok");
-    }
-
-    public void start2End() {
-        this.stateMachine.getState().sendEvent(new GenericMessage<String>("yeah")).subscribe();
+            .doOnNext(v -> Mono.fromRunnable(() -> this.commonService.someWork(p))
+                .subscribeOn(Schedulers.newSingle("uploadExecutor"))
+                .subscribe())
+            .map(v -> "ok");
     }
 
     private Path createFile(String filename) {
         Path path = Paths.get(DESKTOP, filename);
         try {
-            Files.createFile(Paths.get(DESKTOP, filename));
+            Files.createFile(path);
         } catch (IOException e) {
-            throw new RuntimeException("failed to create file", e);
+            throw new BizException("failed to create file", e);
         }
         return path;
     }

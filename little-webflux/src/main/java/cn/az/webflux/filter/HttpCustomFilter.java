@@ -1,15 +1,15 @@
 package cn.az.webflux.filter;
 
-import java.util.Objects;
-
+import cn.az.webflux.service.CommonService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.lang.NonNull;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
-
-import cn.az.webflux.service.CommonService;
 import reactor.core.publisher.Mono;
+
+import java.util.Objects;
 
 /**
  * HttpCustomFilter
@@ -20,7 +20,8 @@ import reactor.core.publisher.Mono;
 public class HttpCustomFilter implements WebFilter {
 
     @Override
-    public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+    @NonNull
+    public Mono<Void> filter(ServerWebExchange exchange, @NonNull WebFilterChain chain) {
         ServerHttpRequest request = exchange.getRequest();
         String key = "Content-Type";
         HttpHeaders httpHeaders = request.getHeaders();

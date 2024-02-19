@@ -19,8 +19,7 @@ public class MyChannelHandler extends ChannelDuplexHandler {
 
     @Override
     public void userEventTriggered(ChannelHandlerContext ctx, Object evt) {
-        if (evt instanceof IdleStateEvent) {
-            IdleStateEvent e = (IdleStateEvent) evt;
+        if (evt instanceof IdleStateEvent e) {
             if (e.state() == IdleState.READER_IDLE) {
                 ctx.close();
             } else if (e.state() == IdleState.WRITER_IDLE) {
@@ -34,28 +33,22 @@ public class MyChannelHandler extends ChannelDuplexHandler {
      *
      * @param ctx 上下文对象
      * @param msg 客户端发送的数据
-     * @throws Exception
      */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         // super duper slow operation, send it to eventloop
         final Object finalMsg = msg;
-        // 通过 ctx.channel().eventLoop().schedule()将操作
-        // 放入任务队列定时执行（5min 之后才进行处理）
-        ctx.channel().eventLoop().schedule(new Runnable() {
-            public void run() {
-
-                ByteBuf byteBuf = (ByteBuf) finalMsg;
-                System.out.println("data from client: "
-                        + byteBuf.toString(CharsetUtil.UTF_8));
-            }
+        // 通过 ctx.channel().eventLoop().schedule()
+        // 将操作放入任务队列定时执行（5min 之后才进行处理）
+        ctx.channel().eventLoop().schedule(() -> {
+            ByteBuf byteBuf = (ByteBuf) finalMsg;
+            System.out.println("data from client: "
+                + byteBuf.toString(CharsetUtil.UTF_8));
         }, 5, TimeUnit.MINUTES);
 
         // 可以继续调用 ctx.channel().eventLoop().schedule()
         // 将更多操作放入队列
-
         System.out.println("return right now.");
-
     }
 
 }
