@@ -6,3 +6,10 @@ logging:
   config: classpath:logback-spring.xml
   file:
     path: ./
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:iris_db
+    username: user
+    password: password
+    driverClassName: org.h2.Driver

@@ -32,8 +32,8 @@ public class WebFluxConfig extends WebFluxConfigurationSupport {
     private static final String ALLOWED_ORIGIN = "*";
     private static final String MAX_AGE = "3600L";
 
-    @Bean
     @LoadBalanced
+    @Bean("firstRestTemplate")
     RestTemplate restTemplate() {
         // 1. LoadBalancerAutoConfiguration
         // 2. LoadBalancerInterceptor(LoadBalancerClient loadBalancerClient,
@@ -46,8 +46,8 @@ public class WebFluxConfig extends WebFluxConfigurationSupport {
         return new RestTemplate();
     }
 
-    @Bean
     @LoadBalanced
+    @Bean("firstWebClient")
     WebClient webClient() {
         // 1. LoadBalancerWebClientBuilderBeanPostProcessor
         // 2. ReactorLoadBalancerExchangeFilterFunction

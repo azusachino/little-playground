@@ -3,7 +3,6 @@ package cn.az.webflux.service;
 import cn.az.webflux.ex.BizException;
 import jakarta.annotation.Resource;
 import org.springframework.http.codec.multipart.FilePart;
-import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
@@ -18,7 +17,6 @@ import java.nio.file.Paths;
  * @author az
  * @since 2021-08-26 21:59
  */
-@Service
 public class SampleService {
 
     private static final String DESKTOP = "~/Desktop";
