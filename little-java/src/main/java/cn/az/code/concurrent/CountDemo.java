@@ -1,10 +1,10 @@
 package cn.az.code.concurrent;
 
-import cn.hutool.core.thread.ThreadUtil;
-import cn.hutool.log.Log;
-
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+
+import cn.az.code.util.LogUtil;
 
 /**
  * CountDemo
@@ -15,15 +15,13 @@ import java.util.concurrent.Semaphore;
  */
 public class CountDemo {
 
-    private static final Log log = Log.get();
-
     private static final int threadTotal = 200;
     private static final int clientTotal = 5000;
 
     private static long count = 0;
 
     public static void main(String[] args) {
-        ExecutorService service = ThreadUtil.newExecutor();
+        ExecutorService service = Executors.newCachedThreadPool();
 
         final Semaphore semaphore = new Semaphore(threadTotal);
 
@@ -34,13 +32,13 @@ public class CountDemo {
                     add();
                     semaphore.release();
                 } catch (Exception e) {
-                    log.error("exception", e);
+                    LogUtil.error("exception", e);
                 }
             });
 
         }
         service.shutdown();
-        log.info("count:{}", count);
+        LogUtil.info("count:{}", count);
     }
 
     private static void add() {

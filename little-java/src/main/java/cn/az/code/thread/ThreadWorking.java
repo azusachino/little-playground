@@ -1,10 +1,10 @@
 package cn.az.code.thread;
 
-import cn.hutool.log.Log;
+import static cn.az.code.thread.ThreadTravel.doingLongTime;
 
 import java.util.concurrent.Exchanger;
 
-import static cn.az.code.thread.ThreadTravel.doingLongTime;
+import cn.az.code.util.LogUtil;
 
 /**
  * 两个线程在预设点交换变量，先到达的等待对方。
@@ -12,8 +12,6 @@ import static cn.az.code.thread.ThreadTravel.doingLongTime;
  * @author az
  */
 public class ThreadWorking {
-
-    private static final Log log = Log.get();
 
     static Exchanger<Tool> ex = new Exchanger<>();
 
@@ -27,12 +25,16 @@ public class ThreadWorking {
     }
 
     /**
-     * 17:03:39.192 [Thread-0] INFO cn.az.code.thread.ThreadWorking - 大胖拿的工具是[笤帚]，他开始[扫地]。。。
-     * 17:03:39.192 [Thread-1] INFO cn.az.code.thread.ThreadWorking - 小白拿的工具是[抹布]，他开始[擦桌]。。。
+     * 17:03:39.192 [Thread-0] INFO cn.az.code.thread.ThreadWorking -
+     * 大胖拿的工具是[笤帚]，他开始[扫地]。。。
+     * 17:03:39.192 [Thread-1] INFO cn.az.code.thread.ThreadWorking -
+     * 小白拿的工具是[抹布]，他开始[擦桌]。。。
      * 17:03:44.204 [Thread-0] INFO cn.az.code.thread.ThreadWorking - 大胖开始交换工具。。。
      * 17:03:44.204 [Thread-1] INFO cn.az.code.thread.ThreadWorking - 小白开始交换工具。。。
-     * 17:03:44.204 [Thread-1] INFO cn.az.code.thread.ThreadWorking - 小白的工具变为[笤帚]，他开始[扫地]。。。
-     * 17:03:44.204 [Thread-0] INFO cn.az.code.thread.ThreadWorking - 大胖的工具变为[抹布]，他开始[擦桌]。。。
+     * 17:03:44.204 [Thread-1] INFO cn.az.code.thread.ThreadWorking -
+     * 小白的工具变为[笤帚]，他开始[扫地]。。。
+     * 17:03:44.204 [Thread-0] INFO cn.az.code.thread.ThreadWorking -
+     * 大胖的工具变为[抹布]，他开始[擦桌]。。。
      */
     static class StaffRunnable implements Runnable {
 
@@ -48,20 +50,20 @@ public class ThreadWorking {
 
         @Override
         public void run() {
-            log.info("{}拿的工具是[{}]，他开始[{}]。。。", name, tool.name, tool.work);
+            LogUtil.info("{}拿的工具是[{}]，他开始[{}]。。。", name, tool.name, tool.work);
             try {
                 doingLongTime();
             } catch (InterruptedException e) {
-                log.warn(e);
+                e.printStackTrace();
             }
-            log.info("{}开始交换工具。。。", name);
+            LogUtil.info("{}开始交换工具。。。", name);
             try {
                 tool = ex.exchange(tool);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            log.info("{}的工具变为[{}]，他开始[{}]。。。", name, tool.name, tool.work);
+            LogUtil.info("{}的工具变为[{}]，他开始[{}]。。。", name, tool.name, tool.work);
 
         }
     }

@@ -1,10 +1,10 @@
 package cn.az.code.atomic;
 
-import cn.hutool.core.thread.ThreadUtil;
-import cn.hutool.log.Log;
-
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import cn.az.code.util.LogUtil;
 
 /**
  * AtomicIntegerDemo
@@ -15,11 +15,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class AtomicIntegerDemo {
 
-    private static final Log log = Log.get();
-
     public static void main(String[] args) {
         AtomicInteger val = new AtomicInteger(999);
-        ExecutorService service = ThreadUtil.newExecutor(10);
+        ExecutorService service = Executors.newFixedThreadPool(10);
 
         for (int i = 0; i < 10; i++) {
             service.submit(() -> {
@@ -32,6 +30,6 @@ public class AtomicIntegerDemo {
 
     private static void action(AtomicInteger val) {
         val.getAndIncrement();
-        log.info("current val is {}, thread is {}", val.get(), Thread.currentThread().getName());
+        LogUtil.info("current val is {}, thread is {}", val.get(), Thread.currentThread().getName());
     }
 }

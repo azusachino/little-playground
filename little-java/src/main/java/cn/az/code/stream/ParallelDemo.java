@@ -1,17 +1,15 @@
 package cn.az.code.stream;
 
-import cn.hutool.log.Log;
-
 import java.util.function.Function;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
+
+import cn.az.code.util.LogUtil;
 
 /**
  * @author Liz
  */
 public class ParallelDemo {
-
-    private static final Log log = Log.get();
 
     public static long parallelRun(int n) {
         return Stream.iterate(1L, i -> i + 1).limit(n).parallel().reduce(0L, (Long a, Long b) -> a + b);
@@ -23,7 +21,7 @@ public class ParallelDemo {
             long startTime = System.nanoTime();
             function.apply(n);
             long duration = (System.nanoTime() - startTime) / 1_000_000;
-            log.info("Consuming: {}", duration);
+            LogUtil.info("Consuming: {}", duration);
         });
     }
 }

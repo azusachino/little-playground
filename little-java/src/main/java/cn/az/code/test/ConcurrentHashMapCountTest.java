@@ -45,6 +45,7 @@ public class ConcurrentHashMapCountTest {
 
         pool.shutdown();
         pool.awaitTermination(1L, TimeUnit.HOURS);
+        pool.close();
         return map;
     }
 
@@ -60,6 +61,7 @@ public class ConcurrentHashMapCountTest {
 
         pool.shutdown();
         pool.awaitTermination(1L, TimeUnit.HOURS);
+        pool.close();
         return map.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().longValue()));
     }
 }

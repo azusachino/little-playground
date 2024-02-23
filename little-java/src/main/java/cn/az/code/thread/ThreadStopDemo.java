@@ -1,6 +1,6 @@
 package cn.az.code.thread;
 
-import cn.hutool.log.Log;
+import cn.az.code.util.LogUtil;
 
 /**
  * 线程在预设的地点检测flag，来决定是否停止。
@@ -9,8 +9,6 @@ import cn.hutool.log.Log;
  */
 public class ThreadStopDemo {
 
-    private static final Log log = Log.get();
-
     public static void main(String[] args) {
         StopRunnable sr = new StopRunnable();
         new Thread(sr).start();
@@ -18,9 +16,12 @@ public class ThreadStopDemo {
     }
 
     /**
-     * 15:56:01.113 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - thread is running 1
-     * 15:56:01.118 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - thread is finished 1
-     * 15:56:01.118 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - check status of stop flag: true
+     * 15:56:01.113 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - thread is
+     * running 1
+     * 15:56:01.118 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - thread is
+     * finished 1
+     * 15:56:01.118 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - check status
+     * of stop flag: true
      * 15:56:01.118 [Thread-0] INFO cn.az.code.thread.ThreadStopDemo - thread stop
      */
     static class StopRunnable implements Runnable {
@@ -33,28 +34,27 @@ public class ThreadStopDemo {
 
         @Override
         public void run() {
-            log.info("thread is running " + 1);
+            LogUtil.info("thread is running " + 1);
             doSomething(5);
-            log.info("thread is finished " + 1);
+            LogUtil.info("thread is finished " + 1);
 
-            log.info("check status of stop flag: " + stop);
+            LogUtil.info("check status of stop flag: " + stop);
 
             if (stop) {
-                log.info("thread stop");
+                LogUtil.info("thread stop");
                 return;
             }
-            log.info("thread is running " + 2);
+            LogUtil.info("thread is running " + 2);
             doSomething(3);
-            log.info("thread is finished " + 2);
+            LogUtil.info("thread is finished " + 2);
         }
     }
-
 
     static void doSomething(int t) {
         try {
             Thread.sleep(t * 1000);
         } catch (Exception e) {
-            log.error(e.getMessage(), e);
+            LogUtil.error(e.getMessage(), e);
         }
     }
 }

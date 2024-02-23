@@ -1,16 +1,14 @@
 package cn.az.code.lambda;
 
-import cn.hutool.log.Log;
-
 import java.util.Arrays;
 import java.util.List;
+
+import cn.az.code.util.LogUtil;
 
 /**
  * @author Liz
  */
 public class TryCatch {
-
-    private static final Log log = Log.get();
 
     public static void main(String[] args) {
         List<Integer> integerList = Arrays.asList(3, 9, 4, 2, 0, 41);
@@ -23,10 +21,11 @@ public class TryCatch {
             }
         });
 
-        //2. lambdaWrapper
+        // 2. lambdaWrapper
         integerList.forEach(LambdaWrapper.lambdaWrapper(i -> System.out.println(50 / i)));
 
-        //3. specific Exception
-        integerList.forEach(LambdaWrapper.lambdaWrapper(integer -> log.error(String.valueOf(integer)), ArithmeticException.class));
+        // 3. specific Exception
+        integerList.forEach(
+                LambdaWrapper.lambdaWrapper(integer -> LogUtil.error(String.valueOf(integer)), ArithmeticException.class));
     }
 }

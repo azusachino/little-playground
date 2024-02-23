@@ -1,8 +1,7 @@
 package cn.az.code.concurrent;
 
-import cn.hutool.core.thread.ExecutorBuilder;
-
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -15,7 +14,7 @@ public class LockTest {
     public static void main(String[] args) {
 
         final BoundedBuffer boundedBuffer = new BoundedBuffer();
-        ExecutorService service = ExecutorBuilder.create().setCorePoolSize(2).build();
+        ExecutorService service = Executors.newFixedThreadPool(5);
 
         service.execute(() -> {
             System.out.println("t1 run");
@@ -77,7 +76,7 @@ public class LockTest {
         final Condition notEmpty = lock.newCondition();
 
         final Object[] items = new Object[15];
-        //写索引, 读索引, 队列中存在的数据个数;
+        // 写索引, 读索引, 队列中存在的数据个数;
         int putPtr, takePtr, count;
 
         public void put(Object x) throws InterruptedException {
@@ -101,7 +100,6 @@ public class LockTest {
                 lock.unlock();
             }
         }
-
 
         public Object take() throws InterruptedException {
             System.out.println("take wait lock");

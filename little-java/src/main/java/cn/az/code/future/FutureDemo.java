@@ -1,18 +1,19 @@
 package cn.az.code.future;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnCloudPlatform;
-import org.springframework.boot.cloud.CloudPlatform;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import java.math.BigDecimal;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+
+import org.apache.tomcat.util.threads.VirtualThreadExecutor;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnCloudPlatform;
+import org.springframework.boot.cloud.CloudPlatform;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Liz
@@ -22,18 +23,22 @@ import java.util.concurrent.TimeoutException;
 public class FutureDemo {
 
     public static void main(String[] args) throws Exception {
-        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+        // AnnotationConfigApplicationContext applicationContext = new
+        // AnnotationConfigApplicationContext();
 
-        applicationContext.register(FutureDemo.class);
+        // applicationContext.register(FutureDemo.class);
 
-        applicationContext.refresh();
+        // applicationContext.refresh();
 
-        FutureService futureService = applicationContext.getBean(FutureService.class);
-        futureService.transfer("az", "chino", BigDecimal.valueOf(1000)).thenRun(FutureDemo::demo).get(10,
-                TimeUnit.SECONDS);
+        // FutureService futureService =
+        // applicationContext.getBean(FutureService.class);
+        // futureService.transfer("az", "chino",
+        // BigDecimal.valueOf(1000)).thenRun(FutureDemo::demo).get(10,
+        // TimeUnit.SECONDS);
 
-        applicationContext.close();
+        // applicationContext.close();
 
+        cf();
     }
 
     static void demo() {
@@ -53,8 +58,52 @@ public class FutureDemo {
         }
     }
 
+    public static void cf() {
+        ExecutorService es = new VirtualThreadExecutor("null");
+        var cf1 = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                e.printStackTrace();
+            }
+            return 1;
+        }, es);
+        var cf2 = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                e.printStackTrace();
+            }
+            return 2;
+        }, es);
+        var cf3 = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                e.printStackTrace();
+            }
+            return 3;
+        }, es);
+
+        var list = List.of(cf1, cf2, cf3);
+
+        CompletableFuture.allOf(list.toArray(new CompletableFuture[list.size()])).join();
+        for (var cf : list) {
+            if (cf.isDone()) {
+                try {
+                    System.out.println(cf.get());
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     @Bean
-    public FutureService futureService() {
+    FutureService futureService() {
         return new FutureService();
     }
 }

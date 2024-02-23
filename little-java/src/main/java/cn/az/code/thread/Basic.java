@@ -7,7 +7,7 @@ public class Basic {
 
     public static ThreadLocal<Long> x = ThreadLocal.withInitial(() -> {
         System.out.println("Initializing...");
-        return Thread.currentThread().getId();
+        return Thread.currentThread().threadId();
     });
 
     public static void main(String[] args) {

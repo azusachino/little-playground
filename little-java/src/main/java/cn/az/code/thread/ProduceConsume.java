@@ -1,20 +1,18 @@
 package cn.az.code.thread;
 
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.log.Log;
+import static cn.az.code.thread.ThreadTravel.doingLongTime;
 
+import java.util.Random;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import static cn.az.code.thread.ThreadTravel.doingLongTime;
+import cn.az.code.util.LogUtil;
 
 /**
  * @author az
  */
 public class ProduceConsume {
-
-    private static final Log log = Log.get(ProduceConsume.class);
 
     public static void main(String[] args) {
         Queue queue = new Queue();
@@ -33,10 +31,11 @@ public class ProduceConsume {
 
         @Override
         public void run() {
+            Random random = new Random();
             try {
                 for (int i = 0; i < 10000; i++) {
                     doingLongTime();
-                    queue.putEle(RandomUtil.randomInt());
+                    queue.putEle(random.nextInt());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -82,17 +81,17 @@ public class ProduceConsume {
             lock.lock();
             try {
                 while (count == CAPACITY) {
-                    log.info("队列已满：{}，生产者开始睡大觉。。。", count);
+                    LogUtil.info("队列已满：{}，生产者开始睡大觉。。。", count);
                     prodCond.await();
                 }
                 container[putIndex] = ele;
-                log.info("生产元素：{}", ele);
+                LogUtil.info("生产元素：{}", ele);
                 putIndex++;
                 if (putIndex >= CAPACITY) {
                     putIndex = 0;
                 }
                 count++;
-                log.info("通知消费者去消费。。。");
+                LogUtil.info("通知消费者去消费。。。");
                 consCond.signalAll();
             } finally {
                 lock.unlock();
@@ -103,17 +102,17 @@ public class ProduceConsume {
             lock.lock();
             try {
                 while (count == 0) {
-                    log.info("队列已空：{}，消费者开始睡大觉。。。", count);
+                    LogUtil.info("队列已空：{}，消费者开始睡大觉。。。", count);
                     consCond.await();
                 }
                 Object ele = container[takeIndex];
-                log.info("消费元素：{}", ele);
+                LogUtil.info("消费元素：{}", ele);
                 takeIndex++;
                 if (takeIndex >= CAPACITY) {
                     takeIndex = 0;
                 }
                 count--;
-                log.info("通知生产者去生产。。。");
+                LogUtil.info("通知生产者去生产。。。");
                 prodCond.signalAll();
             } finally {
                 lock.unlock();

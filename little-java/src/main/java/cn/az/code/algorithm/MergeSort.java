@@ -1,7 +1,5 @@
 package cn.az.code.algorithm;
 
-import cn.hutool.core.util.ArrayUtil;
-
 import java.util.Objects;
 
 /**
@@ -25,7 +23,7 @@ public class MergeSort<T extends Comparable<T>> implements Sort<T> {
      */
     @Override
     public void sort(T[] values) {
-        if (Objects.isNull(values) || ArrayUtil.isEmpty(values)) {
+        if (Objects.isNull(values) || values.length == 0) {
             return;
         }
         int len = values.length;

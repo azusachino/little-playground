@@ -1,8 +1,5 @@
 package cn.az.code.time;
 
-import cn.hutool.core.util.RandomUtil;
-import cn.hutool.log.Log;
-
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.Instant;
@@ -16,24 +13,25 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Locale;
+import java.util.Random;
 import java.util.stream.Stream;
+
+import cn.az.code.util.LogUtil;
 
 /**
  * @author Liz
  */
 public class LocalDateTimeDemo {
 
-    private static final Log log = Log.get();
-
     public static void main(String[] args) {
         LocalDate localDate = LocalDate.of(2020, Month.DECEMBER, 31);
         LocalDateTime localDateTime = localDate.atStartOfDay();
 
-        log.info(String.valueOf(LocalDateTime.now().get(ChronoField.DAY_OF_YEAR)));
+        LogUtil.info(String.valueOf(LocalDateTime.now().get(ChronoField.DAY_OF_YEAR)));
         Duration duration = Duration.between(Instant.now(), Instant.MAX);
-        log.info(duration.toString());
-        log.warn(String.valueOf(new NextWorkingDay().adjustInto(LocalDateTime.now())));
-        log.error("next working day" + nextWorkingDay().adjustInto(LocalDate.now()));
+        LogUtil.info(duration.toString());
+        LogUtil.warn(String.valueOf(new NextWorkingDay().adjustInto(LocalDateTime.now())));
+        LogUtil.error("next working day" + nextWorkingDay().adjustInto(LocalDate.now()));
         DateTimeFormatter dtf = new DateTimeFormatterBuilder()
                 .appendText(ChronoField.DAY_OF_MONTH)
                 .appendLiteral(". ")
@@ -42,13 +40,15 @@ public class LocalDateTimeDemo {
                 .appendText(ChronoField.YEAR)
                 .parseCaseInsensitive()
                 .toFormatter(Locale.CHINESE);
-        log.warn(dtf.format(localDateTime));
+        LogUtil.warn(dtf.format(localDateTime));
 
         LocalDate day = LocalDate.of(2020, Month.FEBRUARY, 29);
-        log.info(String.valueOf(day));
-        log.info(String.valueOf(day.plus(4, ChronoUnit.YEARS)));
-        Stream.iterate(1, s -> s + 1).limit(4).forEach(s -> log.info(String.valueOf(day.plus(s, ChronoUnit.YEARS))));
-        Stream.generate(RandomUtil::randomInt).limit(10).forEach(System.out::println);
+        LogUtil.info(String.valueOf(day));
+        LogUtil.info(String.valueOf(day.plus(4, ChronoUnit.YEARS)));
+        Stream.iterate(1, s -> s + 1).limit(4)
+                .forEach(s -> LogUtil.info(String.valueOf(day.plus(s, ChronoUnit.YEARS))));
+        Random random = new Random();
+        Stream.generate(random::nextInt).limit(10).forEach(System.out::println);
     }
 
     public static TemporalAdjuster nextWorkingDay() {
@@ -64,7 +64,6 @@ public class LocalDateTimeDemo {
                         dayToAdd = 1;
                     }
                     return temporal.plus(dayToAdd, ChronoUnit.DAYS);
-                }
-        );
+                });
     }
 }

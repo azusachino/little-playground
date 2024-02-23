@@ -29,6 +29,7 @@ public class ScheduledThreadPoolExecutorDemo {
         });
 
         ses.shutdown();
+        ses.close();
     }
 
 

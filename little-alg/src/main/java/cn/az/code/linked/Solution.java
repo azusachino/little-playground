@@ -215,4 +215,62 @@ public class Solution {
             return head;
         }
     }
+
+    boolean checkPalindrome(ListNode head) {
+        var fast = head;
+        var slow = head;
+        ListNode prev = null;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            var n = slow.next;
+            slow.next = prev;
+            n.next = slow;
+            slow = n;
+        }
+
+        return false;
+    }
+
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if (head == null) {
+            return head;
+        }
+        ListNode a = head;
+        ListNode b = head;
+        for (int i = 0; i < k; i++) {
+            if (b == null) {
+                return head;
+            }
+            b = b.next;
+        }
+        ListNode newHead = reverse(a,b);
+        a.next = reverseKGroup(b, k);
+        return newHead;
+    }
+
+    public ListNode reverse(ListNode head) {
+        ListNode newHead = null;
+        // don't modify the head
+        ListNode cur = head;
+        while (cur != null) {
+            var next = cur.next;
+            cur.next = newHead;
+            newHead = cur;
+            cur = next;
+        }
+        return newHead;
+    }
+
+    public ListNode reverse(ListNode a, ListNode b) {
+        ListNode newHead = null;
+        // don't modify the head
+        ListNode cur = a;
+        while (cur != b) {
+            var next = cur.next;
+            cur.next = newHead;
+            newHead = cur;
+            cur = next;
+        }
+        return newHead;
+    }
 }

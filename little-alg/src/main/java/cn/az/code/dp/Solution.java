@@ -1,6 +1,7 @@
 package cn.az.code.dp;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Solution {
 
@@ -55,5 +56,27 @@ public class Solution {
         }
 
         return Arrays.stream(dp).max().getAsInt();
+    }
+
+    public int maxValueOfCoins(List<List<Integer>> piles, int k) {
+        Integer[][] memo = new Integer[piles.size() + 1][k + 1];
+        return dp(piles, memo, 0, k);
+    }
+
+    public int dp(List<List<Integer>> piles, Integer[][] memo, int i, int k) {
+        if (k == 0 || i == piles.size())
+            return 0;
+        if (memo[i][k] != null)
+            return memo[i][k];
+
+        int res = dp(piles, memo, i + 1, k);
+        int cur = 0;
+
+        int left = Math.min(piles.get(i).size(), k);
+        for (int j = 0; j < left; ++j) {
+            cur += piles.get(i).get(j);
+            res = Math.max(res, cur + dp(piles, memo, i + 1, k - j - 1));
+        }
+        return memo[i][k] = res;
     }
 }

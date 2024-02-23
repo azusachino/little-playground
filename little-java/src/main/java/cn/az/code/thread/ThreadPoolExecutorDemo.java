@@ -1,10 +1,9 @@
 package cn.az.code.thread;
 
-import cn.hutool.core.thread.ThreadUtil;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Stream;
@@ -16,7 +15,7 @@ public class ThreadPoolExecutorDemo {
 
     public static void main(String[] args) {
 
-        ExecutorService service = ThreadUtil.newExecutor(20);
+        ExecutorService service = Executors.newCachedThreadPool();
         Set<Thread> set = new HashSet<>();
 
         setThreadFactory(service, set);

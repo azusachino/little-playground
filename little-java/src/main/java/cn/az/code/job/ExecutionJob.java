@@ -1,13 +1,14 @@
 package cn.az.code.job;
 
-import cn.az.code.util.LogUtil;
-import cn.hutool.core.thread.ThreadUtil;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 import org.quartz.JobExecutionContext;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
+import cn.az.code.util.LogUtil;
 
 /**
  * @author ycpang
@@ -16,7 +17,7 @@ import java.util.concurrent.Future;
 @Async
 public class ExecutionJob extends QuartzJobBean {
 
-    private final ExecutorService executorService = ThreadUtil.newSingleExecutor();
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     @Override
     protected void executeInternal(JobExecutionContext context) {

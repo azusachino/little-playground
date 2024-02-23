@@ -1,7 +1,0 @@
-### SAMPLE TEST
-POST http://localhost:8989/api/v1/sample/test
-Content-Type: application/json
-
-{
-  "milli": 1000
-}

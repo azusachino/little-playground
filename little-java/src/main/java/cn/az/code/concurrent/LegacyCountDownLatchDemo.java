@@ -1,8 +1,7 @@
 package cn.az.code.concurrent;
 
-import cn.hutool.core.thread.ThreadUtil;
-
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * LegacyCountDownLatchDemo
@@ -15,7 +14,7 @@ public class LegacyCountDownLatchDemo {
 
     public static void main(String[] args) throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(5);
-        ExecutorService service = ThreadUtil.newExecutor(5);
+        ExecutorService service = Executors.newFixedThreadPool(5);
         for (int i = 0; i < 5; i++) {
             service.submit(() -> {
                 action();

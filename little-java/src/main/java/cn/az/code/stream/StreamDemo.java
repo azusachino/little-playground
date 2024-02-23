@@ -1,7 +1,5 @@
 package cn.az.code.stream;
 
-import cn.hutool.log.Log;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,12 +10,12 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import cn.az.code.util.LogUtil;
+
 /**
  * @author Liz
  */
 public class StreamDemo {
-
-    private static final Log log = Log.get();
 
     public static void main(String[] args) {
         List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5);
@@ -30,9 +28,9 @@ public class StreamDemo {
         nums.stream().flatMap(i -> nums.stream().filter(j -> (i + j) % 3 == 0).map(j -> new int[] { i, j }))
                 .collect(Collectors.toList());
 
-        nums.stream().filter(i -> i > 4).findAny().ifPresent(i -> log.info(String.valueOf(i)));
+        nums.stream().filter(i -> i > 4).findAny().ifPresent(i -> LogUtil.info(String.valueOf(i)));
 
-        // log.info(String.valueOf(nums.stream().reduce(0, Integer::sum)));
+        // LogUtil.info(String.valueOf(nums.stream().reduce(0, Integer::sum)));
         // nums.stream().reduce(Integer::sum).ifPresent(System.out::print);
         // nums.stream().reduce(Integer::max);
 

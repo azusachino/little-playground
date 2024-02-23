@@ -1,13 +1,10 @@
 package cn.az.code.learn;
 
-import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.thread.ExecutorBuilder;
-import cn.hutool.core.thread.ThreadFactoryBuilder;
-
 import java.util.Arrays;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.Executors;
 
 /**
  * @author Liz
@@ -15,10 +12,9 @@ import java.util.concurrent.ThreadFactory;
 public class Test {
 
     public static void main(String[] args) {
-        Map<String, String> map = MapUtil.newConcurrentHashMap();
+        Map<String, String> map = new ConcurrentHashMap<>();
         map.put("1", "222");
-        ThreadFactory threadFactory = ThreadFactoryBuilder.create().setNamePrefix("test-thread-%d").build();
-        ExecutorService service = ExecutorBuilder.create().setThreadFactory(threadFactory).setCorePoolSize(10).build();
+        ExecutorService service = Executors.newFixedThreadPool(10);
         Object[] objects = Arrays.asList(1, 2, 3, 4, 5, 6).toArray();
 
         service.execute(() -> {

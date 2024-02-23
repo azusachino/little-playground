@@ -1,8 +1,8 @@
 package cn.az.code.thread;
 
-import cn.hutool.log.Log;
-
 import java.util.concurrent.CyclicBarrier;
+
+import cn.az.code.util.LogUtil;
 
 /**
  * 某个线程到达预设点时就在此等待，等所有的线程都到达时，大家再一起向下个预设点出发。如此循环反复下去。
@@ -11,11 +11,8 @@ import java.util.concurrent.CyclicBarrier;
  */
 public class ThreadTravel {
 
-    private static final Log log = Log.get(ProduceConsume.class);
-
     static final int COUNT = 5;
     static CyclicBarrier cb = new CyclicBarrier(COUNT, new SingerRunnable());
-
 
     public static void main(String[] args) throws InterruptedException {
         for (int i = 0; i < COUNT; i++) {
@@ -37,7 +34,8 @@ public class ThreadTravel {
      * 16:57:56.535 [Thread-0] INFO cn.az.code.thread.ThreadTravel - 员工0到达地点一。。。
      * 16:57:56.535 [Thread-3] INFO cn.az.code.thread.ThreadTravel - 员工3到达地点一。。。
      * 16:57:56.535 [Thread-1] INFO cn.az.code.thread.ThreadTravel - 员工1到达地点一。。。
-     * 16:57:56.535 [Thread-1] INFO cn.az.code.thread.ThreadTravel - Thread-1 is singing for everyone
+     * 16:57:56.535 [Thread-1] INFO cn.az.code.thread.ThreadTravel - Thread-1 is
+     * singing for everyone
      * 16:57:56.536 [Thread-0] INFO cn.az.code.thread.ThreadTravel - 员工0再出发。。。
      * 16:57:56.536 [Thread-1] INFO cn.az.code.thread.ThreadTravel - 员工1再出发。。。
      * 16:57:56.536 [Thread-3] INFO cn.az.code.thread.ThreadTravel - 员工3再出发。。。
@@ -48,7 +46,7 @@ public class ThreadTravel {
 
         @Override
         public void run() {
-            log.info("{} is singing for everyone", Thread.currentThread().getName());
+            LogUtil.info("{} is singing for everyone", Thread.currentThread().getName());
         }
     }
 
@@ -65,31 +63,31 @@ public class ThreadTravel {
         @Override
         public void run() {
             try {
-                log.info("员工{}出发。。。", num);
+                LogUtil.info("员工{}出发。。。", num);
                 doingLongTime();
-                log.info("员工{}到达地点一。。。", num);
+                LogUtil.info("员工{}到达地点一。。。", num);
                 try {
                     cb.await();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                log.info("员工{}再出发。。。", num);
+                LogUtil.info("员工{}再出发。。。", num);
                 doingLongTime();
-                log.info("员工{}到达地点二。。。", num);
+                LogUtil.info("员工{}到达地点二。。。", num);
                 try {
                     cb.await();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                log.info("员工{}再出发。。。", num);
+                LogUtil.info("员工{}再出发。。。", num);
                 doingLongTime();
-                log.info("员工{}到达地点三。。。", num);
+                LogUtil.info("员工{}到达地点三。。。", num);
                 try {
                     cb.await();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                log.info("员工{}结束。。。", num);
+                LogUtil.info("员工{}结束。。。", num);
             } catch (Exception e) {
                 e.printStackTrace();
             }

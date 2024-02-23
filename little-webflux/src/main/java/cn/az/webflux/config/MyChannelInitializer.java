@@ -1,6 +1,7 @@
 package cn.az.webflux.config;
 
 import cn.az.webflux.handler.MyChannelHandler;
+import cn.az.webflux.support.IrisProtocolDecoder;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
 import io.netty.handler.timeout.IdleStateHandler;
@@ -15,6 +16,7 @@ public class MyChannelInitializer extends ChannelInitializer<Channel> {
 
     @Override
     protected void initChannel(Channel channel) {
+        channel.pipeline().addLast(new IrisProtocolDecoder());
         channel.pipeline().addLast("idleStateHandler", new IdleStateHandler(60, 30, 0));
         // after idelStateHandler, wait for IdleStateEvent
         channel.pipeline().addLast("myChannelHandler", new MyChannelHandler());

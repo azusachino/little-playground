@@ -22,6 +22,7 @@ public class Solution {
         var ss = "A man, a plan, a canal: Panama";
         System.out.println(s.isPalindrome1(ss));
         GsonUtil.print(s.mergeAlternately("abcd", "pq"));
+        GsonUtil.print(s.longestPalindromeSubseq("leetcode"));
     }
 
     public boolean isValid(String s) {

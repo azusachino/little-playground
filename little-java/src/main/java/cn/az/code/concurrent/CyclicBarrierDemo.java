@@ -1,10 +1,9 @@
 package cn.az.code.concurrent;
 
-import cn.hutool.core.thread.ThreadUtil;
-
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -13,8 +12,12 @@ import java.util.concurrent.TimeUnit;
 public class CyclicBarrierDemo {
 
     public static void main(String[] args) throws InterruptedException {
-        CyclicBarrier cyclicBarrier = new CyclicBarrier(5);
-        ExecutorService service = ThreadUtil.newExecutor(5);
+        // 等待所有任务完成后执行 CyclicBarrier 的 action
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(5,
+                () -> {
+                    System.out.println("All previous tasks are completed");
+                });
+        ExecutorService service = Executors.newFixedThreadPool(5);
         // 10 = CyclicBarrier(5) + CyclicBarrier.reset()
         for (int i = 0; i < 20; i++) {
             service.submit(() -> {

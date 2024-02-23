@@ -1,12 +1,14 @@
 package cn.az.code.cache.guava;
 
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 import com.google.common.base.Ticker;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
+import cn.az.code.util.LogUtil;
 
 /**
  * @author az
@@ -17,21 +19,32 @@ public class GuavaCache {
     private static final LoadingCache<String, Object> LOADING_CACHE = CacheBuilder
             .newBuilder()
             .maximumSize(100)
-            .expireAfterAccess(10, TimeUnit.SECONDS)
+            .expireAfterWrite(1, TimeUnit.SECONDS)
             .recordStats()
             .weakKeys()
             .ticker(Ticker.systemTicker())
             .build(new CacheLoader<String, Object>() {
                 @Override
                 public Object load(String key) {
-                    return null;
+                    switch (key) {
+                        case "1":
+                            return "new data of 1";
+                        case "2":
+                            return "new data of 2";
+                        default:
+                            return null;
+                    }
                 }
             });
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         put("1", 1);
         put("2", 1);
-        System.out.println(viewCache());
+        LogUtil.info("data: {}", viewCache());
+        Thread.sleep(1001);
+        LogUtil.info("data: {}", viewCache());
+        String myFirst = LOADING_CACHE.get("1").toString();
+        LogUtil.info("1 is: {}", myFirst);
     }
 
     public static void put(String k, Object o) {

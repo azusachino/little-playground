@@ -17,4 +17,4 @@ tasks:
       - mvn clean install -DskipTests
   package:
     cmds:
-      - mvn clean package -DskipTests
+      - mvn clean package -DskipTests -Drevision={{.PROJ_VER}}

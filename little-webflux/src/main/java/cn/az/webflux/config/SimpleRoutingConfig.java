@@ -1,12 +1,13 @@
 package cn.az.webflux.config;
 
-import cn.az.webflux.handler.SimpleHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
+
+import cn.az.webflux.handler.SimpleHandler;
 
 /**
  * SimpleConfig
@@ -24,9 +25,9 @@ public class SimpleRoutingConfig {
     }
 
     @Bean
-    public RouterFunction<ServerResponse> simpleRouting() {
+    RouterFunction<ServerResponse> simpleRouting() {
         return RouterFunctions.route(
-            RequestPredicates.GET("/hello"),
-            request -> ServerResponse.ok().body(this.simpleHandler.hello(), String.class));
+                RequestPredicates.GET("/hello"),
+                request -> ServerResponse.ok().body(this.simpleHandler.hello(), String.class));
     }
 }

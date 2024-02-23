@@ -1,6 +1,11 @@
 package cn.az.code.http;
 
-import cn.hutool.log.Log;
+import java.io.IOException;
+import java.util.Objects;
+
+import org.springframework.util.Assert;
+
+import cn.az.code.util.LogUtil;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Headers;
@@ -8,9 +13,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import org.springframework.util.Assert;
-
-import java.io.IOException;
 
 /**
  * @author az
@@ -20,12 +22,10 @@ public class HttpTest {
 
     private final OkHttpClient httpClient = new OkHttpClient();
 
-    private static final Log log = Log.get();
-
     public static void main(String[] args) {
         HttpTest ht = new HttpTest();
-        log.info(ht.get("https://www.zhihu.com"));
-        log.info(ht.get("https://cn.bing.com"));
+        LogUtil.info(ht.get("https://www.zhihu.com"));
+        LogUtil.info(ht.get("https://cn.bing.com"));
     }
 
     String get(String url) {
@@ -37,7 +37,7 @@ public class HttpTest {
 
         try (Response res = httpClient.newCall(req).execute()) {
             Assert.state(res.body() != null, () -> "");
-            return res.body().string();
+            return Objects.requireNonNull(res.body()).string();
         } catch (Exception e) {
             return null;
         }
@@ -65,7 +65,7 @@ public class HttpTest {
                         System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
                     }
 
-                    System.out.println(responseBody.string());
+                    // System.out.println(responseBody.string());
                 }
             }
         });

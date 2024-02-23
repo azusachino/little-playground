@@ -1,8 +1,8 @@
 package cn.az.webflux.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import cn.az.webflux.ex.BizException;
+import jakarta.annotation.Resource;
 import org.springframework.http.codec.multipart.FilePart;
-import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
@@ -17,12 +17,11 @@ import java.nio.file.Paths;
  * @author az
  * @since 2021-08-26 21:59
  */
-@Service
 public class SampleService {
 
-    private static final String DESKTOP = "C:\\Users\\pangy\\Desktop";
+    private static final String DESKTOP = "~/Desktop";
 
-    @Autowired
+    @Resource
     private CommonService commonService;
 
     public Mono<String> test(long milli) {
@@ -43,9 +42,9 @@ public class SampleService {
     private Path createFile(String filename) {
         Path path = Paths.get(DESKTOP, filename);
         try {
-            Files.createFile(Paths.get(DESKTOP, filename));
+            Files.createFile(path);
         } catch (IOException e) {
-            throw new RuntimeException("failed to create file", e);
+            throw new BizException("failed to create file", e);
         }
         return path;
     }

@@ -1,19 +1,19 @@
 package cn.az.code.test;
 
-import cn.az.code.util.DateUtil;
-import cn.hutool.core.thread.ThreadUtil;
-import cn.hutool.log.Log;
-
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Stream;
+
+import cn.az.code.util.DateUtil;
+import cn.az.code.util.LogUtil;
 
 /**
  * SimpleTest
@@ -22,8 +22,6 @@ import java.util.stream.Stream;
  * @since 2020-03-13
  */
 public class SimpleTest {
-
-    private static final Log log = Log.get();
 
     int a;
 
@@ -46,7 +44,7 @@ public class SimpleTest {
     }
 
     public static void printAbc() {
-        ExecutorService service = ThreadUtil.newExecutor(3);
+        ExecutorService service = Executors.newFixedThreadPool(3);
 
         for (int i = 0; i < 3; i++) {
             service.execute(() -> System.out.println("abc"));
@@ -70,7 +68,7 @@ public class SimpleTest {
                     c1.await();
                 }
             } catch (InterruptedException e) {
-                log.error(e);
+                e.printStackTrace();
             } finally {
                 lock.unlock();
             }
@@ -85,7 +83,7 @@ public class SimpleTest {
 
                 }
             } catch (InterruptedException e) {
-                log.error(e);
+                e.printStackTrace();
             } finally {
                 lock.unlock();
             }
@@ -100,7 +98,7 @@ public class SimpleTest {
 
                 }
             } catch (InterruptedException e) {
-                log.error(e);
+                e.printStackTrace();
             } finally {
                 lock.unlock();
             }
@@ -130,9 +128,9 @@ public class SimpleTest {
         // stream can't use return to stop execute
         list.forEach(i -> {
             if (i == 1) {
-                log.info(String.valueOf(i));
+                LogUtil.info(String.valueOf(i));
             } else {
-                log.warn(String.valueOf(i));
+                LogUtil.warn(String.valueOf(i));
             }
         });
 
@@ -141,7 +139,7 @@ public class SimpleTest {
             if (i == point) {
                 throw new NullPointerException("break the stream");
             } else {
-                log.warn(String.valueOf(i));
+                LogUtil.warn(String.valueOf(i));
             }
         });
 
@@ -149,10 +147,10 @@ public class SimpleTest {
             if (i == point) {
                 return;
             } else {
-                log.info("current val is {}", i);
+                LogUtil.info("current val is {}", i);
             }
         }
-        log.error("last sentence");
+        LogUtil.error("last sentence");
     }
 
     public int getA() {

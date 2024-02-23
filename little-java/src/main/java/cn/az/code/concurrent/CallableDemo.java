@@ -1,10 +1,9 @@
 package cn.az.code.concurrent;
 
-import cn.hutool.core.thread.ThreadUtil;
-
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
@@ -15,7 +14,7 @@ public class CallableDemo<T> {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         TicketCallable<String> ticketCallable = new TicketCallable<>(10);
         // FutureTask<String> futureTask = new FutureTask<>(ticketCallable);
-        ExecutorService service = ThreadUtil.newExecutor();
+        ExecutorService service = Executors.newCachedThreadPool();
         Future<String> future = service.submit(ticketCallable);
         System.out.println(future.get());
     }
