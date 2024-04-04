@@ -1,20 +1,20 @@
 version: "3"
 
-vars:
-  PROJ_VER: 1.1.0
+dotenv:
+  - project.env
 
 tasks:
-  src:
+  source:
     cmds:
       - mvn dependency:sources
-  ver:
+  update:
     cmds:
-      - mvn versions:set -DnewVersion={{.PROJ_VERSION}}
-      - find ./ -name pom.xml.versionsBackup | xargs rm
-      - echo "set to new version {{.PROJ_VERSION}} successfully"
+      - "mvn versions:set -DnewVersion=${PROJECT_VERSION}"
+      - mvn versions:commit
+      - echo "set to new version ${PROJECT_VERSION} successfully"
   install:
     cmds:
       - mvn clean install -DskipTests
   package:
     cmds:
-      - mvn clean package -DskipTests -Drevision={{.PROJ_VER}}
+      - mvn clean package -DskipTests

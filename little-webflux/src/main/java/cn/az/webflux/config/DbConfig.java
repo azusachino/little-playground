@@ -1,8 +1,13 @@
 package cn.az.webflux.config;
 
-import com.alibaba.druid.pool.DruidDataSource;
+import org.springframework.cloud.gateway.config.conditional.ConditionalOnEnabledGlobalFilter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+import com.alibaba.druid.pool.DruidDataSource;
+
+@Configuration
+@ConditionalOnEnabledGlobalFilter
 public class DbConfig {
 
     @Bean
