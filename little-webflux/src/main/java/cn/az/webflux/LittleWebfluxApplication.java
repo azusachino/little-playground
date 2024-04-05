@@ -33,7 +33,9 @@ public class LittleWebfluxApplication {
         var delegate = ctx.getBean(DelegateCurrencyRateHandler.class);
         var result = delegate.getCurrencyRate();
         if (Boolean.TRUE.equals(result.getSecond())) {
-            LOGGER.info("currency rate is {}", JsonUtils.toJson(result));
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("currency rate is {}", JsonUtils.toJson(result));
+            }
         }
     }
 
