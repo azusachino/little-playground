@@ -22,10 +22,10 @@ import io.netty.handler.logging.LoggingHandler;
  * @author ycpang
  * @since 2022-03-10 13:55
  */
-public class NettyTests {
+class NettyTests {
 
     @Test
-    public void serverTest() {
+    void serverTest() {
 
         EventLoopGroup parentGroup = new NioEventLoopGroup();
         EventLoopGroup childGroup = new NioEventLoopGroup();
@@ -53,7 +53,7 @@ public class NettyTests {
     }
 
     @Test
-    public void clientTest() {
+    void clientTest() {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             Bootstrap bootstrap = new Bootstrap();

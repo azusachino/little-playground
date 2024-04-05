@@ -10,10 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @since 2021/8/2 22:38
  */
 @SpringBootTest(args = "--HOST_IP=127.0.0.1", properties = "spring.profiles.active=dev")
-public class ControllerTests {
+class ControllerTests {
 
     @Test
-    public void test1() {
+    void test() {
 
     }
 }

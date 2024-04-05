@@ -1,9 +1,11 @@
 # file
 *.iml
 *.class
+*.versionsBackup
 **/package-lock.json
 
 ## vscode
+.vscode
 **/.project
 **/org.eclipse.*
 **/.factorypath

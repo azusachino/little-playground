@@ -1,5 +1,9 @@
 package cn.az.code.array;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class AnotherSolution {
 
     public static void main(String[] args) {
@@ -103,4 +107,38 @@ public class AnotherSolution {
         }
         return l - 1;
     }
+
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        var result = new ArrayList<List<Integer>>();
+        for (int i = 0; i < nums.length; i++) {
+            var target = nums[i];
+            if (target > 0) {
+                break;
+            }
+            int l = i + 1, r = nums.length - 1;
+            while (l < r) {
+                int sum = nums[l] + nums[r] + target;
+                if (sum > 0) {
+                    r--;
+                } else if (sum < 0) {
+                    l++;
+                } else {
+                    var cur = List.of(nums[i], nums[l], nums[r]);
+                    result.add(cur);
+                    while (l < r && nums[l] == cur.get(1)) {
+                        l++;
+                    }
+                    while (l < r && nums[r] == cur.get(2)) {
+                        r--;
+                    }
+                }
+                while (i + 1 < nums.length && nums[i + 1] == nums[i]) {
+                    i++;
+                }
+            }
+        }
+        return result;
+    }
+
 }

@@ -12,13 +12,11 @@ public class MybatisCustomInterceptor implements Interceptor, ApplicationContext
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'intercept'");
     }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setApplicationContext'");
     }
     
