@@ -45,6 +45,7 @@
         <dubbo.version>3.2.11</dubbo.version>
         <postgresql.version>42.7.2</postgresql.version>
         <xxl-job.version>2.4.0</xxl-job.version>
+        <fasterxml-uuid.version>5.0.0</fasterxml-uuid.version>
     </properties>
 
     <dependencyManagement>
@@ -145,6 +146,11 @@
                 <groupId>com.xuxueli</groupId>
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl-job.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.uuid</groupId>
+                <artifactId>java-uuid-generator</artifactId>
+                <version>${fasterxml-uuid.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

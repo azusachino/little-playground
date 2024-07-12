@@ -48,10 +48,7 @@ public class Solution {
     }
 
     public int openLock(List<String> deadends, String target) {
-        Set<String> set = new HashSet<>();
-        for (String string : deadends) {
-            set.add(string);
-        }
+        Set<String> set = new HashSet<>(deadends);
         
         Set<String> visited = new HashSet<>();
         Queue<String> q = new LinkedList<>();

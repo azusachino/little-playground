@@ -2,6 +2,7 @@ package cn.az.webflux.utils;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.uuid.Generators;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,5 +35,9 @@ public abstract class JsonUtils {
             LOGGER.error("toJson error", e);
         }
         return null;
+    }
+
+    public static String uuid() {
+        return Generators.defaultTimeBasedGenerator().generate().toString();
     }
 }
