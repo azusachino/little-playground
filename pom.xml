@@ -152,6 +152,16 @@
                 <artifactId>java-uuid-generator</artifactId>
                 <version>${fasterxml-uuid.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.lmax</groupId>
+                <artifactId>disruptor</artifactId>
+                <version>4.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.aeron</groupId>
+                <artifactId>aeron-all</artifactId>
+                <version>1.46.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
