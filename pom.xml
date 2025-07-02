@@ -39,7 +39,7 @@
         <nimbus-jwt.version>9.37.3</nimbus-jwt.version>
         <rocketmq.version>2.2.3</rocketmq.version>
         <spring-cloud.version>2023.0.0</spring-cloud.version>
-        <zk.version>3.9.2</zk.version>
+        <zk.version>3.9.3</zk.version>
         <mysql.version>8.3.0</mysql.version>
         <redisson.version>3.26.1</redisson.version>
         <dubbo.version>3.2.11</dubbo.version>
