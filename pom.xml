@@ -44,7 +44,7 @@
         <redisson.version>3.26.1</redisson.version>
         <dubbo.version>3.2.11</dubbo.version>
         <postgresql.version>42.7.2</postgresql.version>
-        <xxl-job.version>2.4.0</xxl-job.version>
+        <xxl-job.version>2.4.2</xxl-job.version>
     </properties>
 
     <dependencyManagement>
