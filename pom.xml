@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.4</version>
+        <version>3.3.0</version>
         <relativePath />
     </parent>
 
@@ -46,6 +46,8 @@
         <postgresql.version>42.7.2</postgresql.version>
         <xxl-job.version>2.4.0</xxl-job.version>
         <fasterxml-uuid.version>5.0.0</fasterxml-uuid.version>
+        <dotenv.version>3.0.0</dotenv.version>
+        <disruptor.version>3.4.3</disruptor.version>
     </properties>
 
     <dependencyManagement>
@@ -153,14 +155,29 @@
                 <version>${fasterxml-uuid.version}</version>
             </dependency>
             <dependency>
+                <groupId>io.github.cdimascio</groupId>
+                <artifactId>dotenv-java</artifactId>
+                <version>${dotenv.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.lmax</groupId>
                 <artifactId>disruptor</artifactId>
-                <version>4.0.0</version>
+                <version>${disruptor.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.aeron</groupId>
                 <artifactId>aeron-all</artifactId>
                 <version>1.46.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>5.7.0</version>
+            </dependency>
+            <dependency>
+                <groupId>uk.co.real-logic</groupId>
+                <artifactId>sbe-all</artifactId>
+                <version>1.33.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

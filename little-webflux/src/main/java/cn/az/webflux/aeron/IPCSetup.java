@@ -18,7 +18,7 @@ public class IPCSetup {
         var rcvIdle = new BusySpinIdleStrategy();
         var sigBarrier = new ShutdownSignalBarrier();
 
-        // construct the media driver
+        // construct the media driver, with default setting of aeron directory
         var mediaCtx = new MediaDriver.Context()
                 .dirDeleteOnStart(true)
                 .dirDeleteOnShutdown(true)

@@ -1,7 +1,5 @@
 package cn.az.webflux;
 
-import cn.az.webflux.currency.DelegateCurrencyRateHandler;
-import cn.az.webflux.utils.JsonUtils;
 import org.redisson.spring.starter.RedissonAutoConfigurationV2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +11,9 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoReactiveAutoConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.reactive.config.EnableWebFlux;
+
+import cn.az.webflux.currency.DelegateCurrencyRateHandler;
+import cn.az.webflux.utils.JsonUtils;
 
 /**
  * WebFlux Application
@@ -32,10 +33,8 @@ public class LittleWebfluxApplication {
         ApplicationContext ctx = SpringApplication.run(LittleWebfluxApplication.class);
         var delegate = ctx.getBean(DelegateCurrencyRateHandler.class);
         var result = delegate.getCurrencyRate();
-        if (Boolean.TRUE.equals(result.getSecond())) {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("currency rate is {}", JsonUtils.toJson(result));
-            }
+        if (Boolean.TRUE.equals(result.getSecond()) && LOGGER.isInfoEnabled()) {
+            LOGGER.info("currency rate is {}", JsonUtils.toJson(result));
         }
     }
 
